@@ -1,9 +1,6 @@
 package com.company;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.text.SimpleDateFormat;
@@ -15,6 +12,7 @@ public class SocketService {
 
     public void serve() throws Exception {
         ServerSocket serverSocket = new ServerSocket(5000);
+
         try {
             while(true) {
                 Socket socket = serverSocket.accept();
@@ -41,8 +39,8 @@ public class SocketService {
         out.print("Date: " + getServerTime() + "\r\n");
         out.print("Content-Type: text/html\r\n");
         out.print("Allow: GET,HEAD,POST,OPTIONS,PUT\r\n");
-        out.print("Content-Length: " + getContentLength(pageBody()) + "\r\n\r\n");
-        out.print(pageBody());
+        out.print("Content-Length: " + getContentLength(pageBody(socket)) + "\r\n\r\n");
+        out.print(pageBody(socket));
         out.flush();
     }
 
@@ -50,8 +48,25 @@ public class SocketService {
         return content.getBytes().length;
     }
 
-    public String pageBody() {
-        return "<html><body> Hello World </body></html>";
+    public String pageBody(Socket socket) throws IOException {
+      return readFile1();
+    }
+
+//    public String parseGetRequest(Socket socket) throws IOException {
+//        if (splitGetRequest(socket)[1] == "/file1") {
+//            readFile1();
+//        }
+//            return "Something is wrong here.";
+//    }
+
+    public String[] splitGetRequest(Socket socket) throws IOException {
+        return getRequest(socket).split(" ");
+    }
+
+    public String readFile1() throws IOException {
+        FileReader fileReader = new FileReader("/Users/ByronWoodfork/Projects/cob-spec/cob_spec/public/file1");
+        BufferedReader bufferedReader = new BufferedReader(fileReader);
+        return bufferedReader.readLine();
     }
 
     public String getServerTime() {
