@@ -25,23 +25,6 @@ public class SocketServiceTest {
     }
 
     @Test
-    public void makeGetRequest() throws Exception {
-        SocketService service = new SocketService();
-        Socket fakeSocket = new FakeSocket("GET HTTP/1.1");
-
-        assertEquals("GET HTTP/1.1", service.getRequest(fakeSocket));
-    }
-
-    @Test
-    public void getRequest() throws Exception {
-        SocketService service = new SocketService();
-        Socket fakeSocket = new FakeSocket("GET HTTP/1.1");
-        String expected = "GET HTTP/1.1";
-
-        assertEquals(expected, service.getRequest(fakeSocket));
-    }
-
-    @Test
     public void getContentLength() throws Exception {
         SocketService service = new SocketService();
         int number = 37;
@@ -51,53 +34,20 @@ public class SocketServiceTest {
     }
 
     @Test
-    public void readFile1() throws Exception {
+    public void makeGetRequest() throws Exception {
         SocketService service = new SocketService();
+        Socket fakeSocket = new FakeSocket("GET HTTP/1.1");
 
-        String file1 = "file1 contents";
-
-        assertEquals(file1, service.readFile1());
-
+        assertEquals("GET HTTP/1.1", service.inputStream(fakeSocket).readLine());
     }
 
     @Test
-    public void splitGetRequest() throws Exception {
+    public void getRequest() throws Exception {
         SocketService service = new SocketService();
-        Socket fakeSocket = new FakeSocket("GET / HTTP/1.1");
+        Socket fakeSocket = new FakeSocket("GET HTTP/1.1");
+        String expected = "GET HTTP/1.1";
 
-        String firstElement = "GET";
-
-        assertEquals(firstElement, service.splitGetRequest(fakeSocket)[0]);
-
+        assertEquals(expected, service.inputStream(fakeSocket).readLine());
     }
 
-    @Test
-    public void secondGetRequestElement() throws Exception {
-        SocketService service = new SocketService();
-        Socket fakeSocket = new FakeSocket("GET /file1 HTTP/1.1");
-
-        String firstElement = "/file1";
-
-        assertEquals(firstElement, service.splitGetRequest(fakeSocket)[1]);
-
-    }
-
-//    @Test
-//    public void parseGetRequest() throws Exception {
-//        SocketService service = new SocketService();
-//        Socket fakeSocket = new FakeSocket("GET / HTTP/1.1");
-//
-//        String file1Contents = "file 1 Contents";
-//
-//        assertEquals(file1Contents, service.parseGetRequest(fakeSocket));
-//    }
-
-//    @Test
-//    public void testThis() throws Exception {
-//        SocketService service = new SocketService();
-//        boolean boo = true;
-//        Socket fakeSocket = new FakeSocket("GET HTTP/1.1");
-//
-//        assertEquals(true, service.testThis(fakeSocket));
-//    }
 }

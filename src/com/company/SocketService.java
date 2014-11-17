@@ -9,6 +9,13 @@ import java.util.Locale;
 import java.util.TimeZone;
 
 public class SocketService {
+    private RequestParser parser;
+    private HTTPResponse response;
+    private FileRouter router;
+
+    public SocketService() {
+        response = new HTTPResponse();
+    }
 
     public void serve() throws Exception {
         ServerSocket serverSocket = new ServerSocket(5000);
@@ -16,6 +23,9 @@ public class SocketService {
         try {
             while(true) {
                 Socket socket = serverSocket.accept();
+                String getRequest = inputStream(socket).readLine();
+//                System.out.println(getRequest);
+                parser = new RequestParser(getRequest);
                 outPutStream(socket);
                 socket.close();
             }
@@ -26,21 +36,21 @@ public class SocketService {
 
     }
 
-    public String getRequest(Socket socket) throws IOException {
+    public BufferedReader inputStream(Socket socket) throws IOException {
         InputStreamReader inputStreamReader = new InputStreamReader(socket.getInputStream());
-        BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-        return bufferedReader.readLine();
+        return new BufferedReader(inputStreamReader);
     }
 
     public void outPutStream(Socket socket) throws IOException {
         PrintWriter out = new PrintWriter(socket.getOutputStream());
+        String theFilePath = parser.getFilePath();
 
-        out.print("HTTP/1.1 200 OK\r\n");
+        out.print("HTTP/1.1 " + response.getResponseStatus(theFilePath) + "\r\n");
         out.print("Date: " + getServerTime() + "\r\n");
         out.print("Content-Type: text/html\r\n");
         out.print("Allow: GET,HEAD,POST,OPTIONS,PUT\r\n");
-        out.print("Content-Length: " + getContentLength(pageBody(socket)) + "\r\n\r\n");
-        out.print(pageBody(socket));
+        out.print("Content-Length: " + getContentLength(pageBody()) + "\r\n\r\n");
+        out.print(pageBody());
         out.flush();
     }
 
@@ -48,25 +58,10 @@ public class SocketService {
         return content.getBytes().length;
     }
 
-    public String pageBody(Socket socket) throws IOException {
-      return readFile1();
-    }
+    public String pageBody() throws IOException {
+//        String path = parser.getFilePath();
 
-//    public String parseGetRequest(Socket socket) throws IOException {
-//        if (splitGetRequest(socket)[1] == "/file1") {
-//            readFile1();
-//        }
-//            return "Something is wrong here.";
-//    }
-
-    public String[] splitGetRequest(Socket socket) throws IOException {
-        return getRequest(socket).split(" ");
-    }
-
-    public String readFile1() throws IOException {
-        FileReader fileReader = new FileReader("/Users/ByronWoodfork/Projects/cob-spec/cob_spec/public/file1");
-        BufferedReader bufferedReader = new BufferedReader(fileReader);
-        return bufferedReader.readLine();
+        return parser.routeFile1();
     }
 
     public String getServerTime() {
