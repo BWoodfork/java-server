@@ -15,28 +15,23 @@ public class FileResponse {
         return bufferedReader.readLine().getBytes();
     }
 
-    public byte[] readJPEG() throws IOException {
+    public byte[] getJPEG() throws IOException {
         Path path = Paths.get("/Users/ByronWoodfork/Projects/cob-spec/cob_spec/public", "image.jpeg");
         return Files.readAllBytes(path);
     }
 
-    public byte[] getHTMLPage() {
-        String html = "<html><body>Hello World!</body></html>";
-        return html.getBytes();
+    public byte[] getPNG() throws IOException {
+        Path path = Paths.get("/Users/ByronWoodfork/Projects/cob-spec/cob_spec/public", "image.png");
+        return Files.readAllBytes(path);
     }
 
-//    public byte[] convertJPEG() {
-//        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-//        ImageIO.write("/Users/ByronWoodfork/Projects/cob-spec/cob_spec/public/image.jpeg", "jpeg", byteArrayOutputStream);
-//        return byteArrayOutputStream.toByteArray();
-//    }
+    public byte[] getGIF() throws IOException {
+        Path path = Paths.get("/Users/ByronWoodfork/Projects/cob-spec/cob_spec/public", "image.gif");
+        return Files.readAllBytes(path);
+    }
 
-//    public byte[] convertJPEG() throws IOException {
-//        BufferedImage image = ImageIO.read(new File("/Users/ByronWoodfork/Projects/cob-spec/cob_spec/public/image.jpeg"));
-//        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-//        ImageIO.write(image, "jpeg", byteArrayOutputStream);
-//        return byteArrayOutputStream.toByteArray();
-//    }
-
-
+    public byte[] getHTMLPage() {
+        String html = "<html><body></body></html>";
+        return html.getBytes();
+    }
 }

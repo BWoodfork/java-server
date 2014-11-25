@@ -42,7 +42,7 @@ public class SocketService {
 
     public void outputStream(Socket socket) throws IOException {
         DataOutputStream out = new DataOutputStream(socket.getOutputStream());
-        byte[] body = pageBodyBytes();
+        byte[] body = body();
         String length = "Content-Length: " + Integer.toString(body.length) + "\r\n\r\n";
 
         out.write(statusMessageBytes());
@@ -71,7 +71,7 @@ public class SocketService {
         return status.getBytes();
     }
 
-    public byte[] pageBodyBytes() throws IOException {
+    public byte[] body() throws IOException {
         FileRouter fileRouter = new FileRouter();
 
         return fileRouter.routeFiles(requestParser);
