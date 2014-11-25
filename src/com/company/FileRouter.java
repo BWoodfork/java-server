@@ -1,6 +1,5 @@
 package com.company;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class FileRouter {
@@ -10,16 +9,15 @@ public class FileRouter {
         file = new FileResponse();
     }
 
-    public String getFile1(String path) throws IOException {
-        try {
-            if (path.equals("/file1")) {
-                return file.getFile();
-            } else if (path.equals("/")) {
-                return "<html><body>Hello World</body></html>";
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
+    public byte[] routeFiles(RequestParser theFilePath) throws IOException {
+        String unknown = "This is not the page you are looking for";
+
+        if (theFilePath.getFilePath().equals("/file1")) {
+            return file.getFile();
         }
-        return "The Force is not strong with this one.";
+        else if (theFilePath.getFilePath().equals("/")) {
+            return file.getHTMLPage();
+        }
+        return unknown.getBytes();
     }
 }

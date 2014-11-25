@@ -9,9 +9,8 @@ import java.util.Locale;
 import java.util.TimeZone;
 
 public class SocketService {
-    private RequestParser parser;
+    private RequestParser requestParser;
     private HTTPResponse response;
-    private FileRouter router;
 
     public SocketService() {
         response = new HTTPResponse();
@@ -23,10 +22,8 @@ public class SocketService {
         try {
             while(true) {
                 Socket socket = serverSocket.accept();
-                String getRequest = inputStream(socket).readLine();
-//                System.out.println(getRequest);
-                parser = new RequestParser(getRequest);
-                outPutStream(socket);
+                parseRequest(socket);
+                outputStream(socket);
                 socket.close();
             }
 
@@ -36,32 +33,48 @@ public class SocketService {
 
     }
 
-    public BufferedReader inputStream(Socket socket) throws IOException {
+    public void parseRequest(Socket socket) throws IOException {
         InputStreamReader inputStreamReader = new InputStreamReader(socket.getInputStream());
-        return new BufferedReader(inputStreamReader);
+        BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+
+        requestParser = new RequestParser(bufferedReader.readLine());
     }
 
-    public void outPutStream(Socket socket) throws IOException {
-        PrintWriter out = new PrintWriter(socket.getOutputStream());
-        String theFilePath = parser.getFilePath();
+    public void outputStream(Socket socket) throws IOException {
+        DataOutputStream out = new DataOutputStream(socket.getOutputStream());
+        byte[] body = pageBodyBytes();
+        String length = "Content-Length: " + Integer.toString(body.length) + "\r\n\r\n";
 
-        out.print("HTTP/1.1 " + response.getResponseStatus(theFilePath) + "\r\n");
-        out.print("Date: " + getServerTime() + "\r\n");
-        out.print("Content-Type: text/html\r\n");
-        out.print("Allow: GET,HEAD,POST,OPTIONS,PUT\r\n");
-        out.print("Content-Length: " + getContentLength(pageBody()) + "\r\n\r\n");
-        out.print(pageBody());
+        out.write(statusMessageBytes());
+        out.write(getServerTimeBytes());
+        out.write(contentTypeBytes());
+        out.write(allowHeaderBytes());
+        out.write(length.getBytes());
+        out.write(body);
         out.flush();
     }
 
-    public int getContentLength(String content) {
-        return content.getBytes().length;
+    public byte[] allowHeaderBytes() {
+        String allow = "Allow: GET,HEAD,POST,OPTIONS,PUT\r\n";
+        return allow.getBytes();
     }
 
-    public String pageBody() throws IOException {
-//        String path = parser.getFilePath();
+    public byte[] contentTypeBytes() {
+        String type = "Content-Type: text/html\r\n";
+        return type.getBytes();
+    }
 
-        return parser.routeFile1();
+    public byte[] statusMessageBytes() {
+        String filepath = requestParser.getFilePath();
+
+        String status = "HTTP/1.1 " + response.getResponseStatus(filepath) + "\r\n";
+        return status.getBytes();
+    }
+
+    public byte[] pageBodyBytes() throws IOException {
+        FileRouter fileRouter = new FileRouter();
+
+        return fileRouter.routeFiles(requestParser);
     }
 
     public String getServerTime() {
@@ -70,5 +83,10 @@ public class SocketService {
                 "EEE, dd MMM yyyy HH:mm:ss z", Locale.US);
         dateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
         return dateFormat.format(calendar.getTime());
+    }
+
+    public byte[] getServerTimeBytes() {
+        String serverTime = getServerTime() + "\r\n";
+        return serverTime.getBytes();
     }
 }
