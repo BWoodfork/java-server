@@ -37,15 +37,18 @@ public class FileResponse {
     }
 
     public byte[] getHTMLPage() {
-        String html = "<html><body> <ul>\n" +
-                "  <li> <a href='/file1'> file1 </a> </li>\n" +
-                "  <li> <a href='/image.jpeg'> image.jpeg </a> </li>\n" +
-                "  <li> <a href='/image.png'> image.png </a> </li>\n" +
-                "  <li> <a href='/image.gif'> image.gif </a> </li>\n" +
-                "  <li> <a href='/partial_content.txt'> partial_content.txt </a> </li>\n" +
-                "  <li> <a href='/text-file.txt'> text-file.txt </a> </li>\n" +
-                "  <li> <a href='/patch-content.txt'> patch-content.txt </a> </li>\n" +
+        String html = "<html><body> <ul>" +
+                "<li> <a href='/file1'>file1</a> </li>\n" +
+                "<li> <a href='/file2'>file2</a> </li>\n" +
+                "<li> <a href='/image.jpeg'>image.jpeg</a></li>\n" +
+                "<li> <a href='/image.png'>image.png</a></li>\n" +
+                "<li> <a href='/image.gif'>image.gif</a></li>\n" +
+                "<li> <a href='/partial_content.txt'>partial_content.txt</a></li>\n" +
+                "<li> <a href='/text-file.txt'>text-file.txt</a></li>\n" +
+                "<li> <a href='/patch-content.txt'>patch-content.txt</a></li>\n" +
                 "</ul> </body></html>";
+
+//        String html = "<html><body> <a href='/file1'>file1</a> </body></html> ";
         return html.getBytes();
     }
 }
