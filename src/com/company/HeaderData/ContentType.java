@@ -1,7 +1,8 @@
-package com.company;
+package com.company.HeaderData;
 
-public class HeaderContentType {
+import com.company.RequestParser;
 
+public class ContentType {
     public String getContentType(RequestParser requestParser) {
         if (requestParser.getFilePath().equals("/image.jpeg")) {
             return "image/jpeg\r\n";

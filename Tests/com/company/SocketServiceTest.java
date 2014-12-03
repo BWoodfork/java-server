@@ -1,9 +1,13 @@
 package com.company;
 
+import org.junit.Test;
+
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.Socket;
+
+import static org.junit.Assert.assertEquals;
 
 public class SocketServiceTest {
 
@@ -27,23 +31,6 @@ public class SocketServiceTest {
 //        String content = "<html><body> Hello World <body><html>";
 //
 //        assertEquals(number, service.getContentLength(content));
-//    }
-
-//    @Test
-//    public void makeGetRequest() throws Exception {
-//        SocketService service = new SocketService();
-//        Socket fakeSocket = new FakeSocket("GET HTTP/1.1");
-//
-//        assertEquals("GET HTTP/1.1", service.inputStream(fakeSocket).readLine());
-//    }
-//
-//    @Test
-//    public void getRequest() throws Exception {
-//        SocketService service = new SocketService();
-//        Socket fakeSocket = new FakeSocket("GET HTTP/1.1");
-//        String expected = "GET HTTP/1.1";
-//
-//        assertEquals(expected, service.inputStream(fakeSocket).readLine());
 //    }
 
 }

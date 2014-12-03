@@ -47,8 +47,6 @@ public class FileResponse {
                 "<li> <a href='/text-file.txt'>text-file.txt</a></li>\n" +
                 "<li> <a href='/patch-content.txt'>patch-content.txt</a></li>\n" +
                 "</ul> </body></html>";
-
-//        String html = "<html><body> <a href='/file1'>file1</a> </body></html> ";
         return html.getBytes();
     }
 }

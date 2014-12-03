@@ -6,13 +6,29 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a534d807-f553-4e90-93f7-c6040a0c0197" name="Default" comment="Added HeaderContentType class to fix problem with images not showing up.">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/company/HeaderContentType.java" />
+    <list default="true" id="a534d807-f553-4e90-93f7-c6040a0c0197" name="Default" comment="Refactored SocketService. Extracted Output data into HeaderData Folder.">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/company/HeaderData/ContentType.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/company/HeaderData/DateAndTime.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/company/HeaderData/HeaderOutput.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/company/HeaderData/StatusMessages.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/java-server/com/company/DateResponse.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/java-server/com/company/PageBody.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/company/DateResponse.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/company/HeaderContentType.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/company/PageBody.java" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/java-server/com/company/FileResponse.class" afterPath="$PROJECT_DIR$/out/production/java-server/com/company/FileResponse.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/java-server/com/company/HTTPResponseTest.class" afterPath="$PROJECT_DIR$/out/test/java-server/com/company/HTTPResponseTest.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/java-server/com/company/RequestParser.class" afterPath="$PROJECT_DIR$/out/production/java-server/com/company/RequestParser.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/java-server/com/company/RequestParserTest.class" afterPath="$PROJECT_DIR$/out/test/java-server/com/company/RequestParserTest.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/java-server/com/company/SocketService.class" afterPath="$PROJECT_DIR$/out/production/java-server/com/company/SocketService.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/FileRouter.java" afterPath="$PROJECT_DIR$/src/com/company/FileRouter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/RequestParser.java" afterPath="$PROJECT_DIR$/src/com/company/RequestParser.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/java-server/com/company/SocketServiceTest$FakeSocket.class" afterPath="$PROJECT_DIR$/out/test/java-server/com/company/SocketServiceTest$FakeSocket.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/java-server/com/company/SocketServiceTest.class" afterPath="$PROJECT_DIR$/out/test/java-server/com/company/SocketServiceTest.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/FileResponse.java" afterPath="$PROJECT_DIR$/src/com/company/FileResponse.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tests/com/company/HTTPResponseTest.java" afterPath="$PROJECT_DIR$/Tests/com/company/HTTPResponseTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tests/com/company/RequestParserTest.java" afterPath="$PROJECT_DIR$/Tests/com/company/RequestParserTest.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/SocketService.java" afterPath="$PROJECT_DIR$/src/com/company/SocketService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tests/com/company/SocketServiceTest.java" afterPath="$PROJECT_DIR$/Tests/com/company/SocketServiceTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/java-server.iml" afterPath="$PROJECT_DIR$/java-server.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="java-server.iws" />
@@ -46,8 +62,8 @@
       <file leaf-file-name="FileResponse.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/company/FileResponse.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="810">
-              <caret line="43" column="31" selection-start-line="43" selection-start-column="31" selection-end-line="43" selection-end-column="31" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="780">
+              <caret line="15" column="5" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -57,7 +73,7 @@
         <entry file="file://$PROJECT_DIR$/src/com/company/FileRouter.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="540">
-              <caret line="27" column="9" selection-start-line="27" selection-start-column="9" selection-end-line="27" selection-end-column="9" />
+              <caret line="15" column="34" selection-start-line="15" selection-start-column="34" selection-end-line="15" selection-end-column="34" />
               <folding>
                 <element signature="e#133#134#0" expanded="true" />
                 <element signature="e#174#175#0" expanded="true" />
@@ -66,81 +82,102 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SocketService.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="SocketService.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/company/SocketService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.3327338" vertical-offset="85" max-vertical-offset="1530">
-              <caret line="24" column="25" selection-start-line="24" selection-start-column="25" selection-end-line="24" selection-end-column="25" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RequestParser.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/company/RequestParser.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="390">
-              <caret line="6" column="32" selection-start-line="6" selection-start-column="32" selection-end-line="6" selection-end-column="32" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="525">
+              <caret line="18" column="12" selection-start-line="18" selection-start-column="12" selection-end-line="18" selection-end-column="12" />
               <folding>
-                <element signature="e#122#123#0" expanded="true" />
-                <element signature="e#161#162#0" expanded="true" />
-                <element signature="e#199#200#0" expanded="true" />
-                <element signature="e#238#239#0" expanded="true" />
-                <element signature="e#271#272#0" expanded="true" />
-                <element signature="e#311#312#0" expanded="true" />
-                <element signature="e#346#347#0" expanded="true" />
-                <element signature="e#386#387#0" expanded="true" />
+                <element signature="imports" expanded="true" />
+                <element signature="e#236#237#0" expanded="true" />
+                <element signature="e#285#286#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HeaderContentType.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/company/HeaderContentType.java">
+      <file leaf-file-name="HeaderOutput.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/company/HeaderData/HeaderOutput.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="300">
-              <caret line="14" column="1" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1110">
+              <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RequestParserTest.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Tests/com/company/RequestParserTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.48741007" vertical-offset="44" max-vertical-offset="600">
+              <caret line="21" column="8" selection-start-line="21" selection-start-column="8" selection-end-line="21" selection-end-column="8" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ContentType.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/company/HeaderData/ContentType.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="330">
+              <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HTTPResponse.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/company/HTTPResponse.java">
+      <file leaf-file-name="StatusMessages.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/company/HeaderData/StatusMessages.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="315">
-              <caret line="8" column="52" selection-start-line="8" selection-start-column="52" selection-end-line="8" selection-end-column="52" />
-              <folding />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="360">
+              <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#199#200#0" expanded="true" />
+                <element signature="e#248#249#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PageBody.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/company/PageBody.java">
+      <file leaf-file-name="DateAndTime.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/company/HeaderData/DateAndTime.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="240">
-              <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-              <folding />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="390">
+              <caret line="20" column="1" selection-start-line="20" selection-start-column="1" selection-end-line="20" selection-end-column="1" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DateResponse.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/company/DateResponse.java">
+      <file leaf-file-name="SocketServiceTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Tests/com/company/SocketServiceTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="285">
-              <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-              <folding />
+            <state vertical-scroll-proportion="0.0" vertical-offset="29" max-vertical-offset="615">
+              <caret line="16" column="15" selection-start-line="16" selection-start-column="15" selection-end-line="16" selection-end-column="15" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#365#366#0" expanded="true" />
+                <element signature="e#401#402#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/company/Main.java">
+      <file leaf-file-name="HTTPResponseTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Tests/com/company/HTTPResponseTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="210">
-              <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-              <folding />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="585">
+              <caret line="16" column="9" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="9" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -159,12 +196,21 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/.idea/workspace.xml" />
-        <option value="$PROJECT_DIR$/src/com/company/FileResponse.java" />
         <option value="$PROJECT_DIR$/src/com/company/FileRouter.java" />
         <option value="$PROJECT_DIR$/src/com/company/TypeResponse.java" />
-        <option value="$PROJECT_DIR$/src/com/company/HeaderContentType.java" />
-        <option value="$PROJECT_DIR$/src/com/company/SocketService.java" />
         <option value="$PROJECT_DIR$/src/com/company/RequestParser.java" />
+        <option value="$PROJECT_DIR$/src/com/company/FileResponse.java" />
+        <option value="$PROJECT_DIR$/Tests/com/company/RequestParserTest.java" />
+        <option value="$PROJECT_DIR$/Tests/com/company/HTTPResponseTest.java" />
+        <option value="$PROJECT_DIR$/Tests/com/company/HeaderContentTypeTest.java" />
+        <option value="$PROJECT_DIR$/src/com/company/HeaderContentType.java" />
+        <option value="$PROJECT_DIR$/Tests/com/company/SocketServiceTest.java" />
+        <option value="$PROJECT_DIR$/Tests/com/company/HeaderDataTests/DateAndTimeTest.java" />
+        <option value="$PROJECT_DIR$/src/com/company/HeaderData/DateAndTime.java" />
+        <option value="$PROJECT_DIR$/src/com/company/HeaderData/StatusMessages.java" />
+        <option value="$PROJECT_DIR$/src/com/company/HeaderData/ContentType.java" />
+        <option value="$PROJECT_DIR$/src/com/company/SocketService.java" />
+        <option value="$PROJECT_DIR$/src/com/company/HeaderData/HeaderOutput.java" />
       </list>
     </option>
   </component>
@@ -273,6 +319,28 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java-server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java-server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="company" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="HeaderData" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
     </panes>
@@ -289,17 +357,17 @@
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="recentsLimit" value="5" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="dynamic.classpath" value="false" />
   </component>
   <component name="RecentsManager">
-    <key name="CreateTestDialog.Recents.Supers">
-      <recent name="junit.framework.TestCase" />
-    </key>
     <key name="CreateTestDialog.RecentsKey">
       <recent name="com.company" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="junit.framework.TestCase" />
     </key>
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.company" />
@@ -331,6 +399,34 @@
       <RunnerSettings RunnerId="Cover" />
       <RunnerSettings RunnerId="Run" />
       <ConfigurationWrapper RunnerId="Cover" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
+    <configuration default="false" name="RequestParserTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="com.company.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="java-server" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="com.company" />
+      <option name="MAIN_CLASS_NAME" value="com.company.RequestParserTest" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <RunnerSettings RunnerId="Run" />
       <ConfigurationWrapper RunnerId="Run" />
       <method />
     </configuration>
@@ -487,12 +583,14 @@
       <option name="FILTER_LOGCAT_AUTOMATICALLY" value="true" />
       <method />
     </configuration>
-    <list size="1">
+    <list size="2">
       <item index="0" class="java.lang.String" itemvalue="Application.Main" />
+      <item index="1" class="java.lang.String" itemvalue="JUnit.RequestParserTest" />
     </list>
     <recent_temporary>
-      <list size="1">
+      <list size="2">
         <item index="0" class="java.lang.String" itemvalue="Application.Main" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.RequestParserTest" />
       </list>
     </recent_temporary>
   </component>
@@ -513,7 +611,13 @@
       <option name="project" value="LOCAL" />
       <updated>1417634857884</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Added HeaderContentType class to fix problem with images not showing up.">
+      <created>1417638791119</created>
+      <option name="number" value="00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1417638791119</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -563,7 +667,8 @@
     </option>
     <MESSAGE value="Directory Links and Directory Listings passing in Cob Spec." />
     <MESSAGE value="Added HeaderContentType class to fix problem with images not showing up." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added HeaderContentType class to fix problem with images not showing up." />
+    <MESSAGE value="Refactored SocketService. Extracted Output data into HeaderData Folder." />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactored SocketService. Extracted Output data into HeaderData Folder." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -603,7 +708,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1485">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#236#237#0" expanded="true" />
+            <element signature="e#285#286#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -634,22 +743,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/PageBody.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="240">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/DateResponse.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="285">
-          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="210">
@@ -661,34 +754,7 @@
     <entry file="file://$PROJECT_DIR$/src/com/company/HTTPResponse.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="315">
-          <caret line="8" column="52" selection-start-line="8" selection-start-column="52" selection-end-line="8" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/FileRouter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="540">
-          <caret line="27" column="9" selection-start-line="27" selection-start-column="9" selection-end-line="27" selection-end-column="9" />
-          <folding>
-            <element signature="e#133#134#0" expanded="true" />
-            <element signature="e#174#175#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/FileResponse.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="810">
-          <caret line="43" column="31" selection-start-line="43" selection-start-column="31" selection-end-line="43" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/HeaderContentType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="300">
-          <caret line="14" column="1" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
+          <caret line="15" column="1" selection-start-line="15" selection-start-column="1" selection-end-line="15" selection-end-column="1" />
           <folding />
         </state>
       </provider>
@@ -696,7 +762,7 @@
     <entry file="file://$PROJECT_DIR$/src/com/company/RequestParser.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="390">
-          <caret line="6" column="32" selection-start-line="6" selection-start-column="32" selection-end-line="6" selection-end-column="32" />
+          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
           <folding>
             <element signature="e#122#123#0" expanded="true" />
             <element signature="e#161#162#0" expanded="true" />
@@ -710,11 +776,106 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/FileRouter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="540">
+          <caret line="15" column="34" selection-start-line="15" selection-start-column="34" selection-end-line="15" selection-end-column="34" />
+          <folding>
+            <element signature="e#133#134#0" expanded="true" />
+            <element signature="e#174#175#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tests/com/company/HTTPResponseTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="585">
+          <caret line="16" column="9" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/FileResponse.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="780">
+          <caret line="15" column="5" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/HeaderData/DateAndTime.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="390">
+          <caret line="20" column="1" selection-start-line="20" selection-start-column="1" selection-end-line="20" selection-end-column="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/HeaderData/StatusMessages.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="360">
+          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#199#200#0" expanded="true" />
+            <element signature="e#248#249#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/HeaderData/ContentType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="330">
+          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tests/com/company/SocketServiceTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="29" max-vertical-offset="615">
+          <caret line="16" column="15" selection-start-line="16" selection-start-column="15" selection-end-line="16" selection-end-column="15" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#365#366#0" expanded="true" />
+            <element signature="e#401#402#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/SocketService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3327338" vertical-offset="85" max-vertical-offset="1530">
-          <caret line="24" column="25" selection-start-line="24" selection-start-column="25" selection-end-line="24" selection-end-column="25" />
-          <folding />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="525">
+          <caret line="18" column="12" selection-start-line="18" selection-start-column="12" selection-end-line="18" selection-end-column="12" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#236#237#0" expanded="true" />
+            <element signature="e#285#286#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/HeaderData/HeaderOutput.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1110">
+          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tests/com/company/RequestParserTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.48741007" vertical-offset="44" max-vertical-offset="600">
+          <caret line="21" column="8" selection-start-line="21" selection-start-column="8" selection-end-line="21" selection-end-column="8" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
