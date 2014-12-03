@@ -11,9 +11,11 @@ import java.util.TimeZone;
 public class SocketService {
     private RequestParser requestParser;
     private HTTPResponse response;
+    private HeaderContentType headerContentType;
 
     public SocketService() {
         response = new HTTPResponse();
+        headerContentType = new HeaderContentType();
     }
 
     public void serve() throws Exception {
@@ -30,7 +32,6 @@ public class SocketService {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
     }
 
     public void parseRequest(Socket socket) throws IOException {
@@ -70,7 +71,7 @@ public class SocketService {
     }
 
     public byte[] contentTypeBytes() {
-        String type = "Content-Type: text/html\r\n";
+        String type = "Content-Type: " + headerContentType.getContentType(requestParser);
         return type.getBytes();
     }
 

@@ -19,7 +19,7 @@ public class FileRouter {
             return file.getHTMLPage();
         } else if (theFilePath.getFilePath().equals("/image.jpeg")) {
             return file.getJPEG();
-        }else if (theFilePath.getFilePath().equals("/image.png")) {
+        } else if (theFilePath.getFilePath().equals("/image.png")) {
             return file.getPNG();
         } else if (theFilePath.getFilePath().equals("/image.gif")) {
             return file.getGIF();
