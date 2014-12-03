@@ -9,21 +9,21 @@ public class FileRouter {
         file = new FileResponse();
     }
 
-    public byte[] routeFiles(RequestParser theFilePath) throws IOException {
+    public byte[] routeFiles(String theFilePath) throws IOException {
         String unknown = "This is not the page you are looking for";
 
-        if (theFilePath.getFilePath().equals("/file1")) {
+        if (theFilePath.equals("/file1")) {
             return file.getFile();
         }
-        else if (theFilePath.getFilePath().equals("/")) {
+        else if (theFilePath.equals("/")) {
             return file.getHTMLPage();
-        } else if (theFilePath.getFilePath().equals("/image.jpeg")) {
+        } else if (theFilePath.equals("/image.jpeg")) {
             return file.getJPEG();
-        } else if (theFilePath.getFilePath().equals("/image.png")) {
+        } else if (theFilePath.equals("/image.png")) {
             return file.getPNG();
-        } else if (theFilePath.getFilePath().equals("/image.gif")) {
+        } else if (theFilePath.equals("/image.gif")) {
             return file.getGIF();
-        } else if (theFilePath.getFilePath().equals("/file2")) {
+        } else if (theFilePath.equals("/file2")) {
             return file.getFile2();
         }
         return unknown.getBytes();

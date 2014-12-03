@@ -51,19 +51,19 @@ public class HeaderOutput {
         out.flush();
     }
 
-    public byte[] allowHeaderBytes() {
-        String allow = "Allow: GET,HEAD,POST,OPTIONS,PUT\r\n";
-        return allow.getBytes();
-    }
-
     public byte[] contentTypeBytes() {
         String type = "Content-Type: " + contentType.getContentType(requestParser);
         return type.getBytes();
     }
 
+    public byte[] allowHeaderBytes() {
+        String allow = "Allow: GET,HEAD,POST,OPTIONS,PUT\r\n";
+        return allow.getBytes();
+    }
+
     public byte[] pageBodyBytes() throws IOException {
         FileRouter fileRouter = new FileRouter();
 
-        return fileRouter.routeFiles(requestParser);
+        return fileRouter.routeFiles(requestParser.getFilePath());
     }
 }
