@@ -23,6 +23,8 @@ public class FileRouter {
             return file.getPNG();
         } else if (theFilePath.getFilePath().equals("/image.gif")) {
             return file.getGIF();
+        } else if (theFilePath.getFilePath().equals("/file2")) {
+            return file.getFile2();
         }
         return unknown.getBytes();
     }

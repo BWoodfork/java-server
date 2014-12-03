@@ -37,7 +37,17 @@ public class SocketService {
         InputStreamReader inputStreamReader = new InputStreamReader(socket.getInputStream());
         BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
 
-        requestParser = new RequestParser(bufferedReader.readLine());
+        StringBuilder stringBuilder = new StringBuilder();
+        String line;
+
+        do {
+            line = bufferedReader.readLine();
+            stringBuilder.append(line);
+            if (line.equals("")) break;
+
+        } while (true);
+
+        requestParser = new RequestParser(stringBuilder.toString());
     }
 
     public void outputStream(Socket socket) throws IOException {
