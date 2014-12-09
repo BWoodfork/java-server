@@ -2,10 +2,7 @@ package com.company.HeaderData;
 
 import com.company.*;
 
-import java.io.BufferedReader;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.Socket;
 
 public class HeaderOutput {
@@ -13,6 +10,7 @@ public class HeaderOutput {
     private ContentType contentType;
     private DateAndTime dateAndTime;
     private StatusMessages statusMessages;
+//    private String builtRequest;
 
     public HeaderOutput() {
         contentType = new ContentType();
@@ -20,22 +18,65 @@ public class HeaderOutput {
         statusMessages = new StatusMessages();
     }
 
-    public void parseRequest(Socket socket) throws IOException {
+    public BufferedReader reader(Socket socket) throws IOException {
         InputStreamReader inputStreamReader = new InputStreamReader(socket.getInputStream());
-        BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+        return new BufferedReader(inputStreamReader);
+    }
 
-        StringBuilder stringBuilder = new StringBuilder();
+    public StringBuilder buildRequest(Socket socket) throws IOException {
+        BufferedReader bufferedReader = reader(socket);
+
+        StringBuilder theRequestString = new StringBuilder();
         String line;
 
         do {
             line = bufferedReader.readLine();
-            stringBuilder.append(line);
+            theRequestString.append(line);
             if (line.equals("")) break;
-
         } while (true);
 
-        requestParser = new RequestParser(stringBuilder.toString());
+        return theRequestString;
     }
+
+    public byte[] requestBytes(Socket socket) throws IOException {
+        String builtRequest = buildRequest(socket).toString();
+//        System.out.println(builtRequest);
+        return builtRequest.getBytes();
+    }
+
+//    public void requestToFile() throws IOException {
+//        FileOutputStream fileOutputStream = new FileOutputStream("/Users/8thlight/projects/cob_spec/logger.txt");
+//        fileOutputStream.write(builtRequest.getBytes());
+//    }
+
+    public String requestToString(Socket socket) throws IOException {
+        return new String(requestBytes(socket));
+    }
+
+    public RequestParser parseRequest(Socket socket) throws IOException {
+        return requestParser = new RequestParser(requestToString(socket));
+    }
+
+    public void requestToFile() throws IOException {
+        System.out.println(requestParser.getMethod() + " " + requestParser.getFilePath() + " " + requestParser.parsedProtocol());
+        String request = requestParser.getMethod() + " " + requestParser.getFilePath() + " " + requestParser.parsedProtocol();
+
+        byte[] parser = request.getBytes();
+
+//        FileOutputStream fileOutputStream = new FileOutputStream("/Users/8thlight/projects/cob_spec/logger.txt");
+//        fileOutputStream.write(parser);
+
+        FileWriter fileWriter = new FileWriter("/Users/8thlight/projects/cob_spec/logs.txt");
+        BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+        bufferedWriter.write("GET /log HTTP/1.1");
+        bufferedWriter.flush();
+    }
+
+//    public void requestToFile(Socket socket) throws IOException {
+//        FileOutputStream fos = new FileOutputStream("/Users/8thlight/projects/cob_spec/logger.txt");
+//        fos.write(requestBytes(socket));
+//        fos.close();
+//    }
 
     public void outputStream(Socket socket) throws IOException {
         DataOutputStream out = new DataOutputStream(socket.getOutputStream());
@@ -51,14 +92,16 @@ public class HeaderOutput {
         out.flush();
     }
 
-    public byte[] contentTypeBytes() {
-        String type = "Content-Type: " + contentType.getContentType(requestParser);
-        return type.getBytes();
-    }
-
     public byte[] allowHeaderBytes() {
         String allow = "Allow: GET,HEAD,POST,OPTIONS,PUT\r\n";
         return allow.getBytes();
+    }
+
+    public byte[] contentTypeBytes() {
+        String content = requestParser.getFilePath();
+
+        String type = "Content-Type: " + contentType.getContentType(content);
+        return type.getBytes();
     }
 
     public byte[] pageBodyBytes() throws IOException {

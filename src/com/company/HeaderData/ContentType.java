@@ -1,14 +1,12 @@
 package com.company.HeaderData;
 
-import com.company.RequestParser;
-
 public class ContentType {
-    public String getContentType(RequestParser requestParser) {
-        if (requestParser.getFilePath().equals("/image.jpeg")) {
+    public String getContentType(String requestParser) {
+        if (requestParser.equals("/image.jpeg")) {
             return "image/jpeg\r\n";
-        } else if (requestParser.getFilePath().equals("/image.png")) {
+        } else if (requestParser.equals("/image.png")) {
             return "image/png\r\n";
-        } else if (requestParser.getFilePath().equals("/image.gif")) {
+        } else if (requestParser.equals("/image.gif")) {
             return "image/gif\r\n";
         }
         return "text/html\r\n";

@@ -31,4 +31,13 @@ public class HTTPResponseTest {
 
         assertEquals("404 NOT FOUND", response.getResponseStatus(path));
     }
+
+    @Test
+    public void get401UnauthorizedMessage() throws Exception {
+        HTTPResponse response = new HTTPResponse();
+
+        String path = "/logs";
+
+        assertEquals("401 Unauthorized", response.getResponseStatus(path));
+    }
 }

@@ -25,6 +25,15 @@ public class FileRouterTest {
     }
 
     @Test
+    public void itGetsFile2() throws Exception {
+        String path = "/file2";
+        byte[] file = fileresponse.getFile();
+        int fileLength = file.length;
+
+        assertEquals(fileLength, fileRouter.routeFiles(path).length);
+    }
+
+    @Test
     public void itGetsJPEGImage() throws Exception {
         String path = "/image.jpeg";
 
@@ -63,4 +72,14 @@ public class FileRouterTest {
 
         assertEquals(htmlPageLength, fileRouter.routeFiles(path).length);
     }
+
+//    @Test
+//    public void itGetsTheLogs() throws Exception {
+//        String path = "/logs";
+//
+//        byte[] logs = fileresponse.getLogs();
+//        int logsLength = logs.length;
+//
+//        assertEquals(logsLength, fileRouter.routeFiles(path).length);
+//    }
 }

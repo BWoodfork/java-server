@@ -18,4 +18,12 @@ public class RequestParser {
     public String getFilePath() {
         return parseRequest()[1];
     }
+
+    public String getProtocol() {
+        return parseRequest()[2];
+    }
+
+    public String parsedProtocol() {
+        return getProtocol().substring(0, 8);
+    }
 }

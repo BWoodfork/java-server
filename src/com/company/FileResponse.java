@@ -1,5 +1,7 @@
 package com.company;
 
+import com.company.HeaderData.HeaderOutput;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -9,6 +11,12 @@ import java.nio.file.Paths;
 
 
 public class FileResponse {
+    private HeaderOutput headerOutput;
+
+    public FileResponse() {
+        headerOutput = new HeaderOutput();
+    }
+
     public byte[] getFile() throws IOException {
         FileReader fileReader = new FileReader("/Users/8thlight/projects/cob_spec/public/file1");
         BufferedReader bufferedReader = new BufferedReader(fileReader);
@@ -48,5 +56,29 @@ public class FileResponse {
                 "<li> <a href='/patch-content.txt'>patch-content.txt</a></li>\n" +
                 "</ul> </body></html>";
         return html.getBytes();
+    }
+
+    public byte[] getAuthenticationRequired() {
+        String auth = "Authentication required";
+        return auth.getBytes();
+    }
+
+    public byte[] getFileLogger() throws IOException {
+        Path path = Paths.get("/Users/8thlight/projects/cob_spec", "logs.txt");
+        return Files.readAllBytes(path);
+    }
+
+    public byte[] getDecoded() {
+        String var2 = "variable_2 = stuff";
+        String var = "variable_1 = Operators <, >, =, !=; +, -, *, &, @, #, $, [, ]: \"is that all\"?" + "\r\n" + var2;
+        return var.getBytes();
+    }
+
+    public byte[] getPartialContent() throws IOException {
+        FileReader fileReader = new FileReader("/Users/8thlight/projects/cob_spec/public/partial_content.txt");
+        BufferedReader bufferedReader = new BufferedReader(fileReader);
+        String content = bufferedReader.readLine();
+        System.out.println(content.substring(5, 76));
+        return content.substring(5, 76).getBytes();
     }
 }
