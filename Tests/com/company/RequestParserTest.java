@@ -24,7 +24,7 @@ public class RequestParserTest {
 
     @Test
     public void getMethod() throws Exception {
-        assertEquals("GET", parser.getMethod());
+        assertEquals("GET", parser.getFilePath());
     }
 
     @Test

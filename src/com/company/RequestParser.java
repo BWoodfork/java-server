@@ -1,14 +1,18 @@
 package com.company;
 
 public class RequestParser {
-    private String value;
+    private String therequest;
 
     public RequestParser(String therequest) {
-        this.value = therequest;
+        this.therequest = therequest;
+    }
+
+    public String getFullRequest() {
+        return therequest;
     }
 
     public String[] parseRequest() {
-        return value.split(" ");
+        return therequest.split(" ");
     }
 
     public String getMethod() {
@@ -23,7 +27,7 @@ public class RequestParser {
         return parseRequest()[2];
     }
 
-    public String parsedProtocol() {
-        return getProtocol().substring(0, 8);
+    public String getAuthenticationData() {
+        return parseRequest()[4];
     }
 }

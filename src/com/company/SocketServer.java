@@ -34,7 +34,6 @@ public class SocketServer {
                             public void run() {
                                 try {
                                     headerOutput.parseRequest(socket);
-                                    headerOutput.requestToFile();
                                     headerOutput.outputStream(socket);
                                     socket.close();
                                 } catch (IOException e) {
