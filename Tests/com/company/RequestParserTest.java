@@ -10,13 +10,13 @@ public class RequestParserTest {
 
     @Before
     public void setUp() throws Exception {
-        String getRequest = "GET / HTTP/1.1";
+        String getRequest = "GET / HTTP/1.1 Authorization:Basic YWRtaW46aHVudGVyMg==Connection: closeHost: localhost:5000";
         parser = new RequestParser(getRequest);
     }
 
     @Test
     public void parseRequest() throws Exception {
-        String[] expected = {"GET", "/", "HTTP/1.1"};
+        String[] expected = {"GET", "/", "HTTP/1.1", "Authorization:Basic", "YWRtaW46aHVudGVyMg==Connection:", "closeHost:", "localhost:5000"};
 
         assertEquals(expected, parser.parseRequest());
     }
@@ -29,5 +29,10 @@ public class RequestParserTest {
     @Test
     public void getFilePath() throws Exception {
         assertEquals("/", parser.getFilePath());
+    }
+
+    @Test
+    public void getAuthenticationData() throws Exception {
+        assertEquals("YWRtaW46aHVudGVyMg==Connection:", parser.getAuthenticationData());
     }
 }
