@@ -1,6 +1,6 @@
 package com.company.HeaderData;
 
-import com.company.HTTPResponse;
+import Reponse.HTTPResponse;
 
 public class StatusMessages {
     private HTTPResponse httpResponse;

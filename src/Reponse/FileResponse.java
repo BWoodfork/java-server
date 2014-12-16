@@ -1,4 +1,4 @@
-package com.company;
+package Reponse;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Arrays;
 
 
 public class FileResponse {
@@ -75,15 +74,9 @@ public class FileResponse {
         return bufferedReader.readLine().getBytes();
     }
 
-    public byte[] delete() {
-        return "".getBytes();
+    public byte[] patchContent() throws IOException {
+        FileReader fileReader = new FileReader("/Users/8thlight/projects/cob_spec/public/patch-content.txt");
+        BufferedReader bufferedReader = new BufferedReader(fileReader);
+        return bufferedReader.readLine().getBytes();
     }
-
-//    public byte[] getSecondPartialContent() throws IOException {
-//        FileReader fileReader = new FileReader("/Users/8thlight/projects/cob_spec/public/partial_content.txt");
-//        BufferedReader bufferedReader = new BufferedReader(fileReader);
-//        byte[] content = bufferedReader.readLine().getBytes();
-//        System.out.println(new String(Arrays.copyOfRange(content, 69, 76)));
-//        return Arrays.copyOfRange(content, 69, 76);
-//    }
 }

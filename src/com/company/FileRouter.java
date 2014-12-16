@@ -1,6 +1,7 @@
 package com.company;
 
-import java.io.FileWriter;
+import Reponse.FileResponse;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -9,18 +10,19 @@ import java.util.Arrays;
 
 public class FileRouter {
     private FileResponse file;
-    private BasicAuthentication basicAuthentication;
+    private BasicAuthenticationHandler basicAuthenticationHandler;
 
     public FileRouter() {
         file = new FileResponse();
-        basicAuthentication = new BasicAuthentication();
+        basicAuthenticationHandler = new BasicAuthenticationHandler();
     }
 
     public byte[] routeFiles(String fullrequest) throws IOException {
         String unknown = "This is not the page you are looking for";
         String[] splitRequest = fullrequest.split(" ");
 
-        Path path = Paths.get("/Users/8thlight/projects/cob_spec/public/cosby-data.txt");
+        Path cosbyPath = Paths.get("/Users/8thlight/projects/cob_spec/public/cosby-data.txt");
+        Path patchPath = Paths.get("/Users/8thlight/projects/cob_spec/public/patch-content.txt");
 
         if (splitRequest[1].equals("/file1")) {
             return file.getFile();
@@ -40,23 +42,30 @@ public class FileRouter {
         } else if (splitRequest[1].equals("/redirect")) {
             return file.refresh();
         } else if (splitRequest[1].equals("/logs")) {
-            return basicAuthentication.authenticate(splitRequest[4]);
+            return basicAuthenticationHandler.authenticate(splitRequest[4]);
         } else if (splitRequest[0].equals("POST") && splitRequest[1].equals("/form")) {
-            Files.write(path, "data=cosby".getBytes());
+            Files.write(cosbyPath, "data=cosby".getBytes());
         } else if (splitRequest[0].equals("GET") && splitRequest[1].equals("/form")) {
             return file.cosbyData();
         } else if (splitRequest[0].equals("PUT") && splitRequest[1].equals("/form")) {
-            Files.write(path, "data=heathcliff".getBytes());
+            Files.write(cosbyPath, "data=heathcliff".getBytes());
         } else if (splitRequest[0].equals("GET") && splitRequest[1].equals("/form")) {
             return file.cosbyData();
         } else if (splitRequest[0].equals("DELETE") && splitRequest[1].equals("/form")) {
-            Files.write(path, "These are not the droids you're looking for".getBytes());
+            Files.write(cosbyPath, "These are not the droids you're looking for".getBytes());
             return file.cosbyData();
-        } else if (splitRequest[3].startsWith("bytes=0-4")) {
-            return "This ".getBytes();
-        } else if (splitRequest[3].startsWith("bytes=-6")) {
-//            System.out.println(new String(Arrays.copyOfRange(file.getFirstPartialContent(), 71, 77)));
-            return " 206.".getBytes();
+        } else if (splitRequest[0].equals("GET") && splitRequest[1].equals("/patch-content.txt")) {
+            return file.patchContent();
+        } else if (splitRequest[0].equals("PATCH") && splitRequest[4].startsWith("60")) {
+            Files.write(patchPath, "patched content".getBytes());
+        } else if (splitRequest[0].equals("PATCH") && splitRequest[4].startsWith("69")) {
+            Files.write(patchPath, "default content".getBytes());
+        } else if (splitRequest[0].equals("GET") && splitRequest[3].startsWith("bytes=0-4")) {
+            return Arrays.copyOfRange(file.getFirstPartialContent(), 0, 5);
+        } else if (splitRequest[0].equals("GET") && splitRequest[3].startsWith("bytes=4-")) {
+            return Arrays.copyOfRange(file.getFirstPartialContent(), 4, file.getFirstPartialContent().length);
+        } else if (splitRequest[0].equals("GET") && splitRequest[3].startsWith("bytes=-6")) {
+            return Arrays.copyOfRange(file.getFirstPartialContent(), 71, file.getFirstPartialContent().length);
         }
         return unknown.getBytes();
     }

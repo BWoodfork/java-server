@@ -1,10 +1,13 @@
-package com.company;
+package Reponse;
+
+import com.company.RequestParser;
 
 public class HTTPResponse {
 
     public String getResponseStatus(String request) {
         RequestParser requestParser = new RequestParser(request);
         String path = requestParser.getFilePath();
+        String method = requestParser.getMethod();
         String authenticationData = requestParser.getAuthenticationData();
 
         if (path.equals("/file1")) {
@@ -28,6 +31,10 @@ public class HTTPResponse {
         } else if (path.equals("/logs") && authenticationData.equals("localhost:5000")) {
             return "401 Unauthorized";
         } else if (path.equals("/logs") && authenticationData.startsWith("YWR")) {
+            return "200 OK";
+        } else if (method.equals("PATCH") && path.equals("/patch-content.txt")) {
+            return "204 No Content";
+        } else if (method.equals("GET") && path.equals("/patch-content.txt")) {
             return "200 OK";
         }
         return "404 NOT FOUND";

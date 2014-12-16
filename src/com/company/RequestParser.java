@@ -23,14 +23,6 @@ public class RequestParser {
         return parseRequest()[1];
     }
 
-    public String getProtocol() {
-        return parseRequest()[2];
-    }
-
-    public String getPartialRequest() {
-        return parseRequest()[3];
-    }
-
     public String getAuthenticationData() {
         return parseRequest()[4];
     }

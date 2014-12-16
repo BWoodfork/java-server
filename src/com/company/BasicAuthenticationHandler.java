@@ -4,7 +4,7 @@ import sun.misc.BASE64Encoder;
 
 import java.io.IOException;
 
-public class BasicAuthentication {
+public class BasicAuthenticationHandler {
 
     public byte[] authenticate(String data) throws IOException {
         String connection = "Connection:";
