@@ -17,7 +17,7 @@ public class FileRouterTest {
 
     @Test
     public void itGetsFile1() throws Exception {
-        String path = "/file1";
+        String path = "GET /file1 HTTP/1.1Connection: closeHost: localhost:5000";
         byte[] file = fileresponse.getFile();
         int fileLength = file.length;
 
@@ -26,7 +26,7 @@ public class FileRouterTest {
 
     @Test
     public void itGetsFile2() throws Exception {
-        String path = "/file2";
+        String path = "GET /file2 HTTP/1.1Connection: closeHost: localhost:5000";
         byte[] file = fileresponse.getFile();
         int fileLength = file.length;
 
@@ -35,7 +35,7 @@ public class FileRouterTest {
 
     @Test
     public void itGetsJPEGImage() throws Exception {
-        String path = "/image.jpeg";
+        String path = "GET /image.jpeg HTTP/1.1Connection: closeHost: localhost:5000";
 
         byte[] jpeg = fileresponse.getJPEG();
         int jpegImageLength = jpeg.length;
@@ -45,7 +45,7 @@ public class FileRouterTest {
 
     @Test
     public void itGetsPNGImage() throws Exception {
-        String path = "/image.png";
+        String path = "GET /image.png HTTP/1.1Connection: closeHost: localhost:5000";
 
         byte[] png = fileresponse.getPNG();
         int pngImageLength = png.length;
@@ -55,7 +55,7 @@ public class FileRouterTest {
 
     @Test
     public void itGetsGIF() throws Exception {
-        String path = "/image.gif";
+        String path = "GET /image.gif HTTP/1.1Connection: closeHost: localhost:5000";
 
         byte[] gif = fileresponse.getGIF();
         int gifImageLength = gif.length;
@@ -65,7 +65,7 @@ public class FileRouterTest {
 
     @Test
     public void itGetsHTMLPage() throws Exception {
-        String path = "/";
+        String path = "GET / HTTP/1.1Connection: closeHost: localhost:5000";
 
         byte[] html = fileresponse.getHTMLPage();
         int htmlPageLength = html.length;
@@ -74,11 +74,11 @@ public class FileRouterTest {
     }
 
 //    @Test
-//    public void itGetsTheLogs() throws Exception {
-//        String path = "/logs";
+//    public void itGetsThePartialContents() throws Exception {
+//        String path = "GET /partial_content.txt HTTP/1.1Range: bytes=0-4Connection: closeHost: localhost:5000\n";
 //
-//        byte[] logs = fileresponse.getLogs();
-//        int logsLength = logs.length;
+//        byte[] partial = fileresponse.getPartialContent();
+//        int logsLength = partial.length;
 //
 //        assertEquals(logsLength, fileRouter.routeFiles(path).length);
 //    }

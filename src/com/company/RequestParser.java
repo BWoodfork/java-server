@@ -27,6 +27,10 @@ public class RequestParser {
         return parseRequest()[2];
     }
 
+    public String getPartialRequest() {
+        return parseRequest()[3];
+    }
+
     public String getAuthenticationData() {
         return parseRequest()[4];
     }

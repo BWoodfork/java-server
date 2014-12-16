@@ -2,13 +2,10 @@ package com.company;
 
 public class HTTPResponse {
 
-
     public String getResponseStatus(String request) {
         RequestParser requestParser = new RequestParser(request);
         String path = requestParser.getFilePath();
         String authenticationData = requestParser.getAuthenticationData();
-
-        System.out.println(request);
 
         if (path.equals("/file1")) {
             return "405 OK";
@@ -25,7 +22,7 @@ public class HTTPResponse {
         } else if (path.equals("/log")) {
             return "200 OK";
         } else if (path.equals("/redirect")) {
-            return "200 OK";
+            return "301 Moved Permanently";
         } else if (path.equals("/partial_content.txt")) {
             return "206 Partial Content";
         } else if (path.equals("/logs") && authenticationData.equals("localhost:5000")) {

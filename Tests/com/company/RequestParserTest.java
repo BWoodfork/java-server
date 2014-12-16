@@ -6,12 +6,11 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 public class RequestParserTest {
-    private String getRequest;
     private RequestParser parser;
 
     @Before
     public void setUp() throws Exception {
-        getRequest = "GET / HTTP/1.1";
+        String getRequest = "GET / HTTP/1.1";
         parser = new RequestParser(getRequest);
     }
 
@@ -24,7 +23,7 @@ public class RequestParserTest {
 
     @Test
     public void getMethod() throws Exception {
-        assertEquals("GET", parser.getFilePath());
+        assertEquals("GET", parser.getMethod());
     }
 
     @Test
