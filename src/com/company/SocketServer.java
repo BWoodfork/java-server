@@ -64,5 +64,4 @@ public class SocketServer {
     public int getConnections() {
         return connections++;
     }
-
 }

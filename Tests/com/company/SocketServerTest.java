@@ -14,7 +14,6 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class SocketServerTest {
-//    private FakeSocketService service;
     private SocketServer server;
     private int port;
 

@@ -7,8 +7,6 @@ public class RequestParser {
         this.therequest = therequest;
     }
 
-
-
     public String getFullRequest() {
         return therequest;
     }
@@ -25,7 +23,11 @@ public class RequestParser {
         return parseRequest()[1];
     }
 
-    public String getAuthenticationData() {
+    public String getByteCount() {
+        return parseRequest()[3];
+    }
+
+    public String getData() {
         return parseRequest()[4];
     }
 }

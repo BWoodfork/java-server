@@ -8,7 +8,7 @@ public class HTTPResponse {
         RequestParser requestParser = new RequestParser(request);
         String path = requestParser.getFilePath();
         String method = requestParser.getMethod();
-        String authenticationData = requestParser.getAuthenticationData();
+        String authenticationData = requestParser.getData();
 
         if (path.equals("/file1")) {
             return "405 OK";

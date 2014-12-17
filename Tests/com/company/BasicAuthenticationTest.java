@@ -6,24 +6,19 @@ import static org.junit.Assert.assertEquals;
 
 public class BasicAuthenticationTest {
     @Test
-    public void getEncodedCredentialsStringValue() throws Exception {
+    public void encodeAuthenticationCredentials() throws Exception {
         BasicAuthenticationHandler basicAuthenticationHandler = new BasicAuthenticationHandler();
-        String username = "admin";
-        String password = "hunter2";
 
-        String encodedPasswordValue = "YWRtaW46aHVudGVyMg==";
-
-        assertEquals(encodedPasswordValue, basicAuthenticationHandler.authenticationCredentials());
+        assertEquals("YWRtaW46aHVudGVyMg==" ,basicAuthenticationHandler.encodeAuthenticationCredentials());
     }
 
     @Test
-    public void authenticateTheRequest() throws Exception {
+    public void parseAuthenticationDataRequest() throws Exception {
         BasicAuthenticationHandler basicAuthenticationHandler = new BasicAuthenticationHandler();
 
         String data = "GET /logs HTTP/1.1";
-        String encodedPasswordValue = "YWRtaW46aHVudGVyMg==";
+        String authenticationString = "Authentication required";
 
-
-//        assertEquals(,basicAuthentication.authenticate(data));
+        assertEquals(authenticationString,basicAuthenticationHandler.parseAuthenticationData(data));
     }
 }

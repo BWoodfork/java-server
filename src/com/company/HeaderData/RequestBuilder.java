@@ -12,7 +12,7 @@ public class RequestBuilder {
             line = bufferedReader.readLine();
             theRequestString.append(line);
             if (line.equals("")) break;
-        } while (true);
+        } while (bufferedReader.ready());
 
         return theRequestString;
     }

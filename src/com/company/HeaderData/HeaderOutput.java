@@ -9,24 +9,18 @@ public class HeaderOutput {
     private DateAndTime dateAndTime;
     private StatusMessages statusMessages;
     private RequestParser requestParser;
-    private RequestBuilder requestBuilder;
-    private StreamReader streamReader;
+    private StreamHandler streamHandler;
 
     public HeaderOutput() {
         contentType = new ContentType();
         dateAndTime = new DateAndTime();
         statusMessages = new StatusMessages();
-        requestBuilder = new RequestBuilder();
-        streamReader = new StreamReader();
-    }
-
-    public String getStream(Socket socket) throws IOException {
-        BufferedReader stream = streamReader.readStream(socket.getInputStream());
-        return requestBuilder.getRequestString(stream);
+        streamHandler = new StreamHandler();
     }
 
     public RequestParser parseRequest(Socket socket) throws IOException {
-        return requestParser = new RequestParser(getStream(socket));
+        String stream = streamHandler.getInputStreamStringValue(socket);
+        return requestParser = new RequestParser(stream);
     }
 
     public void outputStream(Socket socket) throws IOException {
@@ -61,27 +55,6 @@ public class HeaderOutput {
         String locationHeader = location + "\r\n";
 
         return locationHeader.getBytes();
-    }
-
-//    public byte[] contentRange() {
-//        System.out.println(requestParser.getFilePath());
-//
-//        String range = "Content-Range: bytes 0-10\r\n";
-//
-//        return range.getBytes();
-//    }
-
-//    public byte[] postMethodBytes() {
-//        String post = "POST ";
-//        String request = post + requestParser.getFilePath();
-//
-//        return request.getBytes();
-//    }
-
-    public byte[] acceptRangeHeader() {
-        String accept = "Accept-Ranges: bytes";
-
-        return accept.getBytes();
     }
 
     public byte[] pageBodyBytes() throws IOException {

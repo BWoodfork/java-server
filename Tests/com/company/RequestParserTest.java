@@ -33,6 +33,6 @@ public class RequestParserTest {
 
     @Test
     public void getAuthenticationData() throws Exception {
-        assertEquals("YWRtaW46aHVudGVyMg==Connection:", parser.getAuthenticationData());
+        assertEquals("YWRtaW46aHVudGVyMg==Connection:", parser.getData());
     }
 }
