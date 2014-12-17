@@ -34,7 +34,7 @@ public class SocketServer {
                             public void run() {
                                 try {
                                     headerOutput.parseRequest(socket);
-                                    headerOutput.outputStream(socket);
+                                    headerOutput.sendResponse(socket);
                                     socket.close();
                                 } catch (IOException e) {
                                     e.printStackTrace();

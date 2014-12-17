@@ -14,6 +14,7 @@ public class HeaderOutput {
     private ServerLocation serverLocation;
     private AllowMethods allowMethods;
     private ServerBody serverBody;
+    private ServerBodyLength serverBodyLength;
 
     public HeaderOutput() {
         contentType = new ContentType();
@@ -23,6 +24,7 @@ public class HeaderOutput {
         serverLocation = new ServerLocation();
         allowMethods = new AllowMethods();
         serverBody = new ServerBody();
+        serverBodyLength = new ServerBodyLength();
     }
 
     public void parseRequest(Socket socket) throws IOException {
@@ -33,17 +35,16 @@ public class HeaderOutput {
         filePath = requestParser.getFilePath();
     }
 
-    public void outputStream(Socket socket) throws IOException {
+    public void sendResponse(Socket socket) throws IOException {
         DataOutputStream out = new DataOutputStream(socket.getOutputStream());
         byte[] body = serverBody.getBody(fullRequest);
-        String length = "Content-Length: " + Integer.toString(body.length) + "\r\n\r\n";
 
         out.write(statusMessages.getStatusMessage(fullRequest));
         out.write(dateAndTime.getServerTime());
         out.write(serverLocation.getLocationResponse());
         out.write(contentType.contentTypeResponse(filePath));
         out.write(allowMethods.getAllowResponse());
-        out.write(length.getBytes());
+        out.write(serverBodyLength.getBodyLength(body));
         out.write(body);
         out.flush();
     }
