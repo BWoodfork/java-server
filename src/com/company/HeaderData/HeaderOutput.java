@@ -8,59 +8,43 @@ public class HeaderOutput {
     private ContentType contentType;
     private DateAndTime dateAndTime;
     private StatusMessages statusMessages;
-    private RequestParser requestParser;
     private StreamHandler streamHandler;
+    private String fullRequest;
+    private String filePath;
+    private ServerLocation serverLocation;
+    private AllowMethods allowMethods;
+    private ServerBody serverBody;
 
     public HeaderOutput() {
         contentType = new ContentType();
         dateAndTime = new DateAndTime();
         statusMessages = new StatusMessages();
         streamHandler = new StreamHandler();
+        serverLocation = new ServerLocation();
+        allowMethods = new AllowMethods();
+        serverBody = new ServerBody();
     }
 
-    public RequestParser parseRequest(Socket socket) throws IOException {
+    public void parseRequest(Socket socket) throws IOException {
         String stream = streamHandler.getInputStreamStringValue(socket);
-        return requestParser = new RequestParser(stream);
+        RequestParser requestParser = new RequestParser(stream);
+
+        fullRequest = requestParser.getFullRequest();
+        filePath = requestParser.getFilePath();
     }
 
     public void outputStream(Socket socket) throws IOException {
         DataOutputStream out = new DataOutputStream(socket.getOutputStream());
-        byte[] body = pageBodyBytes();
+        byte[] body = serverBody.getBody(fullRequest);
         String length = "Content-Length: " + Integer.toString(body.length) + "\r\n\r\n";
 
-        out.write(statusMessages.getStatusMessage(requestParser.getFullRequest()));
+        out.write(statusMessages.getStatusMessage(fullRequest));
         out.write(dateAndTime.getServerTime());
-        out.write(locationHeaderBytes());
-        out.write(contentTypeBytes());
-        out.write(allowHeaderBytes());
+        out.write(serverLocation.getLocationResponse());
+        out.write(contentType.contentTypeResponse(filePath));
+        out.write(allowMethods.getAllowResponse());
         out.write(length.getBytes());
         out.write(body);
         out.flush();
-    }
-
-    public byte[] allowHeaderBytes() {
-        String allow = "Allow: GET,HEAD,POST,OPTIONS,PUT\r\n";
-        return allow.getBytes();
-    }
-
-    public byte[] contentTypeBytes() {
-        String content = requestParser.getFilePath();
-
-        String type = "Content-Type: " + contentType.getContentType(content);
-        return type.getBytes();
-    }
-
-    public byte[] locationHeaderBytes() {
-        String location = "Location: http://localhost:5000/";
-        String locationHeader = location + "\r\n";
-
-        return locationHeader.getBytes();
-    }
-
-    public byte[] pageBodyBytes() throws IOException {
-        FileRouter fileRouter = new FileRouter();
-        String path = requestParser.getFullRequest();
-
-        return fileRouter.routeFiles(path);
     }
 }

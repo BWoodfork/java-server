@@ -13,4 +13,9 @@ public class ContentType {
         }
         return "text/html\r\n";
     }
+
+    public byte[] contentTypeResponse(String filePath) {
+        String type = "Content-Type: " + getContentType(filePath);
+        return type.getBytes();
+    }
 }
