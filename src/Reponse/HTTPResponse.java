@@ -1,42 +1,60 @@
 package Reponse;
 
-import com.company.RequestParser;
-
 public class HTTPResponse {
 
-    public String getResponseStatus(String request) {
-        RequestParser requestParser = new RequestParser(request);
-        String path = requestParser.getFilePath();
-        String method = requestParser.getMethod();
-        String authenticationData = requestParser.getData();
+    public String getHTTPStatusCode(String method, String requestPath, String data) {
+        String[] okPaths = {"/", "/method_options", "/form", "/file2", "/log"};
+        String[] unauthorizedPaths = {"/logs"};
+        String[] uniqueOkPath = {"/file1"};
+        String[] notAllowedPaths = {"/text-file.txt"};
+        String[] redirectPath = {"/redirect"};
+        String[] partialContentPath = {"/partial_content.txt"};
+        String[] noContentPaths = {"/patch-content.txt"};
 
-        if (path.equals("/file1")) {
-            return "405 OK";
-        } else if (path.equals("/")) {
-            return "200 OK";
-        } else if (path.equals("/method_options")) {
-            return "200 OK";
-        } else if (path.equals("/form")) {
-            return "200 OK";
-        } else if (path.equals("/file2")) {
-            return "200 OK";
-        } else if (path.equals("/text-file.txt")) {
-            return "405 Method Not Allowed";
-        } else if (path.equals("/log")) {
-            return "200 OK";
-        } else if (path.equals("/redirect")) {
-            return "301 Moved Permanently";
-        } else if (path.equals("/partial_content.txt")) {
-            return "206 Partial Content";
-        } else if (path.equals("/logs") && authenticationData.equals("localhost:5000")) {
-            return "401 Unauthorized";
-        } else if (path.equals("/logs") && authenticationData.startsWith("YWR")) {
-            return "200 OK";
-        } else if (method.equals("PATCH") && path.equals("/patch-content.txt")) {
-            return "204 No Content";
-        } else if (method.equals("GET") && path.equals("/patch-content.txt")) {
-            return "200 OK";
+        for (String pathValue : okPaths) {
+            if (pathValue.equals(requestPath)) {
+                return "200 OK";
+            } else for (String uniquePathValue : uniqueOkPath) {
+                if (uniquePathValue.equals(requestPath)) {
+                    return "405 OK";
+                }
+            }
+
+            for (String noContentPathsValue : noContentPaths) {
+                if (noContentPathsValue.equals(requestPath) && method.equals("PATCH")) {
+                    return "204 No Content";
+                } else if (noContentPathsValue.equals(requestPath) && method.equals("GET")) {
+                    return "200 OK";
+                }
+            }
+
+            for (String unauthorizedPathsValue : unauthorizedPaths) {
+                if (unauthorizedPathsValue.equals(requestPath) && data.equals("localhost:5000")) {
+                    return "401 Unauthorized";
+                } else if (unauthorizedPathsValue.equals(requestPath) && data.startsWith("YWR")) {
+                    return "200 OK";
+                }
+            }
+
+            for (String notAllowedPathsValue : notAllowedPaths) {
+                if (notAllowedPathsValue.equals(requestPath)) {
+                    return "405 Method Not Allowed";
+                }
+            }
+
+            for (String redirectPathValue : redirectPath) {
+                if (redirectPathValue.equals(requestPath)) {
+                    return "301 Moved Permanently";
+                }
+            }
+
+            for (String partialContentPathValue : partialContentPath) {
+                if (partialContentPathValue.equals(requestPath)) {
+                    return "206 Partial Content";
+                }
+            }
         }
+
         return "404 NOT FOUND";
     }
 }

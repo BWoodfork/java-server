@@ -15,6 +15,8 @@ public class HeaderOutput {
     private AllowMethods allowMethods;
     private ServerBody serverBody;
     private ServerBodyLength serverBodyLength;
+    private String method;
+    private String data;
 
     public HeaderOutput() {
         contentType = new ContentType();
@@ -32,19 +34,28 @@ public class HeaderOutput {
         RequestParser requestParser = new RequestParser(stream);
 
         fullRequest = requestParser.getFullRequest();
+        method = requestParser.getMethod();
         filePath = requestParser.getFilePath();
+        data = requestParser.getData();
     }
 
     public void sendResponse(Socket socket) throws IOException {
         DataOutputStream out = new DataOutputStream(socket.getOutputStream());
-        byte[] body = serverBody.getBody(fullRequest);
 
-        out.write(statusMessages.getStatusMessage(fullRequest));
-        out.write(dateAndTime.getServerTime());
-        out.write(serverLocation.getLocationResponse());
-        out.write(contentType.contentTypeResponse(filePath));
-        out.write(allowMethods.getAllowResponse());
-        out.write(serverBodyLength.getBodyLength(body));
+        byte[] body = serverBody.getBody(fullRequest);
+        byte[] statusMessage = statusMessages.getStatusMessage(method, filePath, data);
+        byte[] time = dateAndTime.getServerTime();
+        byte[] location = serverLocation.getLocationResponse();
+        byte[] type = contentType.contentTypeResponse(filePath);
+        byte[] allow = allowMethods.getAllowResponse();
+        byte[] length = serverBodyLength.getBodyLength(body);
+
+        out.write(statusMessage);
+        out.write(time);
+        out.write(location);
+        out.write(type);
+        out.write(allow);
+        out.write(length);
         out.write(body);
         out.flush();
     }
