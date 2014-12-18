@@ -17,6 +17,7 @@ public class ResponseHandler {
     private String method;
     private String data;
     private String byteCount;
+    private String fullRequest;
 
     public ResponseHandler() {
         contentType = new ContentType();
@@ -33,6 +34,7 @@ public class ResponseHandler {
         String stream = streamHandler.getInputStreamStringValue(socket);
         RequestParser requestParser = new RequestParser(stream);
 
+        fullRequest = requestParser.getFullRequest();
         method = requestParser.getMethod();
         filePath = requestParser.getFilePath();
         data = requestParser.getData();

@@ -1,5 +1,6 @@
 package com.company;
 
+import com.company.HeaderData.ResponseHandler;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -8,6 +9,9 @@ import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -16,6 +20,7 @@ import static org.junit.Assert.assertTrue;
 public class SocketServerTest {
     private SocketServer server;
     private int port;
+    private boolean running;
 
     public class FakeSocket extends Socket {
         private final String response;
@@ -58,12 +63,33 @@ public class SocketServerTest {
     }
 
     @Test
+    public void ServerAcceptsTwoConnections() throws  Exception {
+        server.start();
+        new Socket("localhost", port);
+        new Socket("localhost", port);
+        server.stop();
+        assertEquals(2, server.connections);
+    }
+
+    @Test
     public void ServerIsConnected() throws Exception {
         server.start();
         Socket socket = new Socket("localhost", 5000);
         server.stop();
 
         assertEquals(true, socket.isConnected());
+    }
+
+    @Test
+    public void Accepts50Connections() throws Exception {
+        server.start();
+
+        for (int i = 1; i <= 50; i++) {
+            new Socket("localhost", port);
+        }
+
+        server.stop();
+        assertEquals(50, server.connections);
     }
 
 }

@@ -33,14 +33,13 @@ public class FileResponse {
     }
 
     public byte[] getHTMLPage() throws IOException {
-        Path path = Paths.get("/Users/8thlight/projects/java-server/extension-files/html-page");
+        Path path = Paths.get("/Users/8thlight/projects/java-server/extension-files", "html-page");
         return Files.readAllBytes(path);
     }
 
-    public byte[] getDecoded() {
-        String var2 = "variable_2 = stuff";
-        String var = "variable_1 = Operators <, >, =, !=; +, -, *, &, @, #, $, [, ]: \"is that all\"?" + "\r\n" + var2;
-        return var.getBytes();
+    public byte[] getDecoded() throws IOException {
+        Path path = Paths.get("/Users/8thlight/projects/java-server/extension-files", "encode-these-variables");
+        return Files.readAllBytes(path);
     }
 
     public byte[] refresh() {
