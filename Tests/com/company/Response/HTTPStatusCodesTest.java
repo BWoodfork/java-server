@@ -1,17 +1,16 @@
-package com.company;
+package com.company.Response;
 
-import Reponse.HTTPResponse;
 import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-public class HTTPStatusCodes {
-    private HTTPResponse response;
+public class HTTPStatusCodesTest {
+    private com.company.Reponse.HTTPStatusCodes response;
 
     @Before
     public void setUp() throws Exception {
-        response = new HTTPResponse();
+        response = new com.company.Reponse.HTTPStatusCodes();
     }
 
     @Test

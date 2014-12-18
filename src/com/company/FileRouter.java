@@ -1,6 +1,6 @@
 package com.company;
 
-import Reponse.FileResponse;
+import com.company.Reponse.FileResponse;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -17,14 +17,7 @@ public class FileRouter {
         basicAuthenticationHandler = new BasicAuthenticationHandler();
     }
 
-    public byte[] routeFiles(String request) throws IOException {
-        RequestParser requestParser = new RequestParser(request);
-
-        String method = requestParser.getMethod();
-        String filePath = requestParser.getFilePath();
-        String byteCount = requestParser.getByteCount();
-        String data = requestParser.getData();
-
+    public byte[] routeFiles(String method, String filePath, String data, String byteCount) throws IOException {
         String unknown = "This is not the page you are looking for";
 
         Path cosbyPath = Paths.get("/Users/8thlight/projects/cob_spec/public/cosby-data.txt");

@@ -1,6 +1,6 @@
 package com.company;
 
-import com.company.HeaderData.HeaderOutput;
+import com.company.HeaderData.ResponseHandler;
 
 import java.io.*;
 import java.net.ServerSocket;
@@ -10,14 +10,14 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 public class SocketServer {
-    private HeaderOutput headerOutput;
+    private ResponseHandler responseHandler;
     private ServerSocket serverSocket;
     private ExecutorService executor;
     private boolean running;
     public int connections = 0;
 
     public SocketServer(int port) throws IOException {
-        headerOutput = new HeaderOutput();
+        responseHandler = new ResponseHandler();
         serverSocket = new ServerSocket(port);
         executor = Executors.newFixedThreadPool(25);
     }
@@ -33,8 +33,8 @@ public class SocketServer {
                             @Override
                             public void run() {
                                 try {
-                                    headerOutput.parseRequest(socket);
-                                    headerOutput.sendResponse(socket);
+                                    responseHandler.parseRequest(socket);
+                                    responseHandler.sendResponse(socket);
                                     socket.close();
                                 } catch (IOException e) {
                                     e.printStackTrace();

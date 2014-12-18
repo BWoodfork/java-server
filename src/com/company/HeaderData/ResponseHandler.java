@@ -4,51 +4,51 @@ import com.company.*;
 import java.io.*;
 import java.net.*;
 
-public class HeaderOutput {
+public class ResponseHandler {
     private ContentType contentType;
     private DateAndTime dateAndTime;
     private StatusMessages statusMessages;
     private StreamHandler streamHandler;
-    private String fullRequest;
     private String filePath;
     private ServerLocation serverLocation;
     private AllowMethods allowMethods;
-    private ServerBody serverBody;
-    private ServerBodyLength serverBodyLength;
+    private Body body;
+    private BodyLength bodyLength;
     private String method;
     private String data;
+    private String byteCount;
 
-    public HeaderOutput() {
+    public ResponseHandler() {
         contentType = new ContentType();
         dateAndTime = new DateAndTime();
         statusMessages = new StatusMessages();
         streamHandler = new StreamHandler();
         serverLocation = new ServerLocation();
         allowMethods = new AllowMethods();
-        serverBody = new ServerBody();
-        serverBodyLength = new ServerBodyLength();
+        body = new Body();
+        bodyLength = new BodyLength();
     }
 
     public void parseRequest(Socket socket) throws IOException {
         String stream = streamHandler.getInputStreamStringValue(socket);
         RequestParser requestParser = new RequestParser(stream);
 
-        fullRequest = requestParser.getFullRequest();
         method = requestParser.getMethod();
         filePath = requestParser.getFilePath();
         data = requestParser.getData();
+        byteCount = requestParser.getByteCount();
     }
 
     public void sendResponse(Socket socket) throws IOException {
         DataOutputStream out = new DataOutputStream(socket.getOutputStream());
 
-        byte[] body = serverBody.getBody(fullRequest);
+        byte[] body = this.body.getBody(method, filePath, data, byteCount);
         byte[] statusMessage = statusMessages.getStatusMessage(method, filePath, data);
         byte[] time = dateAndTime.getServerTime();
         byte[] location = serverLocation.getLocationResponse();
         byte[] type = contentType.contentTypeResponse(filePath);
         byte[] allow = allowMethods.getAllowResponse();
-        byte[] length = serverBodyLength.getBodyLength(body);
+        byte[] length = bodyLength.getBodyLength(body);
 
         out.write(statusMessage);
         out.write(time);

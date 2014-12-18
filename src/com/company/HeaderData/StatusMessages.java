@@ -1,16 +1,16 @@
 package com.company.HeaderData;
 
-import Reponse.HTTPResponse;
+import com.company.Reponse.HTTPStatusCodes;
 
 public class StatusMessages {
-    private HTTPResponse httpResponse;
+    private HTTPStatusCodes httpStatusCodes;
 
     public StatusMessages() {
-        httpResponse = new HTTPResponse();
+        httpStatusCodes = new HTTPStatusCodes();
     }
 
     public byte[] getStatusMessage(String method, String requestPath, String data) {
-        String status = "HTTP/1.1 " + httpResponse.getHTTPStatusCode(method, requestPath, data) + "\r\n";
+        String status = "HTTP/1.1 " + httpStatusCodes.getHTTPStatusCode(method, requestPath, data) + "\r\n";
         return status.getBytes();
     }
 }

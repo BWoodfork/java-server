@@ -1,9 +1,5 @@
 package com.company;
 
-import com.company.HeaderData.HeaderOutput;
-import com.company.HeaderData.StreamHandler;
-import org.junit.Test;
-
 import java.io.*;
 import java.net.Socket;
 
