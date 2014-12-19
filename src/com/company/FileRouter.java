@@ -1,6 +1,6 @@
 package com.company;
 
-import com.company.Reponse.FileResponse;
+import com.company.Reponse.FileRetriever;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -9,18 +9,22 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 
 public class FileRouter {
-    private FileResponse file;
+    private FileRetriever file;
     private BasicAuthenticationHandler basicAuthenticationHandler;
+    private PostRequestHandler postRequestHandler;
 
     public FileRouter() {
-        file = new FileResponse();
+        file = new FileRetriever();
         basicAuthenticationHandler = new BasicAuthenticationHandler();
+        postRequestHandler = new PostRequestHandler();
     }
 
     public byte[] routeFiles(String method, String filePath, String data, String byteCount) throws IOException {
+        System.out.println(method);
+        System.out.println(filePath);
+
         String unknown = "This is not the page you are looking for";
 
-        Path cosbyPath = Paths.get("/Users/8thlight/projects/cob_spec/public/cosby-data.txt");
         Path patchPath = Paths.get("/Users/8thlight/projects/cob_spec/public/patch-content.txt");
 
         if (filePath.equals("/file1")) {
@@ -41,17 +45,8 @@ public class FileRouter {
             return file.refresh();
         } else if (filePath.equals("/logs")) {
             return basicAuthenticationHandler.getAuthenticationData(data);
-        } else if (method.equals("POST") && filePath.equals("/form")) {
-            Files.write(cosbyPath, "data=cosby".getBytes());
-        } else if (method.equals("GET") && filePath.equals("/form")) {
-            return file.cosbyData();
-        } else if (method.equals("PUT") && filePath.equals("/form")) {
-            Files.write(cosbyPath, "data=heathcliff".getBytes());
-        } else if (method.equals("GET") && filePath.equals("/form")) {
-            return file.cosbyData();
-        } else if (method.equals("DELETE") && filePath.equals("/form")) {
-            Files.write(cosbyPath, "These are not the droids you're looking for".getBytes());
-            return file.cosbyData();
+        } else if (filePath.equals("/form")) {
+            return postRequestHandler.parseRequest(method, filePath);
         } else if (method.equals("GET") && filePath.equals("/patch-content.txt")) {
             return file.patchContent();
         } else if (method.equals("PATCH") && data.startsWith("60")) {

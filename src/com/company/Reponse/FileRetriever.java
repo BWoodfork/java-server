@@ -6,7 +6,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 
-public class FileResponse {
+public class FileRetriever {
     public byte[] getFile() throws IOException {
         Path path = Paths.get("/Users/8thlight/projects/cob_spec/public/file1");
         return Files.readAllBytes(path);

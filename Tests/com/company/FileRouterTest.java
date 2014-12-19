@@ -1,19 +1,19 @@
 package com.company;
 
-import com.company.Reponse.FileResponse;
+import com.company.Reponse.FileRetriever;
 import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
 public class FileRouterTest {
-    private FileResponse fileresponse;
+    private FileRetriever fileresponse;
     private FileRouter fileRouter;
 
     @Before
     public void setUp() throws Exception {
         fileRouter = new FileRouter();
-        fileresponse = new FileResponse();
+        fileresponse = new FileRetriever();
     }
 
     @Test
