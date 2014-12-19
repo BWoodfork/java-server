@@ -12,16 +12,18 @@ public class FileRouter {
     private FileRetriever file;
     private BasicAuthenticationHandler basicAuthenticationHandler;
     private PostRequestHandler postRequestHandler;
+    private PatchRequestHandler patchRequestHandler;
 
     public FileRouter() {
         file = new FileRetriever();
         basicAuthenticationHandler = new BasicAuthenticationHandler();
         postRequestHandler = new PostRequestHandler();
+        patchRequestHandler = new PatchRequestHandler();
     }
 
     public byte[] routeFiles(String method, String filePath, String data, String byteCount) throws IOException {
-        System.out.println(method);
-        System.out.println(filePath);
+//        System.out.println(method);
+//        System.out.println(filePath);
 
         String unknown = "This is not the page you are looking for";
 
@@ -47,12 +49,8 @@ public class FileRouter {
             return basicAuthenticationHandler.getAuthenticationData(data);
         } else if (filePath.equals("/form")) {
             return postRequestHandler.parseRequest(method, filePath);
-        } else if (method.equals("GET") && filePath.equals("/patch-content.txt")) {
-            return file.patchContent();
-        } else if (method.equals("PATCH") && data.startsWith("60")) {
-            Files.write(patchPath, "patched content".getBytes());
-        } else if (method.equals("PATCH") && data.startsWith("69")) {
-            Files.write(patchPath, "default content".getBytes());
+        } else if (filePath.equals("/patch-content.txt")) {
+            return patchRequestHandler.parseRequest(method, filePath, data);
         } else if (method.equals("GET") && byteCount.startsWith("bytes=0-4")) {
             return Arrays.copyOfRange(file.getFirstPartialContent(), 0, 5);
         } else if (method.equals("GET") && byteCount.startsWith("bytes=4-")) {

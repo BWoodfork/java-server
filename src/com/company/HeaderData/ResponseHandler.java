@@ -35,6 +35,11 @@ public class ResponseHandler {
         RequestParser requestParser = new RequestParser(stream);
 
         fullRequest = requestParser.getFullRequest();
+
+//        System.out.println(URLDecoder.decode("69bc18dc1edc9e1316348b2eaaca9df83898249f"));
+//        System.out.println(data);
+
+
         method = requestParser.getMethod();
         filePath = requestParser.getFilePath();
         data = requestParser.getData();
