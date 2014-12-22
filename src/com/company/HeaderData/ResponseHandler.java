@@ -17,7 +17,6 @@ public class ResponseHandler {
     private String method;
     private String data;
     private String byteCount;
-    private String fullRequest;
 
     public ResponseHandler() {
         contentType = new ContentType();
@@ -33,12 +32,6 @@ public class ResponseHandler {
     public void parseRequest(Socket socket) throws IOException {
         String stream = streamHandler.getInputStreamStringValue(socket);
         RequestParser requestParser = new RequestParser(stream);
-
-        fullRequest = requestParser.getFullRequest();
-
-//        System.out.println(URLDecoder.decode("69bc18dc1edc9e1316348b2eaaca9df83898249f"));
-//        System.out.println(data);
-
 
         method = requestParser.getMethod();
         filePath = requestParser.getFilePath();
