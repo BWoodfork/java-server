@@ -15,7 +15,7 @@ public class ResponseHandler {
     private String filePath;
     private ServerLocation serverLocation;
     private AllowMethods allowMethods;
-    private Body body;
+    private BodyContents bodyContents;
     private BodyLength bodyLength;
     private String method;
     private String data;
@@ -28,7 +28,7 @@ public class ResponseHandler {
         streamHandler = new StreamHandler();
         serverLocation = new ServerLocation();
         allowMethods = new AllowMethods();
-        body = new Body();
+        bodyContents = new BodyContents();
         bodyLength = new BodyLength();
     }
 
@@ -45,7 +45,7 @@ public class ResponseHandler {
     public void sendResponse(Socket socket) throws IOException {
         DataOutputStream out = new DataOutputStream(socket.getOutputStream());
 
-        byte[] body = this.body.getBody(method, filePath, data, byteCount);
+        byte[] body = this.bodyContents.getBody(method, filePath, data, byteCount);
         byte[] statusMessage = statusMessages.getStatusMessage(method, filePath, data);
         byte[] time = dateAndTime.getServerTime();
         byte[] location = serverLocation.getLocationResponse();

@@ -25,8 +25,7 @@ public class PatchRequestHandlerTest {
 
         patchRequestHandler.parseRequest(method, filePath, data);
         Path path = Paths.get("/Users/8thlight/projects/cob_spec/public/patch-content.txt");
-//        String patchContent = new String(Files.readAllBytes(path));
-
+        
         assertEquals(true, Files.exists(path));
     }
 

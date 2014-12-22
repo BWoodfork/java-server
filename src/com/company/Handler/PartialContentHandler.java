@@ -7,10 +7,7 @@ public class PartialContentHandler {
         String splitBytes = byteCount.split("bytes=")[1];
         String[] strings = splitBytes.split("Connection:");
 
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(strings[0]);
-
-       return stringBuilder.toString();
+        return strings[0];
     }
 
     public int getMinRange(byte[] fileContents, String byteCount) {

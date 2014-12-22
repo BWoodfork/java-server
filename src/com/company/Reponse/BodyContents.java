@@ -4,7 +4,7 @@ import com.company.FileRouter;
 
 import java.io.IOException;
 
-public class Body {
+public class BodyContents {
     public byte[] getBody(String method, String filePath, String data, String byteCount) throws IOException {
         FileRouter fileRouter = new FileRouter();
 
