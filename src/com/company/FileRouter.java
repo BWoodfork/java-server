@@ -1,9 +1,13 @@
 package com.company;
 
+import com.company.Handler.ParameterDecoder;
+import com.company.Handler.PartialContentHandler;
+import com.company.Handler.PatchRequestHandler;
+import com.company.Handler.PostRequestHandler;
+import com.company.Reponse.BasicAuthenticationHandler;
 import com.company.Reponse.FileRetriever;
 
 import java.io.IOException;
-import java.net.URLDecoder;
 
 public class FileRouter {
     private FileRetriever file;
@@ -11,6 +15,7 @@ public class FileRouter {
     private PostRequestHandler postRequestHandler;
     private PatchRequestHandler patchRequestHandler;
     private PartialContentHandler partialContentHandler;
+    private ParameterDecoder parameterDecoder;
 
     public FileRouter() {
         file = new FileRetriever();
@@ -18,12 +23,11 @@ public class FileRouter {
         postRequestHandler = new PostRequestHandler();
         patchRequestHandler = new PatchRequestHandler();
         partialContentHandler = new PartialContentHandler();
+        parameterDecoder = new ParameterDecoder();
     }
 
     public byte[] routeFiles(String method, String filePath, String data, String byteCount) throws IOException {
         String unknown = "This is not the page you are looking for";
-
-        System.out.println(URLDecoder.decode("variable_1=Operators%20%3C%2C%20%3E%2C%20%3D%2C%20!%3D%3B%20%2B%2C%20-%2C%20*%2C%20%26%2C%20%40%2C%20%23%2C%20%24%2C%20%5B%2C%20%5D%3A%20%22is%20that%20all%22%3F&variable_2=stuff"));
 
         if (filePath.equals("/file1")) {
             return file.getFile();
@@ -37,7 +41,7 @@ public class FileRouter {
             return file.getGIF();
         } else if (filePath.equals("/file2")) {
             return file.getFile2();
-        } else if (filePath.equals("/parameters?variable_1=Operators%20%3C%2C%20%3E%2C%20%3D%2C%20!%3D%3B%20%2B%2C%20-%2C%20*%2C%20%26%2C%20%40%2C%20%23%2C%20%24%2C%20%5B%2C%20%5D%3A%20%22is%20that%20all%22%3F&variable_2=stuff")) {
+        } else if (parameterDecoder.parseRequest().equals(filePath)) {
             return file.getDecoded();
         } else if (filePath.equals("/redirect")) {
             return file.refresh();
@@ -52,4 +56,33 @@ public class FileRouter {
         }
         return unknown.getBytes();
     }
+
+//    public byte[] routeFiles(String method, String filePath, String data, String byteCount) throws IOException {
+//        String unknown = "These are not the droids you are looking for";
+//
+//        HashMap<byte[], String> paths = new HashMap<byte[], String>();
+//
+//        paths.put(file.getFile(), "/file1");
+//        paths.put(file.getHTMLPage(), "/");
+//        paths.put(file.getJPEG(), "/image.jpeg");
+//        paths.put(file.getPNG(), "/image.png");
+//        paths.put(file.getGIF(), "/image.gif");
+//        paths.put(file.getFile2(), "/file2");
+//        paths.put(file.refresh(), "/redirect");
+//        paths.put(basicAuthenticationHandler.getAuthenticationData(data), "/logs");
+//        paths.put(postRequestHandler.parseRequest(method, filePath), "/form");
+//        paths.put(patchRequestHandler.parseRequest(method, filePath, data), "/patch-content.txt");
+////        paths.put(partialContentHandler.getPartialContents(file.getFirstPartialContent(), byteCount), "/partial_content.txt");
+//
+//        Collection<String> values = paths.values();
+////        Set<byte[]> keys = paths.keySet();
+//
+//        for (String value : values) {
+//            if (value.equals(filePath)) {
+//                paths.get()
+//            }
+//        }
+//
+//        return unknown.getBytes();
+//    }
 }

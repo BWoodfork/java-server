@@ -107,11 +107,14 @@ public class FileRouterTest {
 
 //    @Test
 //    public void itGetsThePartialContents() throws Exception {
-//        String path = "GET /partial_content.txt HTTP/1.1Range: bytes=0-4Connection: closeHost: localhost:5000\n";
+//        String method = "GET";
+//        String requestPath = "/partial_content.txt";
+//        String data = "localhost:5000";
+//        String byteCount = "";
 //
-//        byte[] partial = fileresponse.getPartialContent();
+//        byte[] partial = fileresponse.getFirstPartialContent();
 //        int logsLength = partial.length;
 //
-//        assertEquals(logsLength, fileRouter.routeFiles(path).length);
+//        assertEquals(logsLength, fileRouter.routeFiles(method, requestPath, data, byteCount).length);
 //    }
 }
