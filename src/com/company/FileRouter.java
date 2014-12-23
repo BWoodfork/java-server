@@ -14,7 +14,6 @@ public class FileRouter {
     private BasicAuthenticationHandler basicAuthenticationHandler;
     private PostRequestHandler postRequestHandler;
     private PatchRequestHandler patchRequestHandler;
-    private PartialContentHandler partialContentHandler;
     private ParameterDecoder parameterDecoder;
 
     public FileRouter() {
@@ -22,12 +21,13 @@ public class FileRouter {
         basicAuthenticationHandler = new BasicAuthenticationHandler();
         postRequestHandler = new PostRequestHandler();
         patchRequestHandler = new PatchRequestHandler();
-        partialContentHandler = new PartialContentHandler();
         parameterDecoder = new ParameterDecoder();
     }
 
     public byte[] routeFiles(String method, String filePath, String data, String byteCount) throws IOException {
         String unknown = "This is not the page you are looking for";
+        
+//        System.out.println(filePath);
 
         if (filePath.equals("/file1")) {
             return file.getFile();
@@ -41,8 +41,8 @@ public class FileRouter {
             return file.getGIF();
         } else if (filePath.equals("/file2")) {
             return file.getFile2();
-        } else if (parameterDecoder.parseRequest().equals(filePath)) {
-            return file.getDecoded();
+        } else if (filePath.startsWith("/parameters?")) {
+            return parameterDecoder.parseRequest(filePath);
         } else if (filePath.equals("/redirect")) {
             return file.refresh();
         } else if (filePath.equals("/logs")) {
@@ -52,7 +52,7 @@ public class FileRouter {
         } else if (filePath.equals("/patch-content.txt")) {
             return patchRequestHandler.parseRequest(method, filePath, data);
         } else if (filePath.equals("/partial_content.txt")) {
-            return partialContentHandler.getPartialContents(file.getFirstPartialContent(), byteCount);
+            return PartialContentHandler.getPartialContents(file.getFirstPartialContent(), byteCount);
         }
         return unknown.getBytes();
     }

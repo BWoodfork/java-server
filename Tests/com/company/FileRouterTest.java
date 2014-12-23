@@ -23,9 +23,8 @@ public class FileRouterTest {
         String data = "localhost:5000";
         String byteCount = "";
         byte[] file = fileresponse.getFile();
-        int fileLength = file.length;
 
-        assertEquals(fileLength, fileRouter.routeFiles(method, requestPath, data, byteCount).length);
+        assertEquals(new String(file), new String(fileRouter.routeFiles(method, requestPath, data, byteCount)));
     }
 
     @Test
@@ -34,10 +33,9 @@ public class FileRouterTest {
         String requestPath = "/file2";
         String data = "localhost:5000";
         String byteCount = "";
-        byte[] file = fileresponse.getFile();
-        int fileLength = file.length;
+        byte[] file = fileresponse.getFile2();
 
-        assertEquals(fileLength, fileRouter.routeFiles(method, requestPath, data, byteCount).length);
+        assertEquals(new String(file), new String(fileRouter.routeFiles(method, requestPath, data, byteCount)));
     }
 
     @Test
@@ -87,9 +85,8 @@ public class FileRouterTest {
         String byteCount = "";
 
         byte[] html = fileresponse.getHTMLPage();
-        int htmlPageLength = html.length;
 
-        assertEquals(htmlPageLength, fileRouter.routeFiles(method, requestPath, data, byteCount).length);
+        assertEquals(new String(html), new String(fileRouter.routeFiles(method, requestPath, data, byteCount)));
     }
 
     @Test
@@ -100,9 +97,8 @@ public class FileRouterTest {
         String byteCount = "";
 
         byte[] body = fileresponse.getDecoded();
-        int bodyLength = body.length;
 
-        assertEquals(bodyLength, fileRouter.routeFiles(method, requestPath, data, byteCount).length);
+        assertEquals(new String(body), new String(fileRouter.routeFiles(method, requestPath, data, byteCount)));
     }
 
 //    @Test
@@ -113,8 +109,7 @@ public class FileRouterTest {
 //        String byteCount = "";
 //
 //        byte[] partial = fileresponse.getFirstPartialContent();
-//        int logsLength = partial.length;
 //
-//        assertEquals(logsLength, fileRouter.routeFiles(method, requestPath, data, byteCount).length);
+//        assertEquals(new String(partial), new String(fileRouter.routeFiles(method, requestPath, data, byteCount)));
 //    }
 }

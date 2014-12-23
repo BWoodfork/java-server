@@ -1,50 +1,45 @@
 package com.company.Handler;
 
 import java.util.Arrays;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class PartialContentHandler {
-    public String parseRequest(String byteCount) {
+    private static final Pattern bytePattern = Pattern.compile("^([0-9])?-([0-9])?$");
+
+    public static String parseRequest(String byteCount) {
         String splitBytes = byteCount.split("bytes=")[1];
         String[] strings = splitBytes.split("Connection:");
 
         return strings[0];
     }
-
-    public int getMinRange(byte[] fileContents, String byteCount) {
-        String[] numbers = parseRequest(byteCount).split("");
-
-        try {
-            Integer.parseInt(numbers[0]);
-        } catch (Exception e) {
-            if (numbers.length == 2) {
-                return fileContents.length - (Integer.parseInt(numbers[1]) - 1);
-            }
+    
+    public static int getMinRange(String minMatch, String maxMatch, int fileContentLength) {
+        if (minMatch != null) {
+            return Integer.parseInt(minMatch);
+        } else {
+            return fileContentLength - (Integer.parseInt(maxMatch) - 1);
         }
-
-        return Integer.parseInt(numbers[0]);
     }
-
-    public int getMaxRange(byte[] fileContents, String byteCount) {
-        String [] numbers = parseRequest(byteCount).split("");
-
-        try {
-            Integer.parseInt(numbers[1]);
-        } catch (Exception e) {
-            if (numbers.length == 2 && (Integer.parseInt(numbers[0]) < 0)) {
-                return Integer.parseInt(numbers[0]);
-            } else if (numbers.length == 3) {
-                return Integer.parseInt(numbers[2]) + 1;
+    
+    public static int getMaxRange(String minMatch, String maxMatch, int fileContentLength) {
+        if (maxMatch != null) {
+            if (minMatch == null) {
+                return fileContentLength;
+            } else {
+                return Integer.parseInt(maxMatch) + 1;
             }
-        }
-
-        try {
-            return Integer.parseInt(numbers[2] + 1);
-        } catch (Exception e) {
-            return fileContents.length;
+        } else {
+            return fileContentLength;
         }
     }
 
-    public byte[] getPartialContents(byte[] fakeFileContent, String byteCount) {
-        return Arrays.copyOfRange(fakeFileContent, getMinRange(fakeFileContent, byteCount), getMaxRange(fakeFileContent, byteCount));
+    public static byte[] getPartialContents(byte[] fileContent, String byteCount) {
+        Matcher byteMatcher = bytePattern.matcher(parseRequest(byteCount));
+        byteMatcher.matches();
+        
+        int minRange = getMinRange(byteMatcher.group(1), byteMatcher.group(2), fileContent.length);
+        int maxRange = getMaxRange(byteMatcher.group(1), byteMatcher.group(2), fileContent.length);
+        return Arrays.copyOfRange(fileContent, minRange, maxRange);
     }
 }
