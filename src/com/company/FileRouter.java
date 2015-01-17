@@ -1,9 +1,6 @@
 package com.company;
 
-import com.company.Handler.ParameterDecoder;
-import com.company.Handler.PartialContentHandler;
-import com.company.Handler.PatchRequestHandler;
-import com.company.Handler.PostRequestHandler;
+import com.company.Handler.*;
 import com.company.Reponse.BasicAuthenticationHandler;
 import com.company.Reponse.FileRetriever;
 
@@ -29,16 +26,16 @@ public class FileRouter {
     public byte[] routeFiles(String method, String filePath, String data, String byteCount) throws IOException {
         Map<String, byte[]> routes = new HashMap<String, byte[]>();
 
-        routes.put("/file1", file.getFile());
-        routes.put("/", file.getHTMLPage());
-        routes.put("/image.jpeg", file.getJPEG());
-        routes.put("/image.png", file.getPNG());
-        routes.put("/image.gif", file.getGIF());
-        routes.put("/file2", file.getFile2());
-        routes.put("/redirect", file.refresh());
-        routes.put("/logs", basicAuthenticationHandler.getAuthenticationData(data));
-        routes.put("/patch-content.txt", patchRequestHandler.parseRequest(method, filePath, data));
-        routes.put("/form", postRequestHandler.parseRequest(method, filePath));
+        routes.put(Routes.rootRoute(), file.getHTMLPage());
+        routes.put(Routes.file1Route(), file.getFile());
+        routes.put(Routes.jpegRoute(), file.getJPEG());
+        routes.put(Routes.pngRoute(), file.getPNG());
+        routes.put(Routes.gifRoute(), file.getGIF());
+        routes.put(Routes.file2Route(), file.getFile2());
+        routes.put(Routes.redirectRoute(), file.refresh());
+        routes.put(Routes.logsRoute(), basicAuthenticationHandler.getAuthenticationData(data));
+        routes.put(Routes.patchContentRoute(), patchRequestHandler.parseRequest(method, filePath, data));
+        routes.put(Routes.formRoute(), postRequestHandler.parseRequest(method, filePath));
 
         for (Map.Entry<String, byte[]> route : routes.entrySet()) {
             if (filePath.equals(route.getKey())) {

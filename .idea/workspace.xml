@@ -7,11 +7,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a534d807-f553-4e90-93f7-c6040a0c0197" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/java-server/com/company/FileRouter.class" afterPath="$PROJECT_DIR$/out/production/java-server/com/company/FileRouter.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/company/Handler/Routes.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/FileRouter.java" afterPath="$PROJECT_DIR$/src/com/company/FileRouter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tests/com/company/FileRouterTest.java" afterPath="$PROJECT_DIR$/Tests/com/company/FileRouterTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/Handler/PatchRequestHandler.java" afterPath="$PROJECT_DIR$/src/com/company/Handler/PatchRequestHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/Handler/PostRequestHandler.java" afterPath="$PROJECT_DIR$/src/com/company/Handler/PostRequestHandler.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="java-server.iws" />
@@ -45,11 +42,52 @@
       <file leaf-file-name="FileRouter.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/company/FileRouter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.06965944" vertical-offset="195" max-vertical-offset="900">
-              <caret line="16" column="3" selection-start-line="16" selection-start-column="3" selection-end-line="16" selection-end-column="3" />
+            <state vertical-scroll-proportion="0.27863777" vertical-offset="150" max-vertical-offset="855">
+              <caret line="22" column="27" selection-start-line="22" selection-start-column="27" selection-end-line="22" selection-end-column="27" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Routes.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/company/Handler/Routes.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="735">
+              <caret line="4" column="16" selection-start-line="4" selection-start-column="16" selection-end-line="4" selection-end-column="16" />
+              <folding>
+                <element signature="e#90#91#0" expanded="true" />
+                <element signature="e#121#122#0" expanded="true" />
+                <element signature="e#165#166#0" expanded="true" />
+                <element signature="e#191#192#0" expanded="true" />
+                <element signature="e#235#236#0" expanded="true" />
+                <element signature="e#271#272#0" expanded="true" />
+                <element signature="e#314#315#0" expanded="true" />
+                <element signature="e#349#350#0" expanded="true" />
+                <element signature="e#392#393#0" expanded="true" />
+                <element signature="e#427#428#0" expanded="true" />
+                <element signature="e#472#473#0" expanded="true" />
+                <element signature="e#503#504#0" expanded="true" />
+                <element signature="e#551#552#0" expanded="true" />
+                <element signature="e#585#586#0" expanded="true" />
+                <element signature="e#629#630#0" expanded="true" />
+                <element signature="e#659#660#0" expanded="true" />
+                <element signature="e#711#712#0" expanded="true" />
+                <element signature="e#754#755#0" expanded="true" />
+                <element signature="e#798#799#0" expanded="true" />
+                <element signature="e#828#829#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PatchRequestHandler.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/company/Handler/PatchRequestHandler.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="360">
+              <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -94,16 +132,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BasicAuthenticationHandler.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/company/Reponse/BasicAuthenticationHandler.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="180" max-vertical-offset="510">
-              <caret line="14" column="5" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="AllowMethods.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/company/Reponse/AllowMethods.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -134,16 +162,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BodyLength.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/company/Reponse/BodyLength.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="105" max-vertical-offset="195">
-              <caret line="7" column="1" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FindManager">
@@ -157,7 +175,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/com/company/HeaderData/ContentType.java" />
         <option value="$PROJECT_DIR$/src/com/company/HeaderData/PageBodyClass.java" />
         <option value="$PROJECT_DIR$/src/com/company/HeaderData/ServerBodyLength.java" />
         <option value="$PROJECT_DIR$/src/com/company/HeaderData/ServerBody.java" />
@@ -207,6 +224,7 @@
         <option value="$PROJECT_DIR$/src/com/company/Handler/PostRequestHandler.java" />
         <option value="$PROJECT_DIR$/src/com/company/Reponse/HTTPStatusCodes.java" />
         <option value="$PROJECT_DIR$/Tests/com/company/FileRouterTest.java" />
+        <option value="$PROJECT_DIR$/src/com/company/Handler/Routes.java" />
         <option value="$PROJECT_DIR$/src/com/company/FileRouter.java" />
       </list>
     </option>
@@ -1019,7 +1037,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16309524" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22617681" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22617681" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Clojure REPL" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1080,14 +1098,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/company/Server/SocketServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="555" max-vertical-offset="960">
-          <caret line="37" column="25" selection-start-line="37" selection-start-column="25" selection-end-line="37" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/FileRouter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="420" max-vertical-offset="510">
@@ -1314,13 +1324,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/Handler/PatchRequestHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="435">
-          <caret line="23" column="1" selection-start-line="23" selection-start-column="1" selection-end-line="23" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/Handler/ParameterDecoder.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="360">
@@ -1451,10 +1454,47 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/Handler/PatchRequestHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="360">
+          <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/Handler/Routes.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="735">
+          <caret line="4" column="16" selection-start-line="4" selection-start-column="16" selection-end-line="4" selection-end-column="16" />
+          <folding>
+            <element signature="e#90#91#0" expanded="true" />
+            <element signature="e#121#122#0" expanded="true" />
+            <element signature="e#165#166#0" expanded="true" />
+            <element signature="e#191#192#0" expanded="true" />
+            <element signature="e#235#236#0" expanded="true" />
+            <element signature="e#271#272#0" expanded="true" />
+            <element signature="e#314#315#0" expanded="true" />
+            <element signature="e#349#350#0" expanded="true" />
+            <element signature="e#392#393#0" expanded="true" />
+            <element signature="e#427#428#0" expanded="true" />
+            <element signature="e#472#473#0" expanded="true" />
+            <element signature="e#503#504#0" expanded="true" />
+            <element signature="e#551#552#0" expanded="true" />
+            <element signature="e#585#586#0" expanded="true" />
+            <element signature="e#629#630#0" expanded="true" />
+            <element signature="e#659#660#0" expanded="true" />
+            <element signature="e#711#712#0" expanded="true" />
+            <element signature="e#754#755#0" expanded="true" />
+            <element signature="e#798#799#0" expanded="true" />
+            <element signature="e#828#829#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/FileRouter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.06965944" vertical-offset="195" max-vertical-offset="900">
-          <caret line="16" column="3" selection-start-line="16" selection-start-column="3" selection-end-line="16" selection-end-column="3" />
+        <state vertical-scroll-proportion="0.27863777" vertical-offset="150" max-vertical-offset="855">
+          <caret line="22" column="27" selection-start-line="22" selection-start-column="27" selection-end-line="22" selection-end-column="27" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
