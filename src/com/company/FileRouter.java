@@ -47,6 +47,6 @@ public class FileRouter {
             }
         }
 
-        return "whatever".getBytes();
+        return Routes.notFoundRoute().getBytes();
     }
 }

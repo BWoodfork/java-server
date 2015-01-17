@@ -1,5 +1,7 @@
 package com.company.Handler;
 
+import java.sql.ResultSet;
+
 public class Routes {
     public static String file1Route() {
         return "/file1";
@@ -39,5 +41,9 @@ public class Routes {
     
     public static String formRoute() {
         return "/form";
+    }
+
+    public static String notFoundRoute() {
+        return "The page you are looking for cannot be found.";
     }
 }
