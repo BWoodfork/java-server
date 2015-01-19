@@ -2,18 +2,26 @@ package com.company.Reponse;
 
 import com.company.Handler.Routes;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class ContentType {
-    public String getContentType(String requestParser) {
-        if (requestParser.equals(Routes.jpegRoute())) {
-            return "image/jpeg" + "\r\n";
-        } else if (requestParser.equals(Routes.pngRoute())) {
-            return "image/png" + "\r\n";
-        } else if (requestParser.equals(Routes.gifRoute())) {
-            return "image/gif\r\n";
-        } else if (requestParser.equals(Routes.formRoute())) {
-            return "application/x-www-form-urlencoded\r\n";
+    public String getContentType(String filePath) {
+        Map<String, String> routes = new HashMap<String, String>();
+        
+        routes.put(Routes.jpegRoute(), "image/jpeg" + "\r\n");
+        routes.put(Routes.pngRoute(), "image/png" + "\r\n");
+        routes.put(Routes.gifRoute(), "image/gif" + "\r\n");
+        routes.put(Routes.formRoute(), "application/x-www-form-urlencoded" + "\r\n");
+        
+        for (Map.Entry<String, String> route : routes.entrySet()) {
+            if (filePath.equals(route.getKey())) {
+                return route.getValue();
+            }
         }
-        return "text/html\r\n";
+
+        return "text/html" + "\r\n";
+        
     }
 
     public byte[] contentTypeResponse(String filePath) {

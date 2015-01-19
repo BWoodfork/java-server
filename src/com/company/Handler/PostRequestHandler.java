@@ -13,15 +13,15 @@ public class PostRequestHandler {
     public byte[] parseRequest(String method, String filePath) throws IOException {
         Path cosbyPath = Paths.get("/Users/8thlight/projects/cob_spec/public/cosby-data.txt");
 
-        if (method.equals("POST") && filePath.equals("/form")) {
+        if (method.equals("POST") && filePath.equals(Routes.formRoute())) {
             Files.write(cosbyPath, "data=cosby".getBytes());
-        } else if (method.equals("GET") && filePath.equals("/form")) {
+        } else if (method.equals("GET") && filePath.equals(Routes.formRoute())) {
             return fileRetriever.cosbyData();
-        } else if (method.equals("PUT") && filePath.equals("/form")) {
+        } else if (method.equals("PUT") && filePath.equals(Routes.formRoute())) {
             Files.write(cosbyPath, "data=heathcliff".getBytes());
-        } else if (method.equals("GET") && filePath.equals("/form")) {
+        } else if (method.equals("GET") && filePath.equals(Routes.formRoute())) {
             return fileRetriever.cosbyData();
-        } else if (method.equals("DELETE") && filePath.equals("/form")) {
+        } else if (method.equals("DELETE") && filePath.equals(Routes.formRoute())) {
             Files.write(cosbyPath, "Content Removed".getBytes());
             return fileRetriever.cosbyData();
         }
