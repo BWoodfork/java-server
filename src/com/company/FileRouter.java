@@ -25,6 +25,8 @@ public class FileRouter {
 
     public byte[] routeFiles(String method, String filePath, String data, String byteCount) throws IOException {
         Map<String, byte[]> routes = new HashMap<String, byte[]>();
+        
+//        Build something that automatically adds a route to the map when a new route has been created in Routes?
 
         routes.put(Routes.rootRoute(), file.getHTMLPage());
         routes.put(Routes.file1Route(), file.getFile());

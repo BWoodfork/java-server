@@ -1,7 +1,5 @@
 package com.company.Handler;
 
-import java.sql.ResultSet;
-
 public class Routes {
     public static String file1Route() {
         return "/file1";

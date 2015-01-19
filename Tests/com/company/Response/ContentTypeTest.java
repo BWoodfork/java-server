@@ -41,4 +41,13 @@ public class ContentTypeTest {
 
         assertEquals("text/html\r\n", contentType.getContentType(filePath));
     }
+    
+    @Test
+    public void getsApplicationContentType() throws Exception {
+        ContentType contentType = new ContentType();
+        
+        String filePath = "/form";
+        
+        assertEquals("application/x-www-form-urlencoded\r\n", contentType.getContentType(filePath));
+    }
 }

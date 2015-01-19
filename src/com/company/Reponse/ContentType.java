@@ -1,14 +1,16 @@
 package com.company.Reponse;
 
+import com.company.Handler.Routes;
+
 public class ContentType {
     public String getContentType(String requestParser) {
-        if (requestParser.equals("/image.jpeg")) {
-            return "image/jpeg\r\n";
-        } else if (requestParser.equals("/image.png")) {
-            return "image/png\r\n";
-        } else if (requestParser.equals("/image.gif")) {
+        if (requestParser.equals(Routes.jpegRoute())) {
+            return "image/jpeg" + "\r\n";
+        } else if (requestParser.equals(Routes.pngRoute())) {
+            return "image/png" + "\r\n";
+        } else if (requestParser.equals(Routes.gifRoute())) {
             return "image/gif\r\n";
-        } else if (requestParser.equals("/form")) {
+        } else if (requestParser.equals(Routes.formRoute())) {
             return "application/x-www-form-urlencoded\r\n";
         }
         return "text/html\r\n";
