@@ -22,12 +22,4 @@ public class BasicAuthenticationTest {
 
         assertEquals(authenticationString, basicAuthenticationHandler.parseAuthenticationData(data));
     }
-    
-    @Test
-    public void decodesAuthenticationCredentials() throws Exception {
-        BasicAuthenticationHandler basicAuthenticationHandler = new BasicAuthenticationHandler();
-        
-
-        assertEquals("admin:hunter2", basicAuthenticationHandler.decodeAuthenticationCredentials());
-    }
 }

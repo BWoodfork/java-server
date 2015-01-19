@@ -13,7 +13,7 @@ public class PatchRequestHandler {
     public byte[] parseRequest(String method, String filePath, String data) throws IOException {
         Path patchPath = Paths.get("/Users/8thlight/projects/cob_spec/public/patch-content.txt");
 
-        if (method.equals("GET") && filePath.equals("/patch-content.txt")) {
+        if (method.equals("GET") && filePath.equals(Routes.patchContentRoute())) {
             return fileRetriever.patchContent();
         } else if (method.equals("PATCH") && data.startsWith("60")) {
             Files.write(patchPath, "patched content".getBytes());

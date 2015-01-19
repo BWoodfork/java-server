@@ -42,7 +42,7 @@ public class FileRetriever {
         return Files.readAllBytes(path);
     }
 
-    public byte[] refresh() {
+    public byte[] redirect() {
         String refreshHTML = "<html><head><meta http-equiv='refresh' content='0 ; url=/'></head></html>";
         return refreshHTML.getBytes();
     }

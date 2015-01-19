@@ -2,7 +2,7 @@ package com.company.Server;
 
 import com.company.Handler.StreamHandler;
 import com.company.Parser.RequestParser;
-import com.company.Reponse.*;
+import com.company.Reponse.Headers.*;
 
 import java.io.*;
 import java.net.*;
@@ -40,6 +40,8 @@ public class ResponseHandler {
         filePath = requestParser.getFilePath();
         data = requestParser.getData();
         byteCount = requestParser.getByteCount();
+        
+        System.out.println(requestParser.getFullRequest());
     }
 
     public void sendResponse(Socket socket) throws IOException {

@@ -1,4 +1,4 @@
-package com.company.Reponse;
+package com.company.Reponse.Headers;
 
 public class BodyLength {
     public byte[] getBodyLength(byte[] body) {

@@ -8,6 +8,8 @@ import java.util.HashMap;
 public class HTTPStatusCodes {
     
     public String getHTTPStatusCode(String method, String requestPath, String data) {
+        String patchString = "PATCH";
+        
         Map<String, String> routes = new HashMap<String, String>();
         
         routes.put(Routes.rootRoute(), StatusCodes.twoHundredOk());
@@ -20,7 +22,7 @@ public class HTTPStatusCodes {
         routes.put(Routes.redirectRoute(), StatusCodes.threeOhOneMoved());
         routes.put(Routes.partialContentRoute(), StatusCodes.twoOhSixPartial());
         routes.put(Routes.logsRoute(), StatusCodes.fourOhOneUnauthorized());
-        routes.put("PATCH", StatusCodes.twoOhFourNoContent());
+        routes.put(patchString, StatusCodes.twoOhFourNoContent());
         
         for (Map.Entry<String, String> route : routes.entrySet()) {
             if (requestPath.equals(route.getKey()) || method.equals(route.getKey())) {

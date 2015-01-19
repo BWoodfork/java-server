@@ -16,11 +16,6 @@ public class BasicAuthenticationHandler {
         return encoder.encode(encodedPassword);
     }
     
-    public String decodeAuthenticationCredentials() throws IOException {
-        BASE64Decoder decoder = new BASE64Decoder();
-        return new String(decoder.decodeBuffer(encodeAuthenticationCredentials()));
-    }
-
     public String parseAuthenticationData(String data) throws IOException {
         String connection = "Connection:";
         String authenticationRequired = "Authentication required";
