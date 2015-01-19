@@ -1,4 +1,4 @@
-package com.company.Handler;
+package com.company;
 
 
 public class Routes {

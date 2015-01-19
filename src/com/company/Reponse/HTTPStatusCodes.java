@@ -1,30 +1,34 @@
 package com.company.Reponse;
 
-import com.company.Handler.Routes;
+import com.company.Routes;
 
 import java.util.Map;
 import java.util.HashMap;
 
 public class HTTPStatusCodes {
     
-    public String getHTTPStatusCode(String method, String requestPath, String data) {
+    public HashMap<String, String> storedRoutes() {
+       HashMap<String, String> storeRoutes = new HashMap<String, String>();
+        
         String patchString = "PATCH";
         
-        Map<String, String> routes = new HashMap<String, String>();
+        storeRoutes.put(Routes.rootRoute(), StatusCodes.twoHundredOk());
+        storeRoutes.put(Routes.methodOptionsRoute(), StatusCodes.twoHundredOk());
+        storeRoutes.put(Routes.formRoute(), StatusCodes.twoHundredOk());
+        storeRoutes.put(Routes.file2Route(), StatusCodes.twoHundredOk());
+        storeRoutes.put(Routes.logRoute(), StatusCodes.twoHundredOk());
+        storeRoutes.put(Routes.file1Route(), StatusCodes.fourOhFiveOk());
+        storeRoutes.put(Routes.textFileRoute(), StatusCodes.forOhFiveNotAllowed());
+        storeRoutes.put(Routes.redirectRoute(), StatusCodes.threeOhOneMoved());
+        storeRoutes.put(Routes.partialContentRoute(), StatusCodes.twoOhSixPartial());
+        storeRoutes.put(Routes.logsRoute(), StatusCodes.fourOhOneUnauthorized());
+        storeRoutes.put(patchString, StatusCodes.twoOhFourNoContent());
         
-        routes.put(Routes.rootRoute(), StatusCodes.twoHundredOk());
-        routes.put(Routes.methodOptionsRoute(), StatusCodes.twoHundredOk());
-        routes.put(Routes.formRoute(), StatusCodes.twoHundredOk());
-        routes.put(Routes.file2Route(), StatusCodes.twoHundredOk());
-        routes.put(Routes.logRoute(), StatusCodes.twoHundredOk());
-        routes.put(Routes.file1Route(), StatusCodes.fourOhFiveOk());
-        routes.put(Routes.textFileRoute(), StatusCodes.forOhFiveNotAllowed());
-        routes.put(Routes.redirectRoute(), StatusCodes.threeOhOneMoved());
-        routes.put(Routes.partialContentRoute(), StatusCodes.twoOhSixPartial());
-        routes.put(Routes.logsRoute(), StatusCodes.fourOhOneUnauthorized());
-        routes.put(patchString, StatusCodes.twoOhFourNoContent());
-        
-        for (Map.Entry<String, String> route : routes.entrySet()) {
+       return storeRoutes;
+    }
+    
+    public String getHTTPStatusCode(String method, String requestPath, String data) {
+        for (Map.Entry<String, String> route : storedRoutes().entrySet()) {
             if (requestPath.equals(route.getKey()) || method.equals(route.getKey())) {
                 return route.getValue();
             } else if (requestPath.equals(Routes.logsRoute()) && data.equals("localhost:5000")) {
