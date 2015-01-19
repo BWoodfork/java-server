@@ -1,5 +1,6 @@
 package com.company.Reponse;
 
+import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
 
 import java.io.IOException;
@@ -11,7 +12,13 @@ public class BasicAuthenticationHandler {
 
         byte[] encodedPassword = (username + ":" + password).getBytes();
         BASE64Encoder encoder = new BASE64Encoder();
+        
         return encoder.encode(encodedPassword);
+    }
+    
+    public String decodeAuthenticationCredentials() throws IOException {
+        BASE64Decoder decoder = new BASE64Decoder();
+        return new String(decoder.decodeBuffer(encodeAuthenticationCredentials()));
     }
 
     public String parseAuthenticationData(String data) throws IOException {

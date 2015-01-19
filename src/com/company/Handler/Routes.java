@@ -1,5 +1,6 @@
 package com.company.Handler;
 
+
 public class Routes {
     public static String file1Route() {
         return "/file1";
@@ -33,6 +34,10 @@ public class Routes {
         return "/logs";
     }
     
+    public static String logRoute() {
+        return "/log";
+    }
+    
     public static String patchContentRoute() {
         return "/patch-content.txt";
     }
@@ -40,8 +45,20 @@ public class Routes {
     public static String formRoute() {
         return "/form";
     }
+    
+    public static String methodOptionsRoute() {
+        return "/method_options";
+    }
+    
+    public static String textFileRoute() {
+        return "/text-file.txt";
+    }
 
     public static String notFoundRoute() {
         return "The page you are looking for cannot be found.";
+    }
+
+    public static String partialContentRoute() {
+        return "206 Partial Content";
     }
 }

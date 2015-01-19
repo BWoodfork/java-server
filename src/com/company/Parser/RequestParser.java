@@ -22,6 +22,10 @@ public class RequestParser {
     public String getFilePath() {
         return parseRequest()[1];
     }
+    
+    public String authenticationConnection() {
+        return parseRequest()[2];
+    }
 
     public String getByteCount() {
         return parseRequest()[3];

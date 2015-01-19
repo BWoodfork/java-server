@@ -10,7 +10,7 @@ public class BasicAuthenticationTest {
     public void encodeAuthenticationCredentials() throws Exception {
         BasicAuthenticationHandler basicAuthenticationHandler = new BasicAuthenticationHandler();
 
-        assertEquals("YWRtaW46aHVudGVyMg==" ,basicAuthenticationHandler.encodeAuthenticationCredentials());
+        assertEquals("YWRtaW46aHVudGVyMg==", basicAuthenticationHandler.encodeAuthenticationCredentials());
     }
 
     @Test
@@ -20,6 +20,14 @@ public class BasicAuthenticationTest {
         String data = "GET /logs HTTP/1.1";
         String authenticationString = "Authentication required";
 
-        assertEquals(authenticationString,basicAuthenticationHandler.parseAuthenticationData(data));
+        assertEquals(authenticationString, basicAuthenticationHandler.parseAuthenticationData(data));
+    }
+    
+    @Test
+    public void decodesAuthenticationCredentials() throws Exception {
+        BasicAuthenticationHandler basicAuthenticationHandler = new BasicAuthenticationHandler();
+        
+
+        assertEquals("admin:hunter2", basicAuthenticationHandler.decodeAuthenticationCredentials());
     }
 }
