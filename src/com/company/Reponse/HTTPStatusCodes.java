@@ -8,23 +8,23 @@ import java.util.HashMap;
 public class HTTPStatusCodes {
     
     public HashMap<String, String> storedRoutes() {
-       HashMap<String, String> storeRoutes = new HashMap<String, String>();
+       HashMap<String, String> routes = new HashMap<String, String>();
         
         String patchString = "PATCH";
         
-        storeRoutes.put(Routes.rootRoute(), StatusCodes.twoHundredOk());
-        storeRoutes.put(Routes.methodOptionsRoute(), StatusCodes.twoHundredOk());
-        storeRoutes.put(Routes.formRoute(), StatusCodes.twoHundredOk());
-        storeRoutes.put(Routes.file2Route(), StatusCodes.twoHundredOk());
-        storeRoutes.put(Routes.logRoute(), StatusCodes.twoHundredOk());
-        storeRoutes.put(Routes.file1Route(), StatusCodes.fourOhFiveOk());
-        storeRoutes.put(Routes.textFileRoute(), StatusCodes.forOhFiveNotAllowed());
-        storeRoutes.put(Routes.redirectRoute(), StatusCodes.threeOhOneMoved());
-        storeRoutes.put(Routes.partialContentRoute(), StatusCodes.twoOhSixPartial());
-        storeRoutes.put(Routes.logsRoute(), StatusCodes.fourOhOneUnauthorized());
-        storeRoutes.put(patchString, StatusCodes.twoOhFourNoContent());
+        routes.put(Routes.rootRoute(), StatusCodes.twoHundredOk());
+        routes.put(Routes.methodOptionsRoute(), StatusCodes.twoHundredOk());
+        routes.put(Routes.formRoute(), StatusCodes.twoHundredOk());
+        routes.put(Routes.file2Route(), StatusCodes.twoHundredOk());
+        routes.put(Routes.logRoute(), StatusCodes.twoHundredOk());
+        routes.put(Routes.file1Route(), StatusCodes.fourOhFiveOk());
+        routes.put(Routes.textFileRoute(), StatusCodes.forOhFiveNotAllowed());
+        routes.put(Routes.redirectRoute(), StatusCodes.threeOhOneMoved());
+        routes.put(Routes.partialContentRoute(), StatusCodes.twoOhSixPartial());
+        routes.put(Routes.logsRoute(), StatusCodes.fourOhOneUnauthorized());
+        routes.put(patchString, StatusCodes.twoOhFourNoContent());
         
-       return storeRoutes;
+       return routes;
     }
     
     public String getHTTPStatusCode(String method, String requestPath, String data) {
