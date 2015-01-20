@@ -34,7 +34,8 @@ public class SocketServer {
                                     responseHandler.parseRequest(socket);
                                     responseHandler.sendResponse(socket);
                                     socket.close();
-                                } catch (IOException e) {
+                                } catch (Exception e) {
+                                    if (executor.isTerminated())
                                     e.printStackTrace();
                                 }
                             }
