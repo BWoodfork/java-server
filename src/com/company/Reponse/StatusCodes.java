@@ -17,7 +17,7 @@ public class StatusCodes {
         return "401 Unauthorized";
     }
     
-    public static String forOhFiveNotAllowed() {
+    public static String fourOhFiveNotAllowed() {
         return "405 Method Not Allowed";
     }
     

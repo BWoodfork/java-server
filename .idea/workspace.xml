@@ -7,29 +7,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a534d807-f553-4e90-93f7-c6040a0c0197" name="Default" comment="Refactored ParameterDecoder.">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/test/java-server/com/company/Server/SocketServerTest$FakeSocket.class" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/java-server/com/company/Reponse/Headers/ContentType.class" afterPath="$PROJECT_DIR$/out/production/java-server/com/company/Reponse/Headers/ContentType.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/java-server/com/company/Reponse/FileRetriever.class" afterPath="$PROJECT_DIR$/out/production/java-server/com/company/Reponse/FileRetriever.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Tests/com/company/Response/StatusCodesTest.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/java-server/com/company/Handler/PatchRequestHandler.class" afterPath="$PROJECT_DIR$/out/production/java-server/com/company/Handler/PatchRequestHandler.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/java-server/com/company/Handler/PatchRequestHandlerTest.class" afterPath="$PROJECT_DIR$/out/test/java-server/com/company/Handler/PatchRequestHandlerTest.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/java-server/com/company/Handler/PostRequestHandler.class" afterPath="$PROJECT_DIR$/out/production/java-server/com/company/Handler/PostRequestHandler.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/java-server/com/company/Handler/PostRequestHandlerTest.class" afterPath="$PROJECT_DIR$/out/test/java-server/com/company/Handler/PostRequestHandlerTest.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/java-server/com/company/Response/RequestBuilderTest.class" afterPath="$PROJECT_DIR$/out/test/java-server/com/company/Response/RequestBuilderTest.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/java-server/com/company/Routes.class" afterPath="$PROJECT_DIR$/out/production/java-server/com/company/Routes.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/java-server/com/company/Server/SocketServer$1$1.class" afterPath="$PROJECT_DIR$/out/production/java-server/com/company/Server/SocketServer$1$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/java-server/com/company/Server/SocketServer$1.class" afterPath="$PROJECT_DIR$/out/production/java-server/com/company/Server/SocketServer$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/java-server/com/company/Server/SocketServer.class" afterPath="$PROJECT_DIR$/out/production/java-server/com/company/Server/SocketServer.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/java-server/com/company/Server/SocketServerTest.class" afterPath="$PROJECT_DIR$/out/test/java-server/com/company/Server/SocketServerTest.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/Reponse/Headers/ContentType.java" afterPath="$PROJECT_DIR$/src/com/company/Reponse/Headers/ContentType.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/Reponse/FileRetriever.java" afterPath="$PROJECT_DIR$/src/com/company/Reponse/FileRetriever.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/Reponse/HTTPStatusCodes.java" afterPath="$PROJECT_DIR$/src/com/company/Reponse/HTTPStatusCodes.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/Handler/PatchRequestHandler.java" afterPath="$PROJECT_DIR$/src/com/company/Handler/PatchRequestHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tests/com/company/Handler/PatchRequestHandlerTest.java" afterPath="$PROJECT_DIR$/Tests/com/company/Handler/PatchRequestHandlerTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/Handler/PostRequestHandler.java" afterPath="$PROJECT_DIR$/src/com/company/Handler/PostRequestHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tests/com/company/Handler/PostRequestHandlerTest.java" afterPath="$PROJECT_DIR$/Tests/com/company/Handler/PostRequestHandlerTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tests/com/company/Response/RequestBuilderTest.java" afterPath="$PROJECT_DIR$/Tests/com/company/Response/RequestBuilderTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/Routes.java" afterPath="$PROJECT_DIR$/src/com/company/Routes.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/Server/SocketServer.java" afterPath="$PROJECT_DIR$/src/com/company/Server/SocketServer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tests/com/company/Server/SocketServerTest.java" afterPath="$PROJECT_DIR$/Tests/com/company/Server/SocketServerTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/Reponse/StatusCodes.java" afterPath="$PROJECT_DIR$/src/com/company/Reponse/StatusCodes.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="java-server.iws" />
@@ -82,12 +64,25 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="PatchRequestHandler.java" pinned="false" current-in-tab="true">
+          <file leaf-file-name="PatchRequestHandler.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/com/company/Handler/PatchRequestHandler.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.42420813" vertical-offset="0" max-vertical-offset="884">
-                  <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+                <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="465">
+                  <caret line="33" column="1" selection-start-line="33" selection-start-column="1" selection-end-line="33" selection-end-column="1" />
                   <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="StatusCodes.java" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/com/company/Reponse/StatusCodes.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.35633484" vertical-offset="0" max-vertical-offset="884">
+                  <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+                  <folding>
+                    <element signature="e#740#741#0" expanded="true" />
+                    <element signature="e#778#779#0" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -148,6 +143,18 @@
       </split-first>
       <split-second>
         <leaf>
+          <file leaf-file-name="StatusCodesTest.java" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/Tests/com/company/Response/StatusCodesTest.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.5938914" vertical-offset="0" max-vertical-offset="884">
+                  <caret line="35" column="43" selection-start-line="35" selection-start-column="43" selection-end-line="35" selection-end-column="43" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
           <file leaf-file-name="StreamHandlerTest.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/Tests/com/company/Handler/StreamHandlerTest.java">
               <provider selected="true" editor-type-id="text-editor">
@@ -171,11 +178,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="PatchRequestHandlerTest.java" pinned="false" current-in-tab="true">
+          <file leaf-file-name="PatchRequestHandlerTest.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/Tests/com/company/Handler/PatchRequestHandlerTest.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.6617647" vertical-offset="0" max-vertical-offset="930">
-                  <caret line="39" column="23" selection-start-line="39" selection-start-column="23" selection-end-line="39" selection-end-column="23" />
+                <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="930">
+                  <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -218,7 +225,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Tests/com/company/SocketServerTest.java" />
         <option value="$PROJECT_DIR$/Tests/com/company/Parser/RequestParserTest.java" />
         <option value="$PROJECT_DIR$/src/com/company/Reponse/StreamHandler.java" />
         <option value="$PROJECT_DIR$/src/com/company/Reponse/StatusMessages.java" />
@@ -232,7 +238,6 @@
         <option value="$PROJECT_DIR$/Tests/com/company/Response/ContentTypeTest.java" />
         <option value="$PROJECT_DIR$/src/com/company/Reponse/ContentType.java" />
         <option value="$PROJECT_DIR$/src/com/company/Handler/Routes.java" />
-        <option value="$PROJECT_DIR$/src/com/company/Reponse/StatusCodes.java" />
         <option value="$PROJECT_DIR$/Tests/com/company/Response/BasicAuthenticationTest.java" />
         <option value="$PROJECT_DIR$/src/com/company/Parser/RequestParser.java" />
         <option value="$PROJECT_DIR$/src/com/company/Reponse/Headers/BodyLength.java" />
@@ -269,6 +274,8 @@
         <option value="$PROJECT_DIR$/src/com/company/Reponse/Headers/BodyContents.java" />
         <option value="$PROJECT_DIR$/Tests/com/company/Handler/PatchRequestHandlerTest.java" />
         <option value="$PROJECT_DIR$/src/com/company/Handler/PatchRequestHandler.java" />
+        <option value="$PROJECT_DIR$/src/com/company/Reponse/StatusCodes.java" />
+        <option value="$PROJECT_DIR$/Tests/com/company/Response/StatusCodesTest.java" />
       </list>
     </option>
   </component>
@@ -638,7 +645,7 @@
       <recent name="com.company.Parser" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="JUnit.StatusCodesTest">
     <configuration default="false" name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -670,34 +677,6 @@
       <option name="MAIN_CLASS_NAME" />
       <option name="METHOD_NAME" />
       <option name="TEST_OBJECT" value="package" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
-      <RunnerSettings RunnerId="Run" />
-      <ConfigurationWrapper RunnerId="Run" />
-      <method />
-    </configuration>
-    <configuration default="false" name="SocketServerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="com.company.Server.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="java-server" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="com.company.Server" />
-      <option name="MAIN_CLASS_NAME" value="com.company.Server.SocketServerTest" />
-      <option name="METHOD_NAME" />
-      <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
@@ -752,6 +731,34 @@
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="com.company.Handler" />
       <option name="MAIN_CLASS_NAME" value="com.company.Handler.PatchRequestHandlerTest" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
+    <configuration default="false" name="StatusCodesTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="com.company.Response.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="java-server" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="com.company.Response" />
+      <option name="MAIN_CLASS_NAME" value="com.company.Response.StatusCodesTest" />
       <option name="METHOD_NAME" />
       <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" value="-ea" />
@@ -929,17 +936,17 @@
     <list size="5">
       <item index="0" class="java.lang.String" itemvalue="Application.Main" />
       <item index="1" class="java.lang.String" itemvalue="JUnit.All in java-server" />
-      <item index="2" class="java.lang.String" itemvalue="JUnit.SocketServerTest" />
-      <item index="3" class="java.lang.String" itemvalue="JUnit.RequestBuilderTest" />
-      <item index="4" class="java.lang.String" itemvalue="JUnit.PatchRequestHandlerTest" />
+      <item index="2" class="java.lang.String" itemvalue="JUnit.RequestBuilderTest" />
+      <item index="3" class="java.lang.String" itemvalue="JUnit.PatchRequestHandlerTest" />
+      <item index="4" class="java.lang.String" itemvalue="JUnit.StatusCodesTest" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Application.Main" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.All in java-server" />
-        <item index="2" class="java.lang.String" itemvalue="JUnit.PatchRequestHandlerTest" />
-        <item index="3" class="java.lang.String" itemvalue="JUnit.RequestBuilderTest" />
-        <item index="4" class="java.lang.String" itemvalue="JUnit.SocketServerTest" />
+        <item index="0" class="java.lang.String" itemvalue="JUnit.StatusCodesTest" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.PatchRequestHandlerTest" />
+        <item index="2" class="java.lang.String" itemvalue="Application.Main" />
+        <item index="3" class="java.lang.String" itemvalue="JUnit.All in java-server" />
+        <item index="4" class="java.lang.String" itemvalue="JUnit.RequestBuilderTest" />
       </list>
     </recent_temporary>
   </component>
@@ -1106,7 +1113,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14270833" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17763752" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17763752" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Clojure REPL" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1237,17 +1244,6 @@
         <state vertical-scroll-proportion="0.16253869" vertical-offset="0" max-vertical-offset="646">
           <caret line="7" column="56" selection-start-line="7" selection-start-column="56" selection-end-line="7" selection-end-column="56" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/Reponse/StatusCodes.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.41795665" vertical-offset="0" max-vertical-offset="646">
-          <caret line="32" column="28" selection-start-line="32" selection-start-column="28" selection-end-line="32" selection-end-column="28" />
-          <folding>
-            <element signature="e#739#740#0" expanded="false" />
-            <element signature="e#777#778#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1492,14 +1488,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Tests/com/company/Response/RequestBuilderTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="375">
-          <caret line="20" column="8" selection-start-line="20" selection-start-column="8" selection-end-line="20" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Tests/com/company/Handler/PostRequestHandlerTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1065">
@@ -1569,8 +1557,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Tests/com/company/Handler/PatchRequestHandlerTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6617647" vertical-offset="0" max-vertical-offset="930">
-          <caret line="39" column="23" selection-start-line="39" selection-start-column="23" selection-end-line="39" selection-end-column="23" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="930">
+          <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1579,9 +1567,38 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/Handler/PatchRequestHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.42420813" vertical-offset="0" max-vertical-offset="884">
-          <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="465">
+          <caret line="33" column="1" selection-start-line="33" selection-start-column="1" selection-end-line="33" selection-end-column="1" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tests/com/company/Response/RequestBuilderTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="375">
+          <caret line="20" column="8" selection-start-line="20" selection-start-column="8" selection-end-line="20" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/Reponse/StatusCodes.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.35633484" vertical-offset="0" max-vertical-offset="884">
+          <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+          <folding>
+            <element signature="e#740#741#0" expanded="true" />
+            <element signature="e#778#779#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tests/com/company/Response/StatusCodesTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5938914" vertical-offset="0" max-vertical-offset="884">
+          <caret line="35" column="43" selection-start-line="35" selection-start-column="43" selection-end-line="35" selection-end-column="43" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

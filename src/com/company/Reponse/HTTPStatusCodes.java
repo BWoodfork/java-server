@@ -18,7 +18,7 @@ public class HTTPStatusCodes {
         routes.put(Routes.file2Route(), StatusCodes.twoHundredOk());
         routes.put(Routes.logRoute(), StatusCodes.twoHundredOk());
         routes.put(Routes.file1Route(), StatusCodes.fourOhFiveOk());
-        routes.put(Routes.textFileRoute(), StatusCodes.forOhFiveNotAllowed());
+        routes.put(Routes.textFileRoute(), StatusCodes.fourOhFiveNotAllowed());
         routes.put(Routes.redirectRoute(), StatusCodes.threeOhOneMoved());
         routes.put(Routes.partialContentRoute(), StatusCodes.twoOhSixPartial());
         routes.put(Routes.logsRoute(), StatusCodes.fourOhOneUnauthorized());

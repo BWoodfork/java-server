@@ -25,9 +25,9 @@ public class PatchRequestHandler {
         
         if (method.equals("GET") && filePath.equals(Routes.patchContentRoute())) {
             return fileRetriever.patchContent();
-        } else if (method.equals("PATCH") && eTagHash.equals(firstPatchString)) {
+        } else if (eTagHash.equals(firstPatchString)) {
             Files.write(absolutePath, "patched content".getBytes());
-        } else if (method.equals("PATCH") && eTagHash.equals(secondPatchString)) {
+        } else if (eTagHash.equals(secondPatchString)) {
             Files.write(absolutePath, "default content".getBytes());
         } return "This is not the page you are looking for".getBytes();
     }
