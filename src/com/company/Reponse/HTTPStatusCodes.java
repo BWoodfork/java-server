@@ -30,7 +30,7 @@ public class HTTPStatusCodes {
         for (Map.Entry<String, String> route : storeRoutes().entrySet()) {
             if (requestPath.equals(route.getKey()) || method.equals(route.getKey())) {
                 return route.getValue();
-            } else if (requestPath.equals(Routes.logsRoute()) && data.equals("localhost:5000")) {
+            } else if (requestPath.equals(Routes.logsRoute()) && data.startsWith("localhost:")) {
                 return StatusCodes.fourOhOneUnauthorized();
             } else if (requestPath.equals(Routes.logsRoute()) && !data.equals("localhost:5000")) {
                 return StatusCodes.twoHundredOk();

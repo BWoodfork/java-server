@@ -31,6 +31,7 @@ public class SocketServer {
                             @Override
                             public void run() {
                                 try {
+                                    System.out.println(socket);
                                     responseHandler.parseRequest(socket);
                                     responseHandler.sendResponse(socket);
                                     socket.close();
