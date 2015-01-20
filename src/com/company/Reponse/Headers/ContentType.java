@@ -21,7 +21,6 @@ public class ContentType {
         }
 
         return "text/html" + "\r\n";
-        
     }
 
     public byte[] getContentTypeHeader(String filePath) {

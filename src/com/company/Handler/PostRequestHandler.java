@@ -12,7 +12,7 @@ public class PostRequestHandler {
     FileRetriever fileRetriever = new FileRetriever();
 
     public byte[] parseRequest(String method, String filePath) throws IOException {
-        Path cosbyPath = Paths.get("/Users/8thlight/projects/cob_spec/public/cosby-data.txt");
+        Path cosbyPath = Paths.get("../cob_spec/public/cosby-data.txt");
 
         if (method.equals("POST") && filePath.equals(Routes.formRoute())) {
             Files.write(cosbyPath, "data=cosby".getBytes());
@@ -26,7 +26,8 @@ public class PostRequestHandler {
             Files.write(cosbyPath, "Content Removed".getBytes());
             return fileRetriever.cosbyData();
         }
-            return "Invalid Post Request".getBytes();
+        
+        return "Invalid Post Request".getBytes();
     }
 
 }

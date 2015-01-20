@@ -62,7 +62,7 @@ public class FileRetriever {
     }
 
     public byte[] patchContent() throws IOException {
-        Path path = Paths.get("/Users/8thlight/projects/cob_spec/public/patch-content.txt");
+        Path path = Paths.get("../cob_spec/public/patch-content.txt");
         Path absolutePath = path.toAbsolutePath();
         return Files.readAllBytes(absolutePath);
     }

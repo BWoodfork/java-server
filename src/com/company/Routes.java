@@ -54,11 +54,11 @@ public class Routes {
         return "/text-file.txt";
     }
 
-    public static String notFoundRoute() {
-        return "The page you are looking for cannot be found.";
-    }
-
     public static String partialContentRoute() {
         return "/partial_content.txt";
+    }
+
+    public static String notFoundRoute() {
+        return "The page you are looking for cannot be found.";
     }
 }

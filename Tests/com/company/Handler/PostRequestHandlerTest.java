@@ -24,15 +24,17 @@ public class PostRequestHandlerTest {
         String filePath = "/form";
 
         postRequestHandler.parseRequest(method, filePath);
-        Path path = Paths.get("/Users/8thlight/projects/cob_spec/public/cosby-data.txt");
-        String cosbyString = new String(Files.readAllBytes(path));
+        Path path = Paths.get("../cob_spec/public/cosby-data.txt");
+        Path absolutePath = path.toAbsolutePath();
+        
+        String cosbyString = new String(Files.readAllBytes(absolutePath));
 
         assertEquals("data=cosby", cosbyString);
     }
 
     @Test
     public void returnsTrueIfFileExists() throws Exception {
-        File file = new File("/Users/8thlight/projects/cob_spec/public/cosby-data.txt");
+        File file = new File("../cob_spec/public/cosby-data.txt");
 
         String method = "GET";
         String filePath = "/form";
@@ -48,8 +50,9 @@ public class PostRequestHandlerTest {
         String filePath = "/form";
 
         postRequestHandler.parseRequest(method, filePath);
-        Path path = Paths.get("/Users/8thlight/projects/cob_spec/public/cosby-data.txt");
-        String cosbyString = new String(Files.readAllBytes(path));
+        Path path = Paths.get("../cob_spec/public/cosby-data.txt");
+        Path absolutePath = path.toAbsolutePath();
+        String cosbyString = new String(Files.readAllBytes(absolutePath));
 
         assertEquals("data=heathcliff", cosbyString);
     }
@@ -60,8 +63,9 @@ public class PostRequestHandlerTest {
         String filePath = "/form";
 
         postRequestHandler.parseRequest(method, filePath);
-        Path path = Paths.get("/Users/8thlight/projects/cob_spec/public/cosby-data.txt");
-        String cosbyString = new String(Files.readAllBytes(path));
+        Path path = Paths.get("../cob_spec/public/cosby-data.txt");
+        Path absolutePath = path.toAbsolutePath();
+        String cosbyString = new String(Files.readAllBytes(absolutePath));
 
         assertEquals("Content Removed", cosbyString);
     }

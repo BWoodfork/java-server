@@ -18,9 +18,7 @@ public class RequestBuilderTest {
         InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
         BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
 
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("GET /logs HTTP/1.1");
-        String mockRequestString = stringBuilder.toString();
+        String mockRequestString = "GET /logs HTTP/1.1";
 
         assertEquals(mockRequestString, requestBuilder.getRequestString(bufferedReader));
     }

@@ -14,20 +14,7 @@ import static org.junit.Assert.assertTrue;
 public class SocketServerTest {
     private SocketServer server;
     private int port;
-
-    public class FakeSocket extends Socket {
-        private final String response;
-
-        public FakeSocket(String s) {
-            response = s;
-        }
-
-        @Override
-        public InputStream getInputStream() throws IOException {
-            return new ByteArrayInputStream(response.getBytes());
-        }
-    }
-
+    
     @Before
     public void setUp() throws Exception {
         port = 5000;
