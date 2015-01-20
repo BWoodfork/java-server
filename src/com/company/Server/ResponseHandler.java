@@ -20,8 +20,9 @@ public class ResponseHandler {
     private String method;
     private String data;
     private String byteCount;
+    private int port;
 
-    public ResponseHandler() {
+    public ResponseHandler(int port) {
         contentType = new ContentType();
         dateAndTime = new DateAndTime();
         statusMessages = new StatusMessages();
@@ -30,6 +31,7 @@ public class ResponseHandler {
         allowMethods = new AllowMethods();
         bodyContents = new BodyContents();
         bodyLength = new BodyLength();
+        this.port = port;
     }
 
     public void parseRequest(Socket socket) throws IOException {
@@ -48,7 +50,7 @@ public class ResponseHandler {
         byte[] body = this.bodyContents.getBody(method, filePath, data, byteCount);
         byte[] statusMessage = statusMessages.getStatusMessage(method, filePath, data);
         byte[] time = dateAndTime.getServerTime();
-        byte[] location = serverLocation.getLocationResponse();
+        byte[] location = serverLocation.getLocationResponse(port);
         byte[] type = contentType.getContentTypeHeader(filePath);
         byte[] allow = allowMethods.getAllowResponse();
         byte[] length = bodyLength.getBodyLength(body);

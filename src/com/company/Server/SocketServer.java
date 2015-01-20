@@ -15,7 +15,7 @@ public class SocketServer {
     public int connections = 0;
 
     public SocketServer(int port) throws IOException {
-        responseHandler = new ResponseHandler();
+        responseHandler = new ResponseHandler(port);
         serverSocket = new ServerSocket(port);
         executor = Executors.newFixedThreadPool(25);
     }
