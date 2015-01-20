@@ -7,7 +7,7 @@ import java.util.HashMap;
 
 public class HTTPStatusCodes {
     
-    public HashMap<String, String> storedRoutes() {
+    public HashMap<String, String> storeRoutes() {
        HashMap<String, String> routes = new HashMap<String, String>();
         
         String patchString = "PATCH";
@@ -23,17 +23,18 @@ public class HTTPStatusCodes {
         routes.put(Routes.partialContentRoute(), StatusCodes.twoOhSixPartial());
         routes.put(Routes.logsRoute(), StatusCodes.fourOhOneUnauthorized());
         routes.put(patchString, StatusCodes.twoOhFourNoContent());
-        
        return routes;
     }
     
     public String getHTTPStatusCode(String method, String requestPath, String data) {
-        for (Map.Entry<String, String> route : storedRoutes().entrySet()) {
+        for (Map.Entry<String, String> route : storeRoutes().entrySet()) {
             if (requestPath.equals(route.getKey()) || method.equals(route.getKey())) {
                 return route.getValue();
             } else if (requestPath.equals(Routes.logsRoute()) && data.equals("localhost:5000")) {
                 return StatusCodes.fourOhOneUnauthorized();
             } else if (requestPath.equals(Routes.logsRoute()) && !data.equals("localhost:5000")) {
+                return StatusCodes.twoHundredOk();
+            } else if (requestPath.equals(Routes.patchContentRoute()) && method.equals("GET")) {
                 return StatusCodes.twoHundredOk();
             }
         }

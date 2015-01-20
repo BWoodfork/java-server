@@ -23,9 +23,9 @@ public class FileRouter {
         parameterDecoder = new ParameterDecoder();
     }
 
-    public byte[] routeFiles(String method, String filePath, String data, String byteCount) throws IOException {
-        Map<String, byte[]> routes = new HashMap<String, byte[]>();
-        
+    public HashMap<String, byte[]> storeRoutes(String method, String filePath, String data) throws IOException {
+        HashMap<String, byte[]> routes = new HashMap<String, byte[]>();
+
         routes.put(Routes.rootRoute(), file.getHTMLPage());
         routes.put(Routes.file1Route(), file.getFile());
         routes.put(Routes.jpegRoute(), file.getJPEG());
@@ -37,7 +37,12 @@ public class FileRouter {
         routes.put(Routes.patchContentRoute(), patchRequestHandler.parseRequest(method, filePath, data));
         routes.put(Routes.formRoute(), postRequestHandler.parseRequest(method, filePath));
 
-        for (Map.Entry<String, byte[]> route : routes.entrySet()) {
+        return routes;
+    }
+
+    public byte[] routeFiles(String method, String filePath, String data, String byteCount) throws IOException {
+
+        for (Map.Entry<String, byte[]> route : storeRoutes(method, filePath, data).entrySet()) {
             if (filePath.equals(route.getKey())) {
                 return route.getValue();
             } else if (filePath.equals(Routes.partialContentRoute())) {

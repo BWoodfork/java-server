@@ -93,6 +93,15 @@ public class HTTPStatusCodesTest {
 
         assertEquals("204 No Content", response.getHTTPStatusCode(method, requestPath, data));
     }
+    
+    @Test
+    public void get200oKWhenGetRequestToPatchContent() throws Exception {
+        String requestPath = "/patch-content.txt";
+        String method = "GET";
+        String data = "69bc18dc1edc9e1316348b2eaaca9df83898249f";
+        
+        assertEquals("200 OK", response.getHTTPStatusCode(method, requestPath, data));
+    }
 
     @Test
     public void get404NotFoundResponse() throws Exception {
@@ -101,5 +110,14 @@ public class HTTPStatusCodesTest {
         String data = "localhost:5000";
 
         assertEquals("404 NOT FOUND", response.getHTTPStatusCode(method, requestPath, data));
+    }
+    
+    @Test
+    public void get206PartialResponse() throws Exception {
+        String requestPath = "/partial_content.txt";
+        String method = "GET";
+        String data = "localhost:5000";
+        
+        assertEquals("206 Partial Content", response.getHTTPStatusCode(method, requestPath, data));
     }
 }

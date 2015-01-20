@@ -59,6 +59,6 @@ public class Routes {
     }
 
     public static String partialContentRoute() {
-        return "206 Partial Content";
+        return "/partial_content.txt";
     }
 }

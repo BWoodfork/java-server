@@ -100,32 +100,4 @@ public class FileRouterTest {
 
         assertEquals(new String(body), new String(fileRouter.routeFiles(method, requestPath, data, byteCount)));
     }
-    
-//    @Test
-//    public void returnsSomethingInThatMap() throws Exception {
-//        String requestPath = "/file1";
-//        byte[] body = fileresponse.getFile();
-//
-//        assertEquals(new String(body), new String(fileRouter.testMapFunction(requestPath)));
-//    }
-//
-//    @Test
-//    public void returnsSomethingElse() throws Exception {
-//        String requestPath = "/";
-//        byte[] body = fileresponse.getHTMLPage();
-//
-//        assertEquals(new String(body), new String(fileRouter.testMapFunction(requestPath)));
-//    }
-
-//    @Test
-//    public void itGetsThePartialContents() throws Exception {
-//        String method = "GET";
-//        String requestPath = "/partial_content.txt";
-//        String data = "localhost:5000";
-//        String byteCount = "";
-//
-//        byte[] partial = fileresponse.getFirstPartialContent();
-//
-//        assertEquals(new String(partial), new String(fileRouter.routeFiles(method, requestPath, data, byteCount)));
-//    }
 }

@@ -40,8 +40,6 @@ public class ResponseHandler {
         filePath = requestParser.getFilePath();
         data = requestParser.getData();
         byteCount = requestParser.getByteCount();
-        
-        System.out.println(requestParser.getFullRequest());
     }
 
     public void sendResponse(Socket socket) throws IOException {
@@ -51,7 +49,7 @@ public class ResponseHandler {
         byte[] statusMessage = statusMessages.getStatusMessage(method, filePath, data);
         byte[] time = dateAndTime.getServerTime();
         byte[] location = serverLocation.getLocationResponse();
-        byte[] type = contentType.contentTypeResponse(filePath);
+        byte[] type = contentType.getContentTypeHeader(filePath);
         byte[] allow = allowMethods.getAllowResponse();
         byte[] length = bodyLength.getBodyLength(body);
 

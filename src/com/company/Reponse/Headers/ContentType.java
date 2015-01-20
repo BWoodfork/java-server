@@ -24,7 +24,7 @@ public class ContentType {
         
     }
 
-    public byte[] contentTypeResponse(String filePath) {
+    public byte[] getContentTypeHeader(String filePath) {
         String type = "Content-Type: " + getContentType(filePath);
         return type.getBytes();
     }
