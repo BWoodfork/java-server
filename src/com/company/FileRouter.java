@@ -47,7 +47,7 @@ public class FileRouter {
                 return route.getValue();
             } else if (filePath.equals(Routes.partialContentRoute())) {
                 return PartialContentHandler.getPartialContents(file.getFirstPartialContent(), byteCount);
-            } else if (filePath.startsWith("/parameters?")) {
+            } else if (filePath.startsWith(Routes.parametersRoute())) {
                 return parameterDecoder.parseRequest(filePath);
             }
         }

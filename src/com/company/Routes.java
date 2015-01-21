@@ -61,4 +61,8 @@ public class Routes {
     public static String notFoundRoute() {
         return "The page you are looking for cannot be found.";
     }
+    
+    public static String parametersRoute() {
+        return "/parameters?";
+    }
 }

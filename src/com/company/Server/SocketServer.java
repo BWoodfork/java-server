@@ -36,7 +36,7 @@ public class SocketServer {
                                     socket.close();
                                 } catch (Exception e) {
                                     if (executor.isTerminated())
-                                    e.printStackTrace();
+                                      e.printStackTrace();
                                 }
                             }
                         });
