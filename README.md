@@ -1,6 +1,10 @@
-To run the Cob Spec test suite, clone the repository below. The cob_spec and java-server directory should be in the same directory.
+Clone the java-server repository.
+
+Clone the Cob Spec acceptance test suite repository. 
  
 git clone https://github.com/8thlight/cob_spec/tree/38f9c3a9055dd097e8db429e184a662429ae629e
+
+The cob_spec and java-server directory should be in the same directory.
 
 Once the repository is cloned, cd into the cob_spec directory and run 'bundle install'.
  

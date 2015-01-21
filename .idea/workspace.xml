@@ -7,16 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a534d807-f553-4e90-93f7-c6040a0c0197" name="Default" comment="Refactored ParameterDecoder.">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/company/Listener.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cob_spec/file1" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/java-server/com/company/Server/ResponseHandler.class" afterPath="$PROJECT_DIR$/out/production/java-server/com/company/Server/ResponseHandler.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/java_server_jar/java-server.jar" afterPath="$PROJECT_DIR$/out/artifacts/java_server_jar/java-server.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/FileRouter.java" afterPath="$PROJECT_DIR$/src/com/company/FileRouter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/Handler/ParameterDecoder.java" afterPath="$PROJECT_DIR$/src/com/company/Handler/ParameterDecoder.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/Routes.java" afterPath="$PROJECT_DIR$/src/com/company/Routes.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/Server/SocketServer.java" afterPath="$PROJECT_DIR$/src/com/company/Server/SocketServer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="java-server.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -133,8 +124,8 @@
           <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/README.md">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.24350649" vertical-offset="0" max-vertical-offset="616">
-                  <caret line="10" column="66" selection-start-line="10" selection-start-column="66" selection-end-line="10" selection-end-column="66" />
+                <state vertical-scroll-proportion="0.21915585" vertical-offset="0" max-vertical-offset="616">
+                  <caret line="9" column="1" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
                   <folding />
                 </state>
               </provider>
@@ -1479,8 +1470,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.24350649" vertical-offset="0" max-vertical-offset="616">
-          <caret line="10" column="66" selection-start-line="10" selection-start-column="66" selection-end-line="10" selection-end-column="66" />
+        <state vertical-scroll-proportion="0.21915585" vertical-offset="0" max-vertical-offset="616">
+          <caret line="9" column="1" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
           <folding />
         </state>
       </provider>
