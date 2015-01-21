@@ -7,10 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a534d807-f553-4e90-93f7-c6040a0c0197" name="Default" comment="Refactored ParameterDecoder.">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/java-server/com/company/Main.class" afterPath="$PROJECT_DIR$/out/production/java-server/com/company/Main.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/java_server_jar/java-server.jar" afterPath="$PROJECT_DIR$/out/artifacts/java_server_jar/java-server.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/Main.java" afterPath="$PROJECT_DIR$/src/com/company/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
     </list>
     <ignored path="java-server.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -42,23 +39,26 @@
     <splitter split-orientation="horizontal" split-proportion="0.5">
       <split-first>
         <leaf>
-          <file leaf-file-name="ParameterDecoder.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/com/company/Handler/ParameterDecoder.java">
+          <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/com/company/Main.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="285" max-vertical-offset="375">
-                  <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+                <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="240">
+                  <caret line="10" column="1" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/com/company/Main.java">
+          <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/README.md">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.17793594" vertical-offset="0" max-vertical-offset="843">
-                  <caret line="10" column="1" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
+                <state vertical-scroll-proportion="0.3505535" vertical-offset="0" max-vertical-offset="813">
+                  <caret line="19" column="31" selection-start-line="19" selection-start-column="31" selection-end-line="19" selection-end-column="31" />
                   <folding />
                 </state>
+              </provider>
+              <provider editor-type-id="MarkdownPreviewEditor">
+                <state />
               </provider>
             </entry>
           </file>
@@ -238,13 +238,13 @@
         <option value="$PROJECT_DIR$/src/com/company/Reponse/Headers/BodyContents.java" />
         <option value="$PROJECT_DIR$/src/com/company/Reponse/RequestBuilder.java" />
         <option value="$PROJECT_DIR$/src/com/company/Server/ResponseHandler.java" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/src/com/company/Reponse/HTTPStatusCodes.java" />
         <option value="$PROJECT_DIR$/src/com/company/Server/SocketServer.java" />
         <option value="$PROJECT_DIR$/src/com/company/Routes.java" />
         <option value="$PROJECT_DIR$/src/com/company/Handler/PatchRequestHandler.java" />
         <option value="$PROJECT_DIR$/src/com/company/Handler/PostRequestHandler.java" />
         <option value="$PROJECT_DIR$/src/com/company/Main.java" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -1225,16 +1225,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.048701297" vertical-offset="0" max-vertical-offset="616">
-          <caret line="2" column="53" selection-start-line="2" selection-start-column="53" selection-end-line="2" selection-end-column="53" />
-        </state>
-      </provider>
-      <provider editor-type-id="MarkdownPreviewEditor">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/Parser/RequestParser.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="390">
@@ -1439,10 +1429,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.17793594" vertical-offset="0" max-vertical-offset="843">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="240">
           <caret line="10" column="1" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
           <folding />
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3505535" vertical-offset="0" max-vertical-offset="813">
+          <caret line="19" column="31" selection-start-line="19" selection-start-column="31" selection-end-line="19" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="MarkdownPreviewEditor">
+        <state />
       </provider>
     </entry>
   </component>
