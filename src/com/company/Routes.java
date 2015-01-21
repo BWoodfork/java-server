@@ -1,6 +1,4 @@
 package com.company;
-
-
 public class Routes {
     public static String file1Route() {
         return "/file1";

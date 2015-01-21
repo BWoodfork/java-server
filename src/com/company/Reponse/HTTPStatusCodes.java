@@ -6,7 +6,6 @@ import java.util.Map;
 import java.util.HashMap;
 
 public class HTTPStatusCodes {
-    
     public HashMap<String, String> storeRoutes() {
        HashMap<String, String> routes = new HashMap<String, String>();
         

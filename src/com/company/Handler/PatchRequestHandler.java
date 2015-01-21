@@ -13,10 +13,12 @@ import java.security.NoSuchAlgorithmException;
 public class PatchRequestHandler {
     FileRetriever fileRetriever = new FileRetriever();
 
-    public byte[] parseRequest(String method, String filePath, String data) throws IOException {
+    public Path getPatchFilePath() {
         Path path = Paths.get("../cob_spec/public/patch-content.txt");
-        Path absolutePath = path.toAbsolutePath();
-        
+        return path.toAbsolutePath();
+    }
+    
+    public byte[] parseRequest(String method, String filePath, String data) throws IOException {
         String[] strings = data.split("Connection:");
         String eTagHash = strings[0];
 
@@ -26,9 +28,9 @@ public class PatchRequestHandler {
         if (method.equals("GET") && filePath.equals(Routes.patchContentRoute())) {
             return fileRetriever.patchContent();
         } else if (eTagHash.equals(firstPatchString)) {
-            Files.write(absolutePath, "patched content".getBytes());
+            Files.write(getPatchFilePath(), "patched content".getBytes());
         } else if (eTagHash.equals(secondPatchString)) {
-            Files.write(absolutePath, "default content".getBytes());
+            Files.write(getPatchFilePath(), "default content".getBytes());
         } return "This is not the page you are looking for".getBytes();
     }
 }
