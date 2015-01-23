@@ -1,6 +1,5 @@
 package com.company.Response.Headers;
 
-import com.company.Reponse.Headers.StatusMessages;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

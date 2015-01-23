@@ -2,12 +2,13 @@ package com.company.Server;
 
 import com.company.Handler.StreamHandler;
 import com.company.Parser.RequestParser;
-import com.company.Reponse.Headers.*;
+import com.company.Response.Headers.*;
 
 import java.io.*;
 import java.net.*;
 
 public class ResponseHandler {
+//    private Response contentType;
     private ContentType contentType;
     private DateAndTime dateAndTime;
     private StatusMessages statusMessages;
@@ -52,6 +53,7 @@ public class ResponseHandler {
         byte[] time = dateAndTime.getServerTime();
         byte[] location = serverLocation.getLocationResponse(port);
         byte[] type = contentType.getContentTypeHeader(filePath);
+//        type = contenType.getResponse(filePath);
         byte[] allow = allowMethods.getAllowResponse();
         byte[] length = bodyLength.getBodyLength(body);
 

@@ -1,6 +1,6 @@
 package com.company.Handler;
 
-import com.company.Reponse.RequestBuilder;
+import com.company.Response.RequestBuilder;
 
 import java.io.BufferedReader;
 import java.io.IOException;

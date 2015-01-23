@@ -1,6 +1,6 @@
-package com.company.Reponse.Headers;
+package com.company.Response.Headers;
 
-import com.company.Reponse.HTTPStatusCodes;
+import com.company.Response.HTTPStatusCodes;
 
 public class StatusMessages {
     private HTTPStatusCodes httpStatusCodes;

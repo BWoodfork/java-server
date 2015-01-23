@@ -1,4 +1,4 @@
-package com.company.Reponse;
+package com.company.Response;
 
 import java.io.IOException;
 import java.nio.file.Files;

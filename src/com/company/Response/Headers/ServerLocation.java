@@ -1,4 +1,4 @@
-package com.company.Reponse.Headers;
+package com.company.Response.Headers;
 
 public class ServerLocation {
     public byte[] getLocationResponse(int port) {

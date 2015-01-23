@@ -1,6 +1,6 @@
 package com.company;
 
-import com.company.Reponse.FileRetriever;
+import com.company.Response.FileRetriever;
 import org.junit.Before;
 import org.junit.Test;
 

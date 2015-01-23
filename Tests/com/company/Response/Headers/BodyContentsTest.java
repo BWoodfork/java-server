@@ -2,7 +2,6 @@ package com.company.Response.Headers;
 
 import org.junit.Test;
 
-import com.company.Reponse.Headers.BodyContents;
 import com.company.Routes;
 
 import static org.junit.Assert.assertEquals;

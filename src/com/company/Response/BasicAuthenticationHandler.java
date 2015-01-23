@@ -1,4 +1,4 @@
-package com.company.Reponse;
+package com.company.Response;
 
 import sun.misc.BASE64Encoder;
 

@@ -6,11 +6,11 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 public class HTTPStatusCodesTest {
-    private com.company.Reponse.HTTPStatusCodes response;
+    private com.company.Response.HTTPStatusCodes response;
 
     @Before
     public void setUp() throws Exception {
-        response = new com.company.Reponse.HTTPStatusCodes();
+        response = new com.company.Response.HTTPStatusCodes();
     }
 
     @Test

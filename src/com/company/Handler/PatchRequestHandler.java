@@ -1,14 +1,12 @@
 package com.company.Handler;
 
-import com.company.Reponse.FileRetriever;
+import com.company.Response.FileRetriever;
 import com.company.Routes;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 
 public class PatchRequestHandler {
     FileRetriever fileRetriever = new FileRetriever();

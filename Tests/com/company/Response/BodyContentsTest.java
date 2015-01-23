@@ -1,6 +1,6 @@
 package com.company.Response;
 
-import com.company.Reponse.Headers.BodyContents;
+import com.company.Response.Headers.BodyContents;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

@@ -1,8 +1,8 @@
 package com.company;
 
 import com.company.Handler.*;
-import com.company.Reponse.BasicAuthenticationHandler;
-import com.company.Reponse.FileRetriever;
+import com.company.Response.BasicAuthenticationHandler;
+import com.company.Response.FileRetriever;
 
 import java.util.HashMap;
 import java.util.Map;

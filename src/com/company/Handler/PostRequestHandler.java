@@ -1,6 +1,6 @@
 package com.company.Handler;
 
-import com.company.Reponse.FileRetriever;
+import com.company.Response.FileRetriever;
 import com.company.Routes;
 
 import java.io.IOException;

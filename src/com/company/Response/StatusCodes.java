@@ -1,4 +1,4 @@
-package com.company.Reponse;
+package com.company.Response;
 
 public class StatusCodes {
     public static String twoHundredOk() {
