@@ -3,13 +3,18 @@ package com.company.Handler;
 import com.company.Response.FileRetriever;
 import com.company.Routes;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class PostRequestHandler {
-    FileRetriever fileRetriever = new FileRetriever();
+    private FileRetriever fileRetriever;
+    
+    public PostRequestHandler(FileRetriever fileRetriever) {
+      this.fileRetriever = fileRetriever;
+    }
     
     public Path getFilePath() {
         return Paths.get("../cob_spec/public/cosby-data.txt");

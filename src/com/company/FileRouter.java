@@ -15,12 +15,12 @@ public class FileRouter {
     private PatchRequestHandler patchRequestHandler;
     private ParameterDecoder parameterDecoder;
 
-    public FileRouter() {
+    public FileRouter(PostRequestHandler postRequestHandler, PatchRequestHandler patchRequestHandler) {
         file = new FileRetriever();
         basicAuthenticationHandler = new BasicAuthenticationHandler();
-        postRequestHandler = new PostRequestHandler();
-        patchRequestHandler = new PatchRequestHandler();
         parameterDecoder = new ParameterDecoder();
+        this.postRequestHandler = postRequestHandler;
+        this.patchRequestHandler = patchRequestHandler;
     }
 
     public HashMap<String, byte[]> storeRoutes(String method, String filePath, String data) throws IOException {

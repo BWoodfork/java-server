@@ -1,5 +1,6 @@
 package com.company.Handler;
 
+import com.company.Response.FileRetriever;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -12,10 +13,15 @@ import static org.junit.Assert.assertEquals;
 
 public class PostRequestHandlerTest {
     private PostRequestHandler postRequestHandler;
+    private FileRetriever fileRetriever;
+    
+    public PostRequestHandlerTest(FileRetriever fileRetriever) {
+        this.fileRetriever = fileRetriever;
+    }
 
     @Before
     public void setUp() throws Exception {
-        postRequestHandler = new PostRequestHandler();
+        postRequestHandler = new PostRequestHandler(fileRetriever);
     }
 
     @Test

@@ -1,4 +1,4 @@
-package com.company.Parser;
+package com.company.request;
 
 import org.junit.Before;
 import org.junit.Test;

@@ -9,7 +9,11 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class PatchRequestHandler {
-    FileRetriever fileRetriever = new FileRetriever();
+    private FileRetriever fileRetriever;
+    
+    public PatchRequestHandler(FileRetriever fileRetriever) {
+       this.fileRetriever = fileRetriever;
+    }
 
     public Path getPatchFilePath() {
         Path path = Paths.get("../cob_spec/public/patch-content.txt");

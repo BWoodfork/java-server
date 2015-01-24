@@ -10,8 +10,8 @@ import java.net.Socket;
 public class StreamHandler {
     private RequestBuilder requestBuilder;
 
-    public StreamHandler() {
-        requestBuilder = new RequestBuilder();
+    public StreamHandler(RequestBuilder requestBuilder) {
+       this.requestBuilder = requestBuilder;
     }
 
     public BufferedReader getInputStream(Socket socket) throws IOException {
@@ -19,7 +19,7 @@ public class StreamHandler {
         return new BufferedReader(inputStreamReader);
     }
 
-    public String getInputStreamStringValue(Socket socket) throws IOException {
+    public String convertRawRequestToString(Socket socket) throws IOException {
         return requestBuilder.getRequestString(getInputStream(socket));
     }
 }

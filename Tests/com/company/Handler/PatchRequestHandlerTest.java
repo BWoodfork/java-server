@@ -1,5 +1,6 @@
 package com.company.Handler;
 
+import com.company.Response.FileRetriever;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -15,7 +16,8 @@ public class PatchRequestHandlerTest {
 
     @Before
     public void setUp() throws Exception {
-        patchRequestHandler = new PatchRequestHandler();
+        FileRetriever fileRetriever = new FileRetriever();
+        patchRequestHandler = new PatchRequestHandler(fileRetriever);
         absolutePath = Paths.get("../cob_spec/public/patch-content.txt").toAbsolutePath();
     }
 

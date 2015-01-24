@@ -1,14 +1,19 @@
 package com.company.Server;
 
+import com.company.FileRouter;
+import com.company.Handler.PatchRequestHandler;
+import com.company.Handler.PostRequestHandler;
 import com.company.Handler.StreamHandler;
-import com.company.Parser.RequestParser;
+import com.company.Response.FileRetriever;
+import com.company.Response.HTTPStatusCodes;
+import com.company.Response.RequestBuilder;
+import com.company.request.RequestParser;
 import com.company.Response.Headers.*;
 
 import java.io.*;
 import java.net.*;
 
 public class ResponseHandler {
-//    private Response contentType;
     private ContentType contentType;
     private DateAndTime dateAndTime;
     private StatusMessages statusMessages;
@@ -26,17 +31,18 @@ public class ResponseHandler {
     public ResponseHandler(int port) {
         contentType = new ContentType();
         dateAndTime = new DateAndTime();
-        statusMessages = new StatusMessages();
-        streamHandler = new StreamHandler();
+        statusMessages = new StatusMessages(new HTTPStatusCodes());
+        streamHandler = new StreamHandler(new RequestBuilder());
         serverLocation = new ServerLocation();
         allowMethods = new AllowMethods();
-        bodyContents = new BodyContents();
+        FileRetriever fileRetriever = new FileRetriever();
+        bodyContents = new BodyContents(new FileRouter(new PostRequestHandler(fileRetriever), new PatchRequestHandler(fileRetriever)));
         bodyLength = new BodyLength();
         this.port = port;
     }
 
     public void parseRequest(Socket socket) throws IOException {
-        String stream = streamHandler.getInputStreamStringValue(socket);
+        String stream = streamHandler.convertRawRequestToString(socket);
         RequestParser requestParser = new RequestParser(stream);
 
         method = requestParser.getMethod();
@@ -53,7 +59,6 @@ public class ResponseHandler {
         byte[] time = dateAndTime.getServerTime();
         byte[] location = serverLocation.getLocationResponse(port);
         byte[] type = contentType.getContentTypeHeader(filePath);
-//        type = contenType.getResponse(filePath);
         byte[] allow = allowMethods.getAllowResponse();
         byte[] length = bodyLength.getBodyLength(body);
 

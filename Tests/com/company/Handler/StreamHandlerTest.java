@@ -23,15 +23,16 @@ public class StreamHandlerTest {
     }
 
     @Test
-    public void getTheStringValueOfTheInputStream() throws Exception {
-        StreamHandler streamHandler = new StreamHandler();
+    public void convertsTheRawRequestToAString() throws Exception {
         RequestBuilder requestBuilder = new RequestBuilder();
+        StreamHandler streamHandler = new StreamHandler(requestBuilder);
+        requestBuilder = new RequestBuilder();
 
         FakeSocket fakeSocket = new FakeSocket("GET /logs HTTP/1.1Connection: closeHost: localhost:5000");
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(fakeSocket.getInputStream()));
 
         String requestString = requestBuilder.getRequestString(bufferedReader);
 
-        assertEquals(requestString, streamHandler.getInputStreamStringValue(fakeSocket));
+        assertEquals(requestString, streamHandler.convertRawRequestToString(fakeSocket));
     }
 }

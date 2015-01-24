@@ -1,5 +1,7 @@
 package com.company;
 
+import com.company.Handler.PatchRequestHandler;
+import com.company.Handler.PostRequestHandler;
 import com.company.Response.FileRetriever;
 import org.junit.Before;
 import org.junit.Test;
@@ -7,14 +9,16 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 public class FileRouterTest {
-    private FileRetriever fileresponse;
+    private FileRetriever fileRetriever;
     private FileRouter fileRouter;
 
     @Before
     public void setUp() throws Exception {
-        fileRouter = new FileRouter();
-        fileresponse = new FileRetriever();
-    }
+        fileRetriever = new FileRetriever();
+        PostRequestHandler postRequestHandler = new PostRequestHandler(fileRetriever);
+        PatchRequestHandler patchReqdduestHandler = new PatchRequestHandler(fileRetriever);
+        fileRouter = new FileRouter(postRequestHandler, patchReqdduestHandler);
+    }    
 
     @Test
     public void itGetsFile1() throws Exception {
@@ -22,7 +26,7 @@ public class FileRouterTest {
         String requestPath = "/file1";
         String data = "localhost:5000";
         String byteCount = "";
-        byte[] file = fileresponse.getFile();
+        byte[] file = fileRetriever.getFile();
 
         assertEquals(new String(file), new String(fileRouter.routeFiles(method, requestPath, data, byteCount)));
     }
@@ -33,7 +37,7 @@ public class FileRouterTest {
         String requestPath = "/file2";
         String data = "localhost:5000";
         String byteCount = "";
-        byte[] file = fileresponse.getFile2();
+        byte[] file = fileRetriever.getFile2();
 
         assertEquals(new String(file), new String(fileRouter.routeFiles(method, requestPath, data, byteCount)));
     }
@@ -45,7 +49,7 @@ public class FileRouterTest {
         String data = "localhost:5000";
         String byteCount = "";
 
-        byte[] jpeg = fileresponse.getJPEG();
+        byte[] jpeg = fileRetriever.getJPEG();
         int jpegImageLength = jpeg.length;
 
         assertEquals(jpegImageLength, fileRouter.routeFiles(method, requestPath, data, byteCount).length);
@@ -58,7 +62,7 @@ public class FileRouterTest {
         String data = "localhost:5000";
         String byteCount = "";
 
-        byte[] png = fileresponse.getPNG();
+        byte[] png = fileRetriever.getPNG();
         int pngImageLength = png.length;
 
         assertEquals(pngImageLength, fileRouter.routeFiles(method, requestPath, data, byteCount).length);
@@ -71,7 +75,7 @@ public class FileRouterTest {
         String data = "localhost:5000";
         String byteCount = "";
 
-        byte[] gif = fileresponse.getGIF();
+        byte[] gif = fileRetriever.getGIF();
         int gifImageLength = gif.length;
 
         assertEquals(gifImageLength, fileRouter.routeFiles(method, requestPath, data, byteCount).length);
@@ -84,7 +88,7 @@ public class FileRouterTest {
         String data = "localhost:5000";
         String byteCount = "";
 
-        byte[] html = fileresponse.getHTMLPage();
+        byte[] html = fileRetriever.getHTMLPage();
 
         assertEquals(new String(html), new String(fileRouter.routeFiles(method, requestPath, data, byteCount)));
     }
@@ -96,7 +100,7 @@ public class FileRouterTest {
         String data = "localhost:5000";
         String byteCount = "";
 
-        byte[] body = fileresponse.getDecoded();
+        byte[] body = fileRetriever.getDecoded();
 
         assertEquals(new String(body), new String(fileRouter.routeFiles(method, requestPath, data, byteCount)));
     }

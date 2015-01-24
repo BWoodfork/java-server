@@ -1,4 +1,4 @@
-package com.company.Parser;
+package com.company.request;
 
 public class RequestParser {
     private String therequest;

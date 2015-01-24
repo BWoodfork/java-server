@@ -5,8 +5,8 @@ import com.company.Response.HTTPStatusCodes;
 public class StatusMessages {
     private HTTPStatusCodes httpStatusCodes;
 
-    public StatusMessages() {
-        httpStatusCodes = new HTTPStatusCodes();
+    public StatusMessages(HTTPStatusCodes httpStatusCodes) {
+        this.httpStatusCodes = httpStatusCodes;
     }
 
     public byte[] getStatusMessage(String method, String path, String data) {

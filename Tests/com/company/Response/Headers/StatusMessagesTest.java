@@ -1,13 +1,20 @@
 package com.company.Response.Headers;
 
+import com.company.Response.HTTPStatusCodes;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
 public class StatusMessagesTest {
+    private HTTPStatusCodes httpStatusCodes;
+    
+    public StatusMessagesTest(HTTPStatusCodes httpStatusCodes) {
+        this.httpStatusCodes = httpStatusCodes;
+    }
+    
     @Test
     public void returnsTheStatusMessageForA200OkRequest() throws Exception {
-        StatusMessages statusMessages = new StatusMessages();
+        StatusMessages statusMessages = new StatusMessages(httpStatusCodes);
         
         String method = "GET";
         String path = "/file2";
@@ -21,7 +28,7 @@ public class StatusMessagesTest {
     
     @Test
     public void returnsTheStatusMessageForA405Request() throws Exception {
-        StatusMessages statusMessages = new StatusMessages();
+        StatusMessages statusMessages = new StatusMessages(httpStatusCodes);
 
         String method = "GET";
         String path = "/file1";
