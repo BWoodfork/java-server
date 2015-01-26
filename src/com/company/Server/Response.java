@@ -11,7 +11,7 @@ import com.company.request.Request;
 import java.io.*;
 import java.net.*;
 
-public class ResponseHandler {
+public class Response {
     private ContentType contentType;
     private DateAndTime dateAndTime;
     private StatusMessages statusMessages;
@@ -22,7 +22,7 @@ public class ResponseHandler {
     private int port;
     private Request request;
 
-    public ResponseHandler(int port, Request request) {
+    public Response(int port, Request request) {
         this.request = request;
         contentType = new ContentType();
         dateAndTime = new DateAndTime();
@@ -37,7 +37,7 @@ public class ResponseHandler {
     
     public void sendResponse(Socket socket) throws IOException {
         DataOutputStream out = new DataOutputStream(socket.getOutputStream());
-
+        
         String method = request.getMethod();
         String filePath = request.getFilePath();
         String data = request.getData();

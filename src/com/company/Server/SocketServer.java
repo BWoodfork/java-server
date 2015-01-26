@@ -12,7 +12,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 public class SocketServer {
-    private ResponseHandler responseHandler;
+    private Response response;
     private ServerSocket serverSocket;
     private ExecutorService executor;
     private boolean running;
@@ -42,11 +42,11 @@ public class SocketServer {
                                     requestBuilder = new RequestBuilder();
                                     streamHandler = new StreamHandler(requestBuilder);
                                     request = new Request(streamHandler.convertRawRequestToString(socket));
-                                    responseHandler = new ResponseHandler(port, request);
+                                    response = new Response(port, request);
                                     
                                     
                                     request.parseRequest();
-                                    responseHandler.sendResponse(socket);
+                                    response.sendResponse(socket);
                                     socket.close();
                                 } catch (Exception e) {
                                     if (executor.isTerminated())
