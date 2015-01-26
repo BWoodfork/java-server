@@ -1,42 +1,33 @@
 package com.company.request;
 
-import com.company.Handler.StreamHandler;
-import com.company.Response.RequestBuilder;
-
 import java.io.IOException;
-import java.net.Socket;
 
-public class Request implements RequestInterface {
-    private RequestBuilder requestBuilder;
+public class Request {
+    private String request;
     
-    public Request(RequestBuilder requestBuilder) {
-        this.requestBuilder = requestBuilder;
+    public Request(String request) {
+        this.request = request;
     }
 
-    @Override
-    public String getRequest(Socket socket) throws IOException {
-        StreamHandler streamHandler = new StreamHandler(requestBuilder);
-        
-        return streamHandler.convertRawRequestToString(socket);
+    public String[] parseRequest() throws IOException {
+        return request.split(" ");
     }
     
-    public RequestParser parseRequest(Socket socket) throws IOException {
-       return new RequestParser(getRequest(socket));
-    }
-    
-    public String getMethod(Socket socket) throws IOException {
-        return parseRequest(socket).getMethod();
+    public String getMethod() throws IOException {
+        System.out.println(request);
+        return parseRequest()[0];
     }
 
-    public String getFilePath(Socket socket) throws IOException {
-        return parseRequest(socket).getFilePath();
+
+    public String getFilePath() throws IOException {
+        return parseRequest()[1];
     }
 
-    public String getByteCount(Socket socket) throws IOException {
-        return parseRequest(socket).getByteCount();
+    public String getByteCount() throws IOException {
+        return parseRequest()[3];
     }
 
-    public String getData(Socket socket) throws IOException {
-        return parseRequest(socket).getData();
+    public String getData() throws IOException {
+        return parseRequest()[4];
     }
 }

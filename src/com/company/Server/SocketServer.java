@@ -1,5 +1,9 @@
 package com.company.Server;
 
+import com.company.Handler.StreamHandler;
+import com.company.Response.RequestBuilder;
+import com.company.request.Request;
+
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -13,11 +17,15 @@ public class SocketServer {
     private ExecutorService executor;
     private boolean running;
     public int connections = 0;
+    private Request request;
+    private StreamHandler streamHandler;
+    private RequestBuilder requestBuilder;
+    private int port;
 
     public SocketServer(int port) throws IOException {
-        responseHandler = new ResponseHandler(port);
         serverSocket = new ServerSocket(port);
         executor = Executors.newFixedThreadPool(25);
+        this.port = port;
     }
 
     public void start() throws IOException {
@@ -31,8 +39,13 @@ public class SocketServer {
                             @Override
                             public void run() {
                                 try {
-//                                    requestHandler.parseRequest(socket);
-                                    responseHandler.parseRequest(socket);
+                                    requestBuilder = new RequestBuilder();
+                                    streamHandler = new StreamHandler(requestBuilder);
+                                    request = new Request(streamHandler.convertRawRequestToString(socket));
+                                    responseHandler = new ResponseHandler(port, request);
+                                    
+                                    
+                                    request.parseRequest();
                                     responseHandler.sendResponse(socket);
                                     socket.close();
                                 } catch (Exception e) {

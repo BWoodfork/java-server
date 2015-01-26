@@ -13,14 +13,10 @@ import static org.junit.Assert.assertEquals;
 
 public class PostRequestHandlerTest {
     private PostRequestHandler postRequestHandler;
-    private FileRetriever fileRetriever;
-    
-    public PostRequestHandlerTest(FileRetriever fileRetriever) {
-        this.fileRetriever = fileRetriever;
-    }
 
     @Before
     public void setUp() throws Exception {
+        FileRetriever fileRetriever = new FileRetriever();
         postRequestHandler = new PostRequestHandler(fileRetriever);
     }
 

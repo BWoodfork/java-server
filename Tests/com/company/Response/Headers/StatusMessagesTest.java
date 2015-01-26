@@ -1,15 +1,17 @@
 package com.company.Response.Headers;
 
 import com.company.Response.HTTPStatusCodes;
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
 public class StatusMessagesTest {
     private HTTPStatusCodes httpStatusCodes;
-    
-    public StatusMessagesTest(HTTPStatusCodes httpStatusCodes) {
-        this.httpStatusCodes = httpStatusCodes;
+
+    @Before
+    public void setUp() throws Exception {
+        httpStatusCodes = new HTTPStatusCodes();
     }
     
     @Test
