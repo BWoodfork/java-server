@@ -1,9 +1,5 @@
 package com.company.Server;
 
-import com.company.FileRouter;
-import com.company.Handler.PatchRequestHandler;
-import com.company.Handler.PostRequestHandler;
-import com.company.Response.FileRetriever;
 import com.company.Response.HTTPStatusCodes;
 import com.company.Response.Headers.*;
 import com.company.request.Request;
@@ -29,13 +25,12 @@ public class Response {
         statusMessages = new StatusMessages(new HTTPStatusCodes());
         serverLocation = new ServerLocation();
         allowMethods = new AllowMethods();
-        FileRetriever fileRetriever = new FileRetriever();
-        bodyContents = new BodyContents(new FileRouter(new PostRequestHandler(fileRetriever), new PatchRequestHandler(fileRetriever)));
+        bodyContents = new BodyContents();
         bodyLength = new BodyLength();
         this.port = port;
     }
     
-    public void sendResponse(Socket socket) throws IOException {
+    public void sendResponse(Socket socket) throws Exception {
         DataOutputStream out = new DataOutputStream(socket.getOutputStream());
         
         String method = request.getMethod();

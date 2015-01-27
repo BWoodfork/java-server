@@ -1,9 +1,11 @@
 package com.company.Handler;
 
+import com.company.Routes;
+
 import java.net.URLDecoder;
 
 public class ParameterDecoder {
-    public byte[] parseRequest(String request) {
+    public static byte[] parseRequest(String request) {
         String[] splitRequest = request.split("\\?", 2);
 
         String stringWithoutrequestPath = splitRequest[1];
@@ -15,6 +17,10 @@ public class ParameterDecoder {
         String lastValue = splitAtLastAmpersand[1].substring(1);
 
         String URL = URLDecoder.decode(firstValue.replaceAll("\\=", " $0 ")) + URLDecoder.decode(lastValue.replaceAll("\\=", " $0 "));
-        return URL.getBytes();
+        
+        if (splitRequest[0].equals("/parameters")) {
+            return URL.getBytes();
+        }
+            return "The page that you're looking for cannot be found".getBytes();
     }
 }

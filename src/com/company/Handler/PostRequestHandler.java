@@ -20,18 +20,18 @@ public class PostRequestHandler {
         return Paths.get("../cob_spec/public/cosby-data.txt");
     }
 
-    public byte[] parseRequest(String method, String filePath) throws IOException {
+    public byte[] parseRequest(String method, String filePath) throws Exception {
         if (method.equals("POST") && filePath.equals(Routes.formRoute())) {
             Files.write(getFilePath(), "data=cosby".getBytes());
         } else if (method.equals("GET") && filePath.equals(Routes.formRoute())) {
-            return fileRetriever.cosbyData();
+            return fileRetriever.getPostDataFile();
         } else if (method.equals("PUT") && filePath.equals(Routes.formRoute())) {
             Files.write(getFilePath(), "data=heathcliff".getBytes());
         } else if (method.equals("GET") && filePath.equals(Routes.formRoute())) {
-            return fileRetriever.cosbyData();
+            return fileRetriever.getPostDataFile();
         } else if (method.equals("DELETE") && filePath.equals(Routes.formRoute())) {
             Files.write(getFilePath(), "Content Removed".getBytes());
-            return fileRetriever.cosbyData();
+            return fileRetriever.getPostDataFile();
         }
         
         return "Invalid Post Request".getBytes();

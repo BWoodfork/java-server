@@ -4,6 +4,7 @@ import com.company.FileRouter;
 import com.company.Handler.PatchRequestHandler;
 import com.company.Handler.PostRequestHandler;
 import com.company.Response.FileRetriever;
+import com.company.Routes;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -18,7 +19,8 @@ public class BodyContentsTest {
     
     @Before
     public void setUp() throws Exception {
-        FileRetriever fileRetriever = new FileRetriever();
+        Routes routes = new Routes();
+        FileRetriever fileRetriever = new FileRetriever(routes);
         PostRequestHandler postRequestHandler = new PostRequestHandler(fileRetriever);
         PatchRequestHandler patchRequestHandler = new PatchRequestHandler(fileRetriever);
         
@@ -27,7 +29,7 @@ public class BodyContentsTest {
     
     @Test
     public void bodyRespondsWithContent() throws Exception {
-        BodyContents bodyContents = new BodyContents(fileRouter);
+        BodyContents bodyContents = new BodyContents();
 
         String filePath = "/file1";
         String method = "GET";

@@ -43,8 +43,7 @@ public class SocketServer {
                                     streamHandler = new StreamHandler(requestBuilder);
                                     request = new Request(streamHandler.convertRawRequestToString(socket));
                                     response = new Response(port, request);
-                                    
-                                    
+
                                     request.parseRequest();
                                     response.sendResponse(socket);
                                     socket.close();

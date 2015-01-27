@@ -13,8 +13,11 @@ public class Request {
         return request.split(" ");
     }
     
+    public String getEntireRequest() throws IOException {
+        return request;
+    }
+    
     public String getMethod() throws IOException {
-        System.out.println(request);
         return parseRequest()[0];
     }
 

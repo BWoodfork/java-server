@@ -17,7 +17,7 @@ public class SocketServerTest {
     
     @Before
     public void setUp() throws Exception {
-        port = 5000;
+        port = 5001;
         server = new SocketServer(port);
     }
 

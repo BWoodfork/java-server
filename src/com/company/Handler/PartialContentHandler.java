@@ -40,6 +40,7 @@ public class PartialContentHandler {
         
         int minRange = getMinRange(byteMatcher.group(1), byteMatcher.group(2), fileContent.length);
         int maxRange = getMaxRange(byteMatcher.group(1), byteMatcher.group(2), fileContent.length);
+
         return Arrays.copyOfRange(fileContent, minRange, maxRange);
     }
 }

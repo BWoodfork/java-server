@@ -16,11 +16,11 @@ public class PatchRequestHandler {
     }
 
     public Path getPatchFilePath() {
-        Path path = Paths.get("../cob_spec/public/patch-content.txt");
+        Path path = Paths.get("../cob_spec/extension-files/patch-content.txt");
         return path.toAbsolutePath();
     }
     
-    public byte[] parseRequest(String method, String filePath, String data) throws IOException {
+    public byte[] parseRequest(String method, String filePath, String data, String byteCount) throws Exception {
         String[] strings = data.split("Connection:");
         String eTagHash = strings[0];
 
@@ -28,10 +28,10 @@ public class PatchRequestHandler {
         String secondPatchString = "69bc18dc1edc9e1316348b2eaaca9df83898249f";
         
         if (method.equals("GET") && filePath.equals(Routes.patchContentRoute())) {
-            return fileRetriever.patchContent();
-        } else if (eTagHash.equals(firstPatchString)) {
+            return fileRetriever.getPatchContentFile();
+        } else if (filePath.equals(Routes.patchContentRoute()) && eTagHash.equals(firstPatchString)) {
             Files.write(getPatchFilePath(), "patched content".getBytes());
-        } else if (eTagHash.equals(secondPatchString)) {
+        } else if (filePath.equals(Routes.patchContentRoute()) && eTagHash.equals(secondPatchString)) {
             Files.write(getPatchFilePath(), "default content".getBytes());
         } return "This is not the page you are looking for".getBytes();
     }
