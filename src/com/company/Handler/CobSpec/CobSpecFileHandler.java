@@ -20,6 +20,10 @@ public class CobSpecFileHandler {
         postRequestHandler = new PostRequestHandler(filePaths);
     }
     
+// Implement the ability for these returned files to see whether the
+// request requires them to be returned and pass the 
+// filePath into the files instead of these strings?
+    
     public static String partialFilePath = "/partial_content.txt";
     public static String parameterFilePath = "/parameters?";
     public static String logsFilePath = "/logs";
