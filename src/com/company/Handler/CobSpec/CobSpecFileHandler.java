@@ -4,27 +4,26 @@ import com.company.Handler.ParameterDecoder;
 import com.company.Handler.PartialContentHandler;
 import com.company.Handler.PatchRequestHandler;
 import com.company.Handler.PostRequestHandler;
-import com.company.Response.BasicAuthenticationHandler;
-import com.company.Response.FileRetriever;
+import com.company.Handler.BasicAuthenticationHandler;
+import com.company.Response.FilePaths;
 import com.company.Routes;
 
 public class CobSpecFileHandler {
     private BasicAuthenticationHandler basicAuthenticationHandler;
     private PatchRequestHandler patchRequestHandler;
     private PostRequestHandler postRequestHandler;
-    private FileRetriever fileRetriever;
+    private FilePaths filePaths;
     
     public CobSpecFileHandler() {
-        Routes routes = new Routes();
-        fileRetriever = new FileRetriever(routes);
+        filePaths = new FilePaths();
         basicAuthenticationHandler = new BasicAuthenticationHandler();
-        patchRequestHandler = new PatchRequestHandler(fileRetriever);
-        postRequestHandler = new PostRequestHandler(fileRetriever);
+        patchRequestHandler = new PatchRequestHandler(filePaths);
+        postRequestHandler = new PostRequestHandler(filePaths);
     }
     
     public byte[] getResponseForCobSpecTests(String method, String filePath, String data, String byteCount) throws Exception {
         if (filePath.equals(Routes.partialContentRoute())) {
-            return PartialContentHandler.getPartialContents(fileRetriever.getPartialContentFile(),byteCount);
+            return PartialContentHandler.getPartialContents(filePaths.getPartialContentFile(),byteCount);
         } else if (filePath.startsWith(Routes.parametersRoute())) {
             return ParameterDecoder.parseRequest(filePath);
         } else if (filePath.equals(Routes.logsRoute())) {
@@ -36,7 +35,7 @@ public class CobSpecFileHandler {
         } else if (filePath.equals(Routes.formRoute())) {
             return postRequestHandler.parseRequest(method, filePath);
         } else if (filePath.equals(Routes.redirectRoute())) {
-            return fileRetriever.redirect();
+            return filePaths.redirect();
         }
 
         return Routes.notFoundRoute().getBytes();

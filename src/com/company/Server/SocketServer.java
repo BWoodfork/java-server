@@ -1,7 +1,7 @@
 package com.company.Server;
 
 import com.company.Handler.StreamHandler;
-import com.company.Response.RequestBuilder;
+import com.company.request.RequestBuilder;
 import com.company.request.Request;
 
 import java.io.*;

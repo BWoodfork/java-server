@@ -1,19 +1,17 @@
 package com.company.Handler;
 
-import com.company.Response.FileRetriever;
+import com.company.Response.FilePaths;
 import com.company.Routes;
 
-import java.io.File;
-import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class PostRequestHandler {
-    private FileRetriever fileRetriever;
+    private FilePaths filePaths;
     
-    public PostRequestHandler(FileRetriever fileRetriever) {
-      this.fileRetriever = fileRetriever;
+    public PostRequestHandler(FilePaths filePaths) {
+      this.filePaths = filePaths;
     }
     
     public Path getFilePath() {
@@ -24,14 +22,14 @@ public class PostRequestHandler {
         if (method.equals("POST") && filePath.equals(Routes.formRoute())) {
             Files.write(getFilePath(), "data=cosby".getBytes());
         } else if (method.equals("GET") && filePath.equals(Routes.formRoute())) {
-            return fileRetriever.getPostDataFile();
+            return filePaths.getPostDataFile();
         } else if (method.equals("PUT") && filePath.equals(Routes.formRoute())) {
             Files.write(getFilePath(), "data=heathcliff".getBytes());
         } else if (method.equals("GET") && filePath.equals(Routes.formRoute())) {
-            return fileRetriever.getPostDataFile();
+            return filePaths.getPostDataFile();
         } else if (method.equals("DELETE") && filePath.equals(Routes.formRoute())) {
             Files.write(getFilePath(), "Content Removed".getBytes());
-            return fileRetriever.getPostDataFile();
+            return filePaths.getPostDataFile();
         }
         
         return "Invalid Post Request".getBytes();

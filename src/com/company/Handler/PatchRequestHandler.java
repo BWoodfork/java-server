@@ -1,18 +1,17 @@
 package com.company.Handler;
 
-import com.company.Response.FileRetriever;
+import com.company.Response.FilePaths;
 import com.company.Routes;
 
-import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class PatchRequestHandler {
-    private FileRetriever fileRetriever;
+    private FilePaths filePaths;
     
-    public PatchRequestHandler(FileRetriever fileRetriever) {
-       this.fileRetriever = fileRetriever;
+    public PatchRequestHandler(FilePaths filePaths) {
+       this.filePaths = filePaths;
     }
 
     public Path getPatchFilePath() {
@@ -28,7 +27,7 @@ public class PatchRequestHandler {
         String secondPatchString = "69bc18dc1edc9e1316348b2eaaca9df83898249f";
         
         if (method.equals("GET") && filePath.equals(Routes.patchContentRoute())) {
-            return fileRetriever.getPatchContentFile();
+            return filePaths.getPatchContentFile();
         } else if (filePath.equals(Routes.patchContentRoute()) && eTagHash.equals(firstPatchString)) {
             Files.write(getPatchFilePath(), "patched content".getBytes());
         } else if (filePath.equals(Routes.patchContentRoute()) && eTagHash.equals(secondPatchString)) {

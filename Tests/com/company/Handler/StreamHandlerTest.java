@@ -1,6 +1,6 @@
 package com.company.Handler;
 
-import com.company.Response.RequestBuilder;
+import com.company.request.RequestBuilder;
 import org.junit.Test;
 
 import java.io.*;

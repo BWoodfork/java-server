@@ -1,4 +1,4 @@
-package com.company.Response;
+package com.company.request;
 
 import java.io.BufferedReader;
 import java.io.IOException;

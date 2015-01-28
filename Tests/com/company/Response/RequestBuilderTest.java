@@ -1,5 +1,6 @@
 package com.company.Response;
 
+import com.company.request.RequestBuilder;
 import org.junit.Test;
 
 import java.io.*;

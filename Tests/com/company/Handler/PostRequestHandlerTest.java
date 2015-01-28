@@ -1,7 +1,6 @@
 package com.company.Handler;
 
-import com.company.Response.FileRetriever;
-import com.company.Routes;
+import com.company.Response.FilePaths;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -17,9 +16,8 @@ public class PostRequestHandlerTest {
 
     @Before
     public void setUp() throws Exception {
-        Routes routes = new Routes();
-        FileRetriever fileRetriever = new FileRetriever(routes);
-        postRequestHandler = new PostRequestHandler(fileRetriever);
+        FilePaths filePaths = new FilePaths();
+        postRequestHandler = new PostRequestHandler(filePaths);
     }
 
     @Test

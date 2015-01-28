@@ -1,5 +1,6 @@
 package com.company.Server;
 
+import com.company.Response.Body;
 import com.company.Response.HTTPStatusCodes;
 import com.company.Response.Headers.*;
 import com.company.request.Request;
@@ -13,7 +14,7 @@ public class Response {
     private StatusMessages statusMessages;
     private ServerLocation serverLocation;
     private AllowMethods allowMethods;
-    private BodyContents bodyContents;
+    private Body body;
     private BodyLength bodyLength;
     private int port;
     private Request request;
@@ -25,7 +26,7 @@ public class Response {
         statusMessages = new StatusMessages(new HTTPStatusCodes());
         serverLocation = new ServerLocation();
         allowMethods = new AllowMethods();
-        bodyContents = new BodyContents();
+        body = new Body();
         bodyLength = new BodyLength();
         this.port = port;
     }
@@ -38,7 +39,7 @@ public class Response {
         String data = request.getData();
         String byteCount = request.getByteCount();
 
-        byte[] body = this.bodyContents.getBody(method, filePath, data, byteCount);
+        byte[] body = this.body.getBody(method, filePath, data, byteCount);
         byte[] statusMessage = statusMessages.getStatusMessage(method, filePath, data);
         byte[] time = dateAndTime.getServerTime();
         byte[] location = serverLocation.getLocationResponse(port);

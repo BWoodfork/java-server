@@ -1,5 +1,6 @@
 package com.company.Response;
 
+import com.company.Handler.BasicAuthenticationHandler;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

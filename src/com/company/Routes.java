@@ -5,20 +5,6 @@ import java.util.ArrayList;
 
 public class Routes {
     
-    public ArrayList<String> getDirectoryFileNames() {
-        ArrayList<String> endPoints = new ArrayList<>();
-        
-        File directory = new File("../cob_spec/public");
-
-        File[] fileList = directory.listFiles();
-
-            for (File aFileList : fileList) {
-                endPoints.add("/" + aFileList.getName());
-            }
-        
-        return endPoints;
-    }
-
     public static String redirectRoute() {
         return "/redirect";
     }
