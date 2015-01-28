@@ -1,8 +1,5 @@
 package com.company;
 
-import java.io.File;
-import java.util.ArrayList;
-
 public class Routes {
     
     public static String redirectRoute() {

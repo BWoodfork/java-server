@@ -6,7 +6,6 @@ import com.company.Handler.PatchRequestHandler;
 import com.company.Handler.PostRequestHandler;
 import com.company.Handler.BasicAuthenticationHandler;
 import com.company.Response.FilePaths;
-import com.company.Routes;
 
 public class CobSpecFileHandler {
     private BasicAuthenticationHandler basicAuthenticationHandler;
@@ -21,23 +20,30 @@ public class CobSpecFileHandler {
         postRequestHandler = new PostRequestHandler(filePaths);
     }
     
+    public static String partialFilePath = "/partial_content.txt";
+    public static String parameterFilePath = "/parameters?";
+    public static String logsFilePath = "/logs";
+    public static String patchContentFilePath = "/patch-content.txt";
+    public static String redirect = "/redirect";
+    public static String formFilePath = "/form";
+
     public byte[] getResponseForCobSpecTests(String method, String filePath, String data, String byteCount) throws Exception {
-        if (filePath.equals(Routes.partialContentRoute())) {
+        if (filePath.equals(partialFilePath)) {
             return PartialContentHandler.getPartialContents(filePaths.getPartialContentFile(),byteCount);
-        } else if (filePath.startsWith(Routes.parametersRoute())) {
+        } else if (filePath.startsWith(parameterFilePath)) {
             return ParameterDecoder.parseRequest(filePath);
-        } else if (filePath.equals(Routes.logsRoute())) {
+        } else if (filePath.equals(logsFilePath)) {
             return basicAuthenticationHandler.getAuthenticationData(data);
-        } else if (filePath.equals(Routes.patchContentRoute())) {
+        } else if (filePath.equals(patchContentFilePath)) {
             return patchRequestHandler.parseRequest(method, filePath, data);
-        } else if (filePath.startsWith(Routes.parametersRoute())) {
+        } else if (filePath.startsWith(parameterFilePath)) {
             return ParameterDecoder.parseRequest(filePath);
-        } else if (filePath.equals(Routes.formRoute())) {
+        } else if (filePath.equals(formFilePath)) {
             return postRequestHandler.parseRequest(method, filePath);
-        } else if (filePath.equals(Routes.redirectRoute())) {
+        } else if (filePath.equals(redirect)) {
             return filePaths.redirect();
         }
 
-        return Routes.notFoundRoute().getBytes();
+        return "Page Not Found".getBytes();
     }
 }
