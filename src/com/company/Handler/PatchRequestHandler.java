@@ -20,7 +20,7 @@ public class PatchRequestHandler {
         return path.toAbsolutePath();
     }
     
-    public byte[] parseRequest(String method, String filePath, String data, String byteCount) throws Exception {
+    public byte[] parseRequest(String method, String filePath, String data) throws Exception {
         String[] strings = data.split("Connection:");
         String eTagHash = strings[0];
 

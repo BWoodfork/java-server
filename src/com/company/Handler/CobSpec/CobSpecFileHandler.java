@@ -30,7 +30,7 @@ public class CobSpecFileHandler {
         } else if (filePath.equals(Routes.logsRoute())) {
             return basicAuthenticationHandler.getAuthenticationData(data);
         } else if (filePath.equals(Routes.patchContentRoute())) {
-            return patchRequestHandler.parseRequest(method, filePath, data, byteCount);
+            return patchRequestHandler.parseRequest(method, filePath, data);
         } else if (filePath.startsWith(Routes.parametersRoute())) {
             return ParameterDecoder.parseRequest(filePath);
         } else if (filePath.equals(Routes.formRoute())) {
