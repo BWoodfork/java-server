@@ -3,22 +3,29 @@ package com.company.Handler;
 import java.net.URLDecoder;
 
 public class ParameterDecoder {
-    public static byte[] parseRequest(String request) {
+    
+    public String[] splitRequest(String request) {
+        return request.split("\\?", 2);
+    }
+    
+    public String parseRequest(String request) {
         String[] splitRequest = request.split("\\?", 2);
 
-        String stringWithoutrequestPath = splitRequest[1];
+        return splitRequest[1];
+    }
+    
+    public String decodeRequest(String request) {
+        int lastInt = parseRequest(request).lastIndexOf("&");
+        String parsedRequest = parseRequest(request);
 
-        int i = stringWithoutrequestPath.lastIndexOf("&");
-        
-        String[] splitAtLastAmpersand = {stringWithoutrequestPath.substring(0, i), stringWithoutrequestPath.substring(i)};
-        String firstValue = splitAtLastAmpersand[0];
-        String lastValue = splitAtLastAmpersand[1].substring(1);
+        String[] splitAtLastAmpersand = {parsedRequest.substring(0, lastInt), parsedRequest.substring(lastInt)};
+        String frontOfRequest = splitAtLastAmpersand[0];
+        String endOfRequest = splitAtLastAmpersand[1].substring(1);
 
-        String URL = URLDecoder.decode(firstValue.replaceAll("\\=", " $0 ")) + URLDecoder.decode(lastValue.replaceAll("\\=", " $0 "));
-        
-        if (splitRequest[0].equals("/parameters")) {
-            return URL.getBytes();
-        }
-            return "The page that you're looking for cannot be found".getBytes();
+        return URLDecoder.decode(frontOfRequest.replaceAll("\\=", " $0 ")) + URLDecoder.decode(endOfRequest.replaceAll("\\=", " $0 "));
+    }
+
+    public boolean isAParameterRequest(String request) {
+       return splitRequest(request)[0].equals("/parameters");
     }
 }

@@ -1,4 +1,4 @@
-package com.company.Response.Headers;
+package com.company.Response;
 
 import com.company.Response.Body;
 import org.junit.Test;

@@ -1,11 +1,11 @@
-package com.company.Response;
+package com.company.Handler;
 
 import com.company.Handler.BasicAuthenticationHandler;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-public class BasicAuthenticationTest {
+public class BasicAuthenticationHandlerTest {
     @Test
     public void encodeAuthenticationCredentials() throws Exception {
         BasicAuthenticationHandler basicAuthenticationHandler = new BasicAuthenticationHandler();
