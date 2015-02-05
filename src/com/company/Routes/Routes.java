@@ -1,7 +1,7 @@
 package com.company.Routes;
 
-import com.company.Handler.BasicFileHandler;
-import com.company.Handler.PostRequestHandler;
+import com.company.Response.ResponseGenerators.BasicRouteGenerator;
+import com.company.Response.ResponseGenerators.PostRequestResponseGenerator;
 import com.company.Utilities.StatusBuilder;
 import com.company.request.Request;
 
@@ -11,15 +11,16 @@ public class Routes {
     
     public HashMap<String, RouteInterface> route(StatusBuilder statusBuilder) throws Exception {
         HashMap<String, RouteInterface> storedRoutes = new HashMap<>();
-        storedRoutes.put("GET /file1", new BasicFileHandler(statusBuilder));
-        storedRoutes.put("GET /file2", new BasicFileHandler(statusBuilder));
-        storedRoutes.put("GET /image.jpeg", new BasicFileHandler(statusBuilder));
-        storedRoutes.put("GET /image.png", new BasicFileHandler(statusBuilder));
-        storedRoutes.put("GET /image.gif", new BasicFileHandler(statusBuilder));
-        storedRoutes.put("GET /form", new PostRequestHandler());
-        storedRoutes.put("PUT /form", new PostRequestHandler());
-        storedRoutes.put("DELETE /form", new PostRequestHandler());
-        storedRoutes.put("POST /form", new PostRequestHandler());
+        storedRoutes.put("GET /file1", new BasicRouteGenerator(statusBuilder));
+        storedRoutes.put("GET /file2", new BasicRouteGenerator(statusBuilder));
+        storedRoutes.put("GET /image.jpeg", new BasicRouteGenerator(statusBuilder));
+        storedRoutes.put("GET /image.png", new BasicRouteGenerator(statusBuilder));
+        storedRoutes.put("GET /image.gif", new BasicRouteGenerator(statusBuilder));
+        storedRoutes.put("GET /form", new PostRequestResponseGenerator());
+//        have the GET request for form, return the PostRequestResponseGenerator?
+        storedRoutes.put("PUT /form", new PostRequestResponseGenerator());
+        storedRoutes.put("DELETE /form", new PostRequestResponseGenerator());
+        storedRoutes.put("POST /form", new PostRequestResponseGenerator());
 
         return storedRoutes;
     }

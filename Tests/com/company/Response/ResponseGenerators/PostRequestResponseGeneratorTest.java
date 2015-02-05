@@ -7,11 +7,11 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 public class PostRequestResponseGeneratorTest {
-    private PostRequestRouteGenerator postRequestResponseGenerator;
+    private PostRequestResponseGenerator postRequestResponseGenerator;
     
     @Before
     public void setUp() throws Exception {
-        postRequestResponseGenerator = new PostRequestRouteGenerator();
+        postRequestResponseGenerator = new PostRequestResponseGenerator();
     }
     
     @Test

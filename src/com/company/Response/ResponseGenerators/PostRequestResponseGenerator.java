@@ -8,15 +8,19 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class PostRequestRouteGenerator implements RouteInterface {
+public class PostRequestResponseGenerator implements RouteInterface {
     private PostRequestHandler postRequestHandler;
     
-    public PostRequestRouteGenerator() {
+    public PostRequestResponseGenerator() {
         postRequestHandler = new PostRequestHandler();    
     }
     
     public boolean isAPostRequest(String method) {
         return method.equals("POST");
+    }
+    
+    public boolean isAGetRequest(String method) {
+        return method.equals("GET");
     }
     
     public byte[] readFileBytesFromPath(String directoryPath) throws Exception {
@@ -33,7 +37,7 @@ public class PostRequestRouteGenerator implements RouteInterface {
 
         if (isAPostRequest(method))
             postRequestHandler.execute();
-        else if (method.equals("GET")) {
+        else if (isAGetRequest(method)) {
             return getPostContentFile();
         }
         

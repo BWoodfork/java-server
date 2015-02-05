@@ -1,6 +1,5 @@
 package com.company.Handler;
 
-import com.company.Response.FilePaths;
 import com.company.Utilities.FileMatcher;
 import org.junit.Before;
 import org.junit.Test;
@@ -22,19 +21,7 @@ public class PostRequestHandlerTest {
 //        postRequestHandler = new PostRequestHandler(filePaths);
 //    }
 //
-//    @Test
-//    public void returnsTrueIfRequestIsAPostRequest() throws Exception {
-//        String method = "POST";
-//
-//        assertEquals(true ,postRequestHandler.isAPostRequest(method));
-//    }
-//
-//    @Test
-//    public void returnsFalseIfRequestIsNotAPostRequest() throws Exception {
-//        String method = "PATCH";
-//
-//        assertEquals(false, postRequestHandler.isAPostRequest(method));
-//    }
+
 //
 //    @Test
 //    public void returnCosbyDataWithPostRequest() throws Exception {
