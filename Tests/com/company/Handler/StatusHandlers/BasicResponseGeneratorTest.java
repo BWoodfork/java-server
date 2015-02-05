@@ -1,6 +1,6 @@
 package com.company.Handler.StatusHandlers;
 
-import com.company.Response.ResponseGenerators.BasicRouteGenerator;
+import com.company.Response.ResponseGenerators.BasicResponseGenerator;
 import com.company.Utilities.FileMatcher;
 import com.company.Utilities.StatusBuilder;
 import com.company.request.Request;
@@ -10,13 +10,13 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 public class BasicResponseGeneratorTest {
-    private BasicRouteGenerator basicResponseGenerator;
+    private BasicResponseGenerator basicResponseGenerator;
     private StatusBuilder statusBuilder;
     
     @Before
     public void setUp() throws Exception {
         statusBuilder = new StatusBuilder();
-        basicResponseGenerator = new BasicRouteGenerator(statusBuilder);
+        basicResponseGenerator = new BasicResponseGenerator(statusBuilder);
     }
     
     @Test

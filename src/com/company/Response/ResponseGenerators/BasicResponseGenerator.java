@@ -10,11 +10,11 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class BasicRouteGenerator implements RouteInterface {
+public class BasicResponseGenerator implements RouteInterface {
     private StatusBuilder statusBuilder;
     private FileMatcher fileMatcher;
     
-    public BasicRouteGenerator(StatusBuilder statusBuilder) {
+    public BasicResponseGenerator(StatusBuilder statusBuilder) {
         this.statusBuilder = statusBuilder;
         fileMatcher = new FileMatcher();
     }
