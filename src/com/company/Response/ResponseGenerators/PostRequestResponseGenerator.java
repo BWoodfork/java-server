@@ -2,6 +2,7 @@ package com.company.Response.ResponseGenerators;
 
 import com.company.Handler.PostRequestHandler;
 import com.company.Routes.RouteInterface;
+import com.company.Utilities.StatusBuilder;
 import com.company.request.Request;
 
 import java.nio.file.Files;
@@ -10,9 +11,11 @@ import java.nio.file.Paths;
 
 public class PostRequestResponseGenerator implements RouteInterface {
     private PostRequestHandler postRequestHandler;
+    private StatusBuilder statusBuilder;
     
-    public PostRequestResponseGenerator() {
+    public PostRequestResponseGenerator(StatusBuilder statusBuilder) {
         postRequestHandler = new PostRequestHandler();    
+        this.statusBuilder = statusBuilder;
     }
     
     public boolean isAPostRequest(String method) {
@@ -35,9 +38,11 @@ public class PostRequestResponseGenerator implements RouteInterface {
     public byte[] getBody(Request request) throws Exception {
         String method = request.getMethod();
 
-        if (isAPostRequest(method))
+        if (isAPostRequest(method)) {
+            statusBuilder.setHTTPStatus(200);
             postRequestHandler.execute();
-        else if (isAGetRequest(method)) {
+        } else if (isAGetRequest(method)) {
+            statusBuilder.setHTTPStatus(200);
             return getPostContentFile();
         }
         

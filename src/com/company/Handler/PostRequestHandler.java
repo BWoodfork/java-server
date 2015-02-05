@@ -18,15 +18,5 @@ public class PostRequestHandler implements CommandInterface {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-//            Files.write(getPostContentPath(), "data=cosby".getBytes());
-//        } else if (method.equals("GET")) {
-//            getPostContentFile();
-//        } else if (method.equals("PUT")) {
-//            Files.write(getPostContentPath(), "data=heathcliff".getBytes());
-//        } else
-//            deleteHandler.deleteFileContents(method, getPostContentPath());
-
-//        return "Invalid Post Request".getBytes();
     }
 }

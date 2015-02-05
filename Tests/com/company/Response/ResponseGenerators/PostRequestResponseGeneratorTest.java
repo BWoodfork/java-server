@@ -1,5 +1,6 @@
 package com.company.Response.ResponseGenerators;
 
+import com.company.Utilities.StatusBuilder;
 import com.company.request.Request;
 import org.junit.Before;
 import org.junit.Test;
@@ -11,7 +12,8 @@ public class PostRequestResponseGeneratorTest {
     
     @Before
     public void setUp() throws Exception {
-        postRequestResponseGenerator = new PostRequestResponseGenerator();
+        StatusBuilder statusBuilder = new StatusBuilder();
+        postRequestResponseGenerator = new PostRequestResponseGenerator(statusBuilder);
     }
     
     @Test
@@ -20,7 +22,14 @@ public class PostRequestResponseGeneratorTest {
 
         assertEquals(true, postRequestResponseGenerator.isAPostRequest(method));
     }
+    
+    @Test
+    public void returnsTrueIfRequestIsAGetRequest() throws Exception {
+        String method = "GET";
 
+        assertEquals(true, postRequestResponseGenerator.isAGetRequest(method));
+    }
+    
     @Test
     public void returnsFalseIfRequestIsNotAPostRequest() throws Exception {
         String method = "PATCH";

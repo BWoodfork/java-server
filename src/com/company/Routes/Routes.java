@@ -1,7 +1,9 @@
 package com.company.Routes;
 
 import com.company.Response.ResponseGenerators.BasicRouteGenerator;
+import com.company.Response.ResponseGenerators.DeleteRequestResponseGenerator;
 import com.company.Response.ResponseGenerators.PostRequestResponseGenerator;
+import com.company.Response.ResponseGenerators.PutRequestResponseGenerator;
 import com.company.Utilities.StatusBuilder;
 import com.company.request.Request;
 
@@ -16,11 +18,10 @@ public class Routes {
         storedRoutes.put("GET /image.jpeg", new BasicRouteGenerator(statusBuilder));
         storedRoutes.put("GET /image.png", new BasicRouteGenerator(statusBuilder));
         storedRoutes.put("GET /image.gif", new BasicRouteGenerator(statusBuilder));
-        storedRoutes.put("GET /form", new PostRequestResponseGenerator());
-//        have the GET request for form, return the PostRequestResponseGenerator?
-        storedRoutes.put("PUT /form", new PostRequestResponseGenerator());
-        storedRoutes.put("DELETE /form", new PostRequestResponseGenerator());
-        storedRoutes.put("POST /form", new PostRequestResponseGenerator());
+        storedRoutes.put("GET /form", new PostRequestResponseGenerator(statusBuilder));
+        storedRoutes.put("PUT /form", new PutRequestResponseGenerator(statusBuilder));
+        storedRoutes.put("DELETE /form", new DeleteRequestResponseGenerator(statusBuilder));
+        storedRoutes.put("POST /form", new PostRequestResponseGenerator(statusBuilder));
 
         return storedRoutes;
     }
