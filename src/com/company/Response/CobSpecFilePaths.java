@@ -1,15 +1,15 @@
 package com.company.Response;
 
-import com.company.Handler.CobSpec.CobSpecFileHandler;
+import com.company.Handler.CobSpec.UniqueRequestHandler;
 
 public class CobSpecFilePaths {
-    private CobSpecFileHandler cobSpecFileHandler;
+    private UniqueRequestHandler uniqueRequestHandler;
     
-    public CobSpecFilePaths(CobSpecFileHandler cobSpecFileHandler) {
-        this.cobSpecFileHandler = cobSpecFileHandler;
+    public CobSpecFilePaths(UniqueRequestHandler uniqueRequestHandler) {
+        this.uniqueRequestHandler = uniqueRequestHandler;
     }
 
     public byte[] getFile(String method, String filePath, String data, String byteCount) throws Exception {
-        return cobSpecFileHandler.getResponseForCobSpecTests(method, filePath, data, byteCount);
+        return uniqueRequestHandler.getResponseForCobSpecTests(method, filePath, data, byteCount);
     }
 }
