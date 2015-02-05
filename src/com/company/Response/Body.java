@@ -1,26 +1,28 @@
 package com.company.Response;
 
-import com.company.Handler.CobSpec.CobSpecFileHandler;
+import com.company.Routes.Routes;
 import com.company.Utilities.FileMatcher;
+import com.company.Utilities.StatusBuilder;
+import com.company.request.Request;
 
 public class Body {
     private FilePaths filePaths;
-    private CobSpecFileHandler cobSpecFileHandler;
-    private CobSpecFilePaths cobSpecFilePaths;
+    private Routes routes;
 
     public Body() {
-        filePaths = new FilePaths();
-        CobSpecFileHandler cobSpecFileHandler = new CobSpecFileHandler();
-        cobSpecFilePaths = new CobSpecFilePaths(cobSpecFileHandler);
+        FileMatcher fileMatcher = new FileMatcher();
+        filePaths = new FilePaths(fileMatcher);
+        routes = new Routes();
     }
     
-    public byte[] getBody(String method, String filePath, String data, String byteCount) throws Exception {
-        if (filePath.equals("/")) {
-            return filePaths.getIndex();
-        } else if (filePath.equals(FileMatcher.matchRequestedFile(filePath))) {
-            return filePaths.getFile(filePath);
-        } else if (!filePath.equals(FileMatcher.matchRequestedFile(filePath))) {
-            return cobSpecFilePaths.getFile(method, filePath, data, byteCount);
-        } else return "Page cannnot be found".getBytes();
+    public byte[] getBody(StatusBuilder statusBuilder, Request request) throws Exception {
+        String routeKey = routes.routeKeys(request, statusBuilder);
+        
+        if (routes.route(statusBuilder).get(routeKey) != null) {
+            return routes.route(statusBuilder).get(routeKey).getBody(request);
+        } else 
+        
+            statusBuilder.setHTTPStatus(404);
+        return "this is not the page you are looking for".getBytes();
     }
 }
