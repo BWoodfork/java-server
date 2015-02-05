@@ -1,21 +1,24 @@
 package com.company.Handler;
 
-import java.io.IOException;
+import com.company.Response.CommandInterface;
+
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 
-public class DeleteHandler {
-    public boolean isADeleteRequest(String method) {
-        return method.equals("DELETE");
+public class DeleteHandler implements CommandInterface {
+
+    public Path getPostContentPath() throws Exception {
+        return Paths.get("../cob_spec/public/cosby-data.txt");
     }
-    
-    public Path deleteFileContents(String method, Path path) throws IOException {
+
+    public void execute() {
         String emptyString = "";
         
-        if (isADeleteRequest(method)) {
-            Files.write(path, emptyString.getBytes());
-            return path;
+        try {
+            Files.write(getPostContentPath(), emptyString.getBytes());
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        return path;
     }
 }
