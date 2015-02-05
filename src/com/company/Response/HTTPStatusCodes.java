@@ -40,7 +40,7 @@ public class HTTPStatusCodes {
     public static String threeOhOne = "301 Moved Permanently";
     public static String fourOhFiveNotAllowed = "405 Method Not Allowed";
 
-//    pass get in and determine what method it is. If is a get method, then pass request to get handler that will check the path for these route
+//    pass get in and determine what method it is. If is a get method, then pass request to get handler that will check the path for these getRoutes
 
     public String getHTTPStatusCode(String method, String requestPath, String data, String byteCount) throws IOException {
         if (method.equals("GET") && requestPath.equals(fileMatcher.matchRequestedFile(requestPath))) {

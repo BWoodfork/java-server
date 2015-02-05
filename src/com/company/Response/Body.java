@@ -17,8 +17,8 @@ public class Body {
         
         String routeKey = routes.routeKeys(request, statusBuilder);
         
-        if (routes.route(statusBuilder).get(routeKey) != null) {
-            return routes.route(statusBuilder).get(routeKey).getBody(request);
+        if (routes.getRoutes(statusBuilder).get(routeKey) != null) {
+            return routes.getRoutes(statusBuilder).get(routeKey).getBody(request);
         } else 
             statusBuilder.setHTTPStatus(404);
         return "this is not the page you are looking for".getBytes();

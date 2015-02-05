@@ -11,7 +11,7 @@ import java.util.HashMap;
 
 public class Routes {
     
-    public HashMap<String, RouteInterface> route(StatusBuilder statusBuilder) throws Exception {
+    public HashMap<String, RouteInterface> getRoutes(StatusBuilder statusBuilder) throws Exception {
         HashMap<String, RouteInterface> storedRoutes = new HashMap<>();
         storedRoutes.put("GET /file1", new BasicResponseGenerator(statusBuilder));
         storedRoutes.put("GET /file2", new BasicResponseGenerator(statusBuilder));
@@ -30,7 +30,7 @@ public class Routes {
         String method = request.getMethod();
         String filePath = request.getFilePath();
         
-        for (String key : route(statusBuilder).keySet()) {
+        for (String key : getRoutes(statusBuilder).keySet()) {
             if ((method + " " + filePath).equals(key)) {
                 return key;
             }

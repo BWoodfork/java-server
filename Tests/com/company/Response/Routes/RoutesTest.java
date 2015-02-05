@@ -13,7 +13,7 @@ public class RoutesTest {
         Routes routes = new Routes();
         StatusBuilder statusBuilder = new StatusBuilder();
         Request request = new Request("GET /file1");
-        String file1Body = new String(routes.route(statusBuilder).get("GET /file1").getBody(request));
+        String file1Body = new String(routes.getRoutes(statusBuilder).get("GET /file1").getBody(request));
         
         assertEquals("file1 contents", file1Body);
     }
@@ -23,7 +23,7 @@ public class RoutesTest {
         Routes routes = new Routes();
         StatusBuilder statusBuilder = new StatusBuilder();
         Request request = new Request("GET /file2");
-        String file2Body = new String(routes.route(statusBuilder).get("GET /file2").getBody(request));
+        String file2Body = new String(routes.getRoutes(statusBuilder).get("GET /file2").getBody(request));
         
         assertEquals("file2 contents", file2Body);
     }
