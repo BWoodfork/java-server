@@ -1,4 +1,4 @@
-package com.company.Handler;
+package com.company.Response.ResponseGenerators;
 
 import com.company.Routes.RouteInterface;
 import com.company.Utilities.FileMatcher;
@@ -10,11 +10,11 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class BasicFileHandler implements RouteInterface {
+public class BasicResponseGenerator implements RouteInterface {
     private StatusBuilder statusBuilder;
     private FileMatcher fileMatcher;
     
-    public BasicFileHandler(StatusBuilder statusBuilder) {
+    public BasicResponseGenerator(StatusBuilder statusBuilder) {
         this.statusBuilder = statusBuilder;
         fileMatcher = new FileMatcher();
     }

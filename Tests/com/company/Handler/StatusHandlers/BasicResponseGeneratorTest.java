@@ -1,6 +1,6 @@
 package com.company.Handler.StatusHandlers;
 
-import com.company.Handler.BasicFileHandler;
+import com.company.Response.ResponseGenerators.BasicResponseGenerator;
 import com.company.Utilities.FileMatcher;
 import com.company.Utilities.StatusBuilder;
 import com.company.request.Request;
@@ -9,35 +9,35 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-public class BasicFileHandlerTest {
-    private BasicFileHandler basicFileHandler;
+public class BasicResponseGeneratorTest {
+    private BasicResponseGenerator basicResponseGenerator;
     private StatusBuilder statusBuilder;
     
     @Before
     public void setUp() throws Exception {
         statusBuilder = new StatusBuilder();
-        basicFileHandler = new BasicFileHandler(statusBuilder);
+        basicResponseGenerator = new BasicResponseGenerator(statusBuilder);
     }
     
     @Test
     public void readsTheBytesOfTheFileWhenGivenADirectoryPath() throws Exception {
         String directoryPath = "../cob_spec/public/file1";
         
-        assertEquals("file1 contents", new String(basicFileHandler.readFileBytesFromPath(directoryPath)));
+        assertEquals("file1 contents", new String(basicResponseGenerator.readFileBytesFromPath(directoryPath)));
     }
     
     @Test
     public void returnsTheBytesOfFile2() throws Exception {
         String directoryPath = "../cob_spec/public/file2";
 
-        assertEquals("file2 contents", new String(basicFileHandler.readFileBytesFromPath(directoryPath)));
+        assertEquals("file2 contents", new String(basicResponseGenerator.readFileBytesFromPath(directoryPath)));
     }
     
     @Test
     public void returnsTheFileNameWhenFileMatcherFindsAMatch() throws Exception {
         Request request = new Request("GET /file1");
         
-        assertEquals("/file1" ,basicFileHandler.getMatchedFileName(request));
+        assertEquals("/file1" , basicResponseGenerator.getMatchedFileName(request));
     }
     
     @Test
@@ -46,7 +46,7 @@ public class BasicFileHandlerTest {
         Request request = new Request("GET /file22");
         
         fileMatcher.matchRequestedFile("/file22");
-        basicFileHandler.getMatchedFileName(request);
+        basicResponseGenerator.getMatchedFileName(request);
 
         assertEquals("HTTP/1.1 404 NOT FOUND\r\n", new String(statusBuilder.getHTTPStatus()));
     }
@@ -57,7 +57,7 @@ public class BasicFileHandlerTest {
         Request request = new Request("Get /file1");
         
         fileMatcher.matchRequestedFile("/file1");
-        basicFileHandler.getMatchedFileName(request);
+        basicResponseGenerator.getMatchedFileName(request);
         
         assertEquals("HTTP/1.1 200 OK\r\n", new String(statusBuilder.getHTTPStatus()));
     }
@@ -68,7 +68,7 @@ public class BasicFileHandlerTest {
         Request request = new Request("Get /file2");
 
         fileMatcher.matchRequestedFile("/file2");
-        basicFileHandler.getMatchedFileName(request);
+        basicResponseGenerator.getMatchedFileName(request);
 
         assertEquals("HTTP/1.1 200 OK\r\n", new String(statusBuilder.getHTTPStatus()));
     }
