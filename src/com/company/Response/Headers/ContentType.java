@@ -1,21 +1,25 @@
 package com.company.Response.Headers;
 
-import com.company.Routes;
-
 import java.util.HashMap;
 import java.util.Map;
 
 public class ContentType {
+    
+    public static String JPEG = "/image.jpeg";
+    public static String PNG = "/image.png";
+    public static String GIF = "/image.gif";
+    public static String FORM = "/form";
+    
     public String getContentType(String filePath) {
         Map<String, String> routes = new HashMap<String, String>();
         
-        routes.put(Routes.jpegRoute(), "image/jpeg" + "\r\n");
-        routes.put(Routes.pngRoute(), "image/png" + "\r\n");
-        routes.put(Routes.gifRoute(), "image/gif" + "\r\n");
-        routes.put(Routes.formRoute(), "application/x-www-form-urlencoded" + "\r\n");
+        routes.put(JPEG, "image/jpeg" + "\r\n");
+        routes.put(PNG, "image/png" + "\r\n");
+        routes.put(GIF, "image/gif" + "\r\n");
+        routes.put(FORM, "application/x-www-form-urlencoded" + "\r\n");
         
         for (Map.Entry<String, String> route : routes.entrySet()) {
-            if (filePath.equals(route.getKey())) {
+            if (filePath.endsWith(route.getKey())) {
                 return route.getValue();
             }
         }

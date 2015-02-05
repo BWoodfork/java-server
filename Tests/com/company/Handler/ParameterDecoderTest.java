@@ -56,7 +56,7 @@ public class ParameterDecoderTest {
 
         assertEquals(decodedRequest, parameterDecoder.decodeRequest(request));
     }
-
+    
     @Test
     public void returnsTrueIfRequestIsAParameterRequest() throws Exception {
         String request = "/parameters?variable_1=Operators%";
@@ -70,5 +70,4 @@ public class ParameterDecoderTest {
 
         assertEquals(false, parameterDecoder.isAParameterRequest(request));
     }
-
 }

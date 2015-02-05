@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class FileMatcher {
 
-    public static ArrayList<String> getDirectoryFileNames() {
+    public ArrayList<String> getDirectoryFileNames() {
         ArrayList<String> endPoints = new ArrayList<>();
 
         File directory = new File("../cob_spec/public");
@@ -20,7 +20,7 @@ public class FileMatcher {
         return endPoints;
     }
     
-    public static String matchRequestedFile(String request) {
+    public String matchRequestedFile(String request) {
         ArrayList<String> directoryFileNames = getDirectoryFileNames();
 
         for (String fileName : directoryFileNames) {
@@ -29,6 +29,6 @@ public class FileMatcher {
             }
         }
         
-        return "File not found in cob_spec/public";
+        return "The requested file cannot be found";
     }
 }

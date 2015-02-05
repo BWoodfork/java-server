@@ -8,6 +8,10 @@ public class ParameterDecoder {
         return request.split("\\?", 2);
     }
     
+    public boolean isAParameterRequest(String request) {
+       return splitRequest(request)[0].equals("/parameters");
+    }
+    
     public String parseRequest(String request) {
         String[] splitRequest = request.split("\\?", 2);
 
@@ -24,8 +28,8 @@ public class ParameterDecoder {
 
         return URLDecoder.decode(frontOfRequest.replaceAll("\\=", " $0 ")) + URLDecoder.decode(endOfRequest.replaceAll("\\=", " $0 "));
     }
-
-    public boolean isAParameterRequest(String request) {
-       return splitRequest(request)[0].equals("/parameters");
+    
+    public byte[] getBody(String request) {
+        return decodeRequest(request).getBytes();
     }
 }

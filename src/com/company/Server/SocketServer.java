@@ -44,6 +44,8 @@ public class SocketServer {
                                     request = new Request(streamHandler.convertRawRequestToString(socket));
                                     response = new Response(port, request);
 
+                                    System.out.println(request.getEntireRequest());
+                                    
                                     request.parseRequest();
                                     response.sendResponse(socket);
                                     socket.close();

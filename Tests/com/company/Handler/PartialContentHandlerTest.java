@@ -64,31 +64,34 @@ public class PartialContentHandlerTest {
         byte[] fakeFileContent = "This is a file that contains text to read part of in order to fulfill a 206.".getBytes();
         assertEquals(9, PartialContentHandler.getMaxRange("0", "8", fakeFileContent.length));
     }
+    
+    @Test
+    public void returnsTheRangeOfTheFileContentsWhenOneNumberGiven() throws Exception {
+        String byteCount = "bytes=-6Connection:";
 
-//    @Test
-//    public void throwsErrorIfFilePathIsNotAPartialContentRequest() throws Exception {
-//        String byteCount = "bytes=-6Connection:";
-//        String filePath = "/random-file.txt";
-//
-//        byte[] fakeFileContent = "This is a file that contains text to read part of in order to fulfill a 206.".getBytes();
-//        assertEquals(new String("The page you are looking for cannot be found.".getBytes()), new String(PartialContentHandler.getPartialContents(fakeFileContent, byteCount, filePath)));
-//    }
+        byte[] fakeFileContent = "This is a file that contains text to read part of in order to fulfill a 206.".getBytes();
+        assertEquals(new String(" 206.".getBytes()), new String(PartialContentHandler.getPartialContents(fakeFileContent, byteCount)));
+    }
 
-//    @Test
-//    public void returnsTheRangeOfTheFileContentsWhenOneNumberGiven() throws Exception {
-//        String byteCount = "bytes=-6Connection:";
-//        String filePath = "/partial_content.txt";
-//
-//        byte[] fakeFileContent = "This is a file that contains text to read part of in order to fulfill a 206.".getBytes();
-//        assertEquals(new String(" 206.".getBytes()), new String(PartialContentHandler.getPartialContents(fakeFileContent, byteCount, filePath)));
-//    }
-//
-//    @Test
-//    public void returnsTheRangeOfTheFileContentsWhenTwoNumbersGiven() throws Exception {
-//        String byteCount = "bytes=0-4Connection:";
-//        String filePath = "/partial_content.txt";
-//
-//        byte[] fakeFileContent = "This is a file that contains text to read part of in order to fulfill a 206.".getBytes();
-//        assertEquals(new String("This ".getBytes()), new String(PartialContentHandler.getPartialContents(fakeFileContent, byteCount, filePath)));
-//    }
+    @Test
+    public void returnsTheRangeOfTheFileContentsWhenTwoNumbersGiven() throws Exception {
+        String byteCount = "bytes=0-4Connection:";
+
+        byte[] fakeFileContent = "This is a file that contains text to read part of in order to fulfill a 206.".getBytes();
+        assertEquals(new String("This ".getBytes()), new String(PartialContentHandler.getPartialContents(fakeFileContent, byteCount)));
+    }
+    
+    @Test
+    public void returnsTrueIfAPartialContentRequestIsMade() throws Exception {
+        String byteCount = "bytes=0-4Connection:";
+        
+        assertEquals(true, PartialContentHandler.isAPartialRequest(byteCount));
+    }
+    
+    @Test
+    public void returnsFalseIfAPartialContentRequestIsNotMade() throws Exception {
+        String byteCount = "closthost";
+        
+        assertEquals(false, PartialContentHandler.isAPartialRequest(byteCount));
+    }
 }

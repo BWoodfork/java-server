@@ -15,7 +15,7 @@ public class DateAndTime {
     }
 
     public byte[] getServerTime() {
-        String serverTime = serverTime() + "\r\n";
+        String serverTime = "Date: " + serverTime() + "\r\n";
         return serverTime.getBytes();
     }
 }

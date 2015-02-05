@@ -43,4 +43,8 @@ public class PartialContentHandler {
 
         return Arrays.copyOfRange(fileContent, minRange, maxRange);
     }
+
+    public static boolean isAPartialRequest(String byteCount) {
+        return byteCount.startsWith("bytes=");
+    }
 }
