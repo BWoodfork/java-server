@@ -15,6 +15,8 @@ public class Body {
 //        if method is a GET method, then call .getBody on it. If it isn't, don't.
 //        if method is a POST, PUT or DELETE method, then call .execute on it
         
+//      Have this call .getDate .getBlah on on objects that get returned to give me the full response
+        
         String routeKey = routes.routeKeys(request, statusBuilder);
         
         if (routes.getRoutes(statusBuilder).get(routeKey) != null) {

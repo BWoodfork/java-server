@@ -1,7 +1,7 @@
 package com.company.Response.ResponseGenerators;
 
 import com.company.Handler.PutRequestHandler;
-import com.company.Routes.RouteInterface;
+import com.company.Routes.ResponseInterface;
 import com.company.Utilities.StatusBuilder;
 import com.company.request.Request;
 
@@ -9,7 +9,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class PutRequestResponseGenerator implements RouteInterface {
+public class PutRequestResponseGenerator implements ResponseInterface {
     private PutRequestHandler putRequestHandler;
     private StatusBuilder statusBuilder;
     

@@ -1,7 +1,11 @@
 package com.company.Response.ResponseGenerators;
 
-/**
- * Created by 8thlight on 2/6/15.
- */
+import org.junit.Test;
+
 public class RedirectResponseGeneratorTest {
+    @Test
+    public void doSomething() throws Exception {
+        
+        
+    }
 }
