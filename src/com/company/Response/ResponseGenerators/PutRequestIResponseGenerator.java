@@ -32,7 +32,7 @@ public class PutRequestIResponseGenerator implements IResponse {
     }
 
     public byte[] getPutContentFile() throws Exception {
-        return readFileBytesFromPath("../cob_spec/public/cosby-data.txt");
+        return readFileBytesFromPath("../cob_spec/public/form");
     }
 
     public byte[] getBody(Request request) throws Exception {

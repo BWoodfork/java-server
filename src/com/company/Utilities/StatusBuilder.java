@@ -11,6 +11,8 @@ public class StatusBuilder {
         statusSet.put(404, "404 NOT FOUND");
         statusSet.put(401, "401 Unauthorized");
         statusSet.put(301, "301 Moved Permanently");
+        statusSet.put(206, "206 Partial Content");
+        statusSet.put(204, "204 No Content");
         return statusSet;
     }
     
