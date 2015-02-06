@@ -1,5 +1,8 @@
 package com.company.Handler;
 
+import com.company.request.Request;
+
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -7,7 +10,9 @@ import java.util.regex.Pattern;
 public class PartialContentHandler {
     private static final Pattern bytePattern = Pattern.compile("^([0-9])?-([0-9])?$");
 
-    public static String parseRequest(String byteCount) {
+    public static String parseRequest(Request request) throws IOException {
+        String byteCount = request.getByteCount();
+
         String splitBytes = byteCount.split("bytes=")[1];
         String[] strings = splitBytes.split("Connection:");
 
@@ -34,17 +39,13 @@ public class PartialContentHandler {
         }
     }
 
-    public static byte[] getPartialContents(byte[] fileContent, String byteCount) {
-        Matcher byteMatcher = bytePattern.matcher(parseRequest(byteCount));
+    public static byte[] getPartialContents(byte[] fileContent, Request request) throws IOException {
+        Matcher byteMatcher = bytePattern.matcher(parseRequest(request));
         byteMatcher.matches();
         
         int minRange = getMinRange(byteMatcher.group(1), byteMatcher.group(2), fileContent.length);
         int maxRange = getMaxRange(byteMatcher.group(1), byteMatcher.group(2), fileContent.length);
 
         return Arrays.copyOfRange(fileContent, minRange, maxRange);
-    }
-
-    public static boolean isAPartialRequest(String byteCount) {
-        return byteCount.startsWith("bytes=");
     }
 }

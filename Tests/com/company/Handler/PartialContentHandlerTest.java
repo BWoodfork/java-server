@@ -1,5 +1,6 @@
 package com.company.Handler;
 
+import com.company.request.Request;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -7,14 +8,14 @@ import static org.junit.Assert.assertEquals;
 public class PartialContentHandlerTest {
     @Test
     public void getsTheIntegerValueOfAPartialRequest() throws Exception {
-        String byteCount = "bytes=0-4Connection:";
-        assertEquals("0-4", PartialContentHandler.parseRequest(byteCount));
+        Request request = new Request("GET /partial_content.txt HTTP/1.1Range: bytes=0-4Connection: closeHost: localhost:5000");
+        assertEquals("0-4", PartialContentHandler.parseRequest(request));
     }
 
     @Test
     public void getsTheNegativeIntegerValueOfAPartialRequest() throws Exception {
-        String byteCount = "bytes=-4Connection:";
-        assertEquals("-4", PartialContentHandler.parseRequest(byteCount));
+        Request request = new Request("GET /partial_content.txt HTTP/1.1Range: bytes=-4Connection: closeHost: localhost:5000");
+        assertEquals("-4", PartialContentHandler.parseRequest(request));
     }
 
     @Test
@@ -67,31 +68,17 @@ public class PartialContentHandlerTest {
     
     @Test
     public void returnsTheRangeOfTheFileContentsWhenOneNumberGiven() throws Exception {
-        String byteCount = "bytes=-6Connection:";
+        Request request = new Request("GET /partial_content.txt HTTP/1.1Range: bytes=-6Connection: closeHost: localhost:5000");
 
         byte[] fakeFileContent = "This is a file that contains text to read part of in order to fulfill a 206.".getBytes();
-        assertEquals(new String(" 206.".getBytes()), new String(PartialContentHandler.getPartialContents(fakeFileContent, byteCount)));
+        assertEquals(new String(" 206.".getBytes()), new String(PartialContentHandler.getPartialContents(fakeFileContent, request)));
     }
 
     @Test
     public void returnsTheRangeOfTheFileContentsWhenTwoNumbersGiven() throws Exception {
-        String byteCount = "bytes=0-4Connection:";
-
+        Request request = new Request("GET /partial_content.txt HTTP/1.1Range: bytes=0-4Connection: closeHost: localhost:5000");
+        
         byte[] fakeFileContent = "This is a file that contains text to read part of in order to fulfill a 206.".getBytes();
-        assertEquals(new String("This ".getBytes()), new String(PartialContentHandler.getPartialContents(fakeFileContent, byteCount)));
-    }
-    
-    @Test
-    public void returnsTrueIfAPartialContentRequestIsMade() throws Exception {
-        String byteCount = "bytes=0-4Connection:";
-        
-        assertEquals(true, PartialContentHandler.isAPartialRequest(byteCount));
-    }
-    
-    @Test
-    public void returnsFalseIfAPartialContentRequestIsNotMade() throws Exception {
-        String byteCount = "closthost";
-        
-        assertEquals(false, PartialContentHandler.isAPartialRequest(byteCount));
+        assertEquals(new String("This ".getBytes()), new String(PartialContentHandler.getPartialContents(fakeFileContent, request)));
     }
 }
