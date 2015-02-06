@@ -9,7 +9,7 @@ import java.nio.file.Paths;
 public class PutRequestHandler implements CommandInterface {
     
     public Path getPutContentPath() throws Exception {
-        return Paths.get("../cob_spec/public/cosby-data.txt");
+        return Paths.get("../cob_spec/public/form");
     }
     
     public void execute() {
