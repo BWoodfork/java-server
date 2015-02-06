@@ -9,6 +9,8 @@ public class StatusBuilder {
         HashMap<Integer, String> statusSet = new HashMap<>();
         statusSet.put(200, "200 OK");
         statusSet.put(404, "404 NOT FOUND");
+        statusSet.put(401, "401 Unauthorized");
+        statusSet.put(301, "301 Moved Permanently");
         return statusSet;
     }
     
