@@ -1,15 +1,15 @@
 package com.company.Response.ResponseGenerators;
 
 import com.company.Handler.ParameterRequestHandler;
-import com.company.Routes.ResponseInterface;
+import com.company.Routes.IResponse;
 import com.company.request.Request;
 
 import java.io.IOException;
 
-public class ParameterResponseGenerator implements ResponseInterface {
+public class ParameterIResponseGenerator implements IResponse {
     private ParameterRequestHandler parameterRequestHandler;
     
-    public ParameterResponseGenerator() throws IOException {
+    public ParameterIResponseGenerator() throws IOException {
         parameterRequestHandler = new ParameterRequestHandler();
     }
     

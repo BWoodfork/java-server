@@ -1,17 +1,17 @@
 package com.company.Response.ResponseGenerators;
 
 import com.company.Handler.BasicAuthenticationHandler;
-import com.company.Routes.ResponseInterface;
+import com.company.Routes.IResponse;
 import com.company.Utilities.StatusBuilder;
 import com.company.request.Request;
 
 import java.io.IOException;
 
-public class BasicAuthenticationResponseGenerator implements ResponseInterface {
+public class BasicAuthenticationIResponseGenerator implements IResponse {
     private BasicAuthenticationHandler basicAuthenticationHandler;
     private StatusBuilder statusBuilder;
     
-    public BasicAuthenticationResponseGenerator(StatusBuilder statusBuilder) {
+    public BasicAuthenticationIResponseGenerator(StatusBuilder statusBuilder) {
         basicAuthenticationHandler = new BasicAuthenticationHandler();
         this.statusBuilder = statusBuilder;
     }

@@ -14,7 +14,7 @@ public class IndexResponseGeneratorTest {
     @Test
     public void returnsTheIndexFileADirectoryOfCobSpecFilesFromPublicDirectory() throws Exception {
         StatusBuilder statusBuilder = new StatusBuilder();
-        IndexResponseGenerator indexResponseGenerator = new IndexResponseGenerator(statusBuilder);
+        IndexIResponseGenerator indexResponseGenerator = new IndexIResponseGenerator(statusBuilder);
         Request request = new Request("GET /");
         Path path = Paths.get("../cob_spec/public/index.html");
         byte[] file = Files.readAllBytes(path);
@@ -25,7 +25,7 @@ public class IndexResponseGeneratorTest {
     @Test
     public void returnsErrorMessageWhenMethodIsNotAGetRequest() throws Exception {
         StatusBuilder statusBuilder = new StatusBuilder();
-        IndexResponseGenerator indexResponseGenerator = new IndexResponseGenerator(statusBuilder);
+        IndexIResponseGenerator indexResponseGenerator = new IndexIResponseGenerator(statusBuilder);
         Request request = new Request("POST /");
         
         assertEquals("The method you have requested is not valid", new String(indexResponseGenerator.getBody(request)));

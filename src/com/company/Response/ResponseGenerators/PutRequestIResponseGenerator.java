@@ -1,7 +1,7 @@
 package com.company.Response.ResponseGenerators;
 
-import com.company.Handler.PostRequestHandler;
-import com.company.Routes.ResponseInterface;
+import com.company.Handler.PutRequestHandler;
+import com.company.Routes.IResponse;
 import com.company.Utilities.StatusBuilder;
 import com.company.request.Request;
 
@@ -9,43 +9,43 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class PostRequestResponseGenerator implements ResponseInterface {
-    private PostRequestHandler postRequestHandler;
+public class PutRequestIResponseGenerator implements IResponse {
+    private PutRequestHandler putRequestHandler;
     private StatusBuilder statusBuilder;
     
-    public PostRequestResponseGenerator(StatusBuilder statusBuilder) {
-        postRequestHandler = new PostRequestHandler();    
+    public PutRequestIResponseGenerator(StatusBuilder statusBuilder) {
+        putRequestHandler = new PutRequestHandler();
         this.statusBuilder = statusBuilder;
     }
     
-    public boolean isAPostRequest(String method) {
-        return method.equals("POST");
+    public boolean isAPutRequest(String method) {
+        return method.equals("PUT");
     }
-    
+
     public boolean isAGetRequest(String method) {
         return method.equals("GET");
     }
-    
+
     public byte[] readFileBytesFromPath(String directoryPath) throws Exception {
         Path absolutePath = Paths.get(directoryPath).toAbsolutePath();
         return Files.readAllBytes(absolutePath);
     }
-    
-    public byte[] getPostContentFile() throws Exception {
+
+    public byte[] getPutContentFile() throws Exception {
         return readFileBytesFromPath("../cob_spec/public/cosby-data.txt");
     }
 
     public byte[] getBody(Request request) throws Exception {
         String method = request.getMethod();
 
-        if (isAPostRequest(method)) {
+        if (isAPutRequest(method)) {
             statusBuilder.setHTTPStatus(200);
-            postRequestHandler.execute();
+            putRequestHandler.execute();
         } else if (isAGetRequest(method)) {
             statusBuilder.setHTTPStatus(200);
-            return getPostContentFile();
+            return getPutContentFile();
         }
-        
-        return "The Requested Endpoint Is Not A Post Request".getBytes();
+
+        return "The Requested Endpoint Is Not A PUT Request".getBytes();
     }
 }

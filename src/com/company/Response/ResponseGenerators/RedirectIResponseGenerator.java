@@ -1,15 +1,15 @@
 package com.company.Response.ResponseGenerators;
 
 import com.company.Handler.RedirectRequestHandler;
-import com.company.Routes.ResponseInterface;
+import com.company.Routes.IResponse;
 import com.company.Utilities.StatusBuilder;
 import com.company.request.Request;
 
-public class RedirectResponseGenerator implements ResponseInterface {
+public class RedirectIResponseGenerator implements IResponse {
     private StatusBuilder statusBuilder;
     private RedirectRequestHandler redirectRequestHandler;
     
-    public RedirectResponseGenerator(StatusBuilder statusBuilder) {
+    public RedirectIResponseGenerator(StatusBuilder statusBuilder) {
         this.statusBuilder = statusBuilder;
         redirectRequestHandler = new RedirectRequestHandler();
         

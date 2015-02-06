@@ -9,12 +9,12 @@ import static org.junit.Assert.assertEquals;
 
 public class PutRequestResponseGeneratorTest {
     
-    private PutRequestResponseGenerator putRequestResponseGenerator;
+    private PutRequestIResponseGenerator putRequestResponseGenerator;
     
     @Before
     public void setUp() throws Exception {
         StatusBuilder statusBuilder = new StatusBuilder();
-        putRequestResponseGenerator = new PutRequestResponseGenerator(statusBuilder);
+        putRequestResponseGenerator = new PutRequestIResponseGenerator(statusBuilder);
     }
     
     @Test

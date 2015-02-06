@@ -1,7 +1,7 @@
 package com.company.Response.ResponseGenerators;
 
 import com.company.Handler.IndexRequestHandler;
-import com.company.Routes.ResponseInterface;
+import com.company.Routes.IResponse;
 import com.company.Utilities.StatusBuilder;
 import com.company.request.Request;
 
@@ -9,11 +9,11 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class IndexResponseGenerator implements ResponseInterface {
+public class IndexIResponseGenerator implements IResponse {
     private StatusBuilder statusBuilder;
     private IndexRequestHandler indexRequestHandler;
     
-    public IndexResponseGenerator(StatusBuilder statusBuilder) {
+    public IndexIResponseGenerator(StatusBuilder statusBuilder) {
         this.statusBuilder = statusBuilder;
         indexRequestHandler = new IndexRequestHandler();
     }

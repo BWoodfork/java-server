@@ -1,17 +1,17 @@
 package com.company.Response.ResponseGenerators;
 
 import com.company.Handler.DeleteHandler;
-import com.company.Routes.ResponseInterface;
+import com.company.Routes.IResponse;
 import com.company.Utilities.StatusBuilder;
 import com.company.request.Request;
 
 import java.io.IOException;
 
-public class DeleteRequestResponseGenerator implements ResponseInterface {
+public class DeleteRequestIResponseGenerator implements IResponse {
     private DeleteHandler deleteHandler;
     private StatusBuilder statusBuilder;
     
-    public DeleteRequestResponseGenerator(StatusBuilder statusBuilder) {
+    public DeleteRequestIResponseGenerator(StatusBuilder statusBuilder) {
         deleteHandler = new DeleteHandler();
         this.statusBuilder = statusBuilder;
     }

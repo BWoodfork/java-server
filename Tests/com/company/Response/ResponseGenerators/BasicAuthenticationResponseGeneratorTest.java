@@ -8,12 +8,12 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 public class BasicAuthenticationResponseGeneratorTest {
-    private BasicAuthenticationResponseGenerator basicAuthenticationResponseGenerator;
+    private BasicAuthenticationIResponseGenerator basicAuthenticationResponseGenerator;
     
     @Before
     public void setUp() throws Exception {
         StatusBuilder statusBuilder = new StatusBuilder();
-        basicAuthenticationResponseGenerator = new BasicAuthenticationResponseGenerator(statusBuilder);
+        basicAuthenticationResponseGenerator = new BasicAuthenticationIResponseGenerator(statusBuilder);
     }
     
     @Test

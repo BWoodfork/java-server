@@ -8,12 +8,12 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 public class PostRequestResponseGeneratorTest {
-    private PostRequestResponseGenerator postRequestResponseGenerator;
+    private PostRequestIResponseGenerator postRequestResponseGenerator;
     
     @Before
     public void setUp() throws Exception {
         StatusBuilder statusBuilder = new StatusBuilder();
-        postRequestResponseGenerator = new PostRequestResponseGenerator(statusBuilder);
+        postRequestResponseGenerator = new PostRequestIResponseGenerator(statusBuilder);
     }
     
     @Test

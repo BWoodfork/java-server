@@ -13,13 +13,13 @@ import java.nio.file.Paths;
 import static org.junit.Assert.assertEquals;
 
 public class DeleteRequestResponseGeneratorTest {
-    private DeleteRequestResponseGenerator deleteRequestResponseGenerator;
+    private DeleteRequestIResponseGenerator deleteRequestResponseGenerator;
     private StatusBuilder statusBuilder;
     
     @Before
     public void setUp() throws Exception {
         statusBuilder = new StatusBuilder();
-        deleteRequestResponseGenerator = new DeleteRequestResponseGenerator(statusBuilder);
+        deleteRequestResponseGenerator = new DeleteRequestIResponseGenerator(statusBuilder);
     }
     
     @Test
@@ -40,7 +40,7 @@ public class DeleteRequestResponseGeneratorTest {
     public void deletesContentFromPath() throws  Exception {
         Request request = new Request("PUT /form");
         PutRequestHandler putRequestHandler = new PutRequestHandler();
-        PutRequestResponseGenerator putRequestResponseGenerator = new PutRequestResponseGenerator(statusBuilder);
+        PutRequestIResponseGenerator putRequestResponseGenerator = new PutRequestIResponseGenerator(statusBuilder);
         putRequestHandler.execute();
         putRequestResponseGenerator.getBody(request);
         
