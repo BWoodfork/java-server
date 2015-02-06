@@ -23,6 +23,6 @@ public class RedirectResponseGenerator implements ResponseInterface {
             redirectRequestHandler.execute();
         }
         
-        return .getBytes();
+        return "The requested endpoint does not exist".getBytes();
     }
 }
