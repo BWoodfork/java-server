@@ -3,6 +3,11 @@
     <output-path>$PROJECT_DIR$/out/artifacts/java_server_jar</output-path>
     <root id="archive" name="java-server.jar">
       <element id="module-output" name="java-server" />
+      <element id="module-test-output" name="java-server" />
+      <element id="extracted-dir" path="/Library/Java/Extensions/junit/junit-4.10.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="/Library/Java/Extensions/junit/junit-4.10-src.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="/Library/Java/Extensions/junit/junit-dep-4.10.jar" path-in-jar="/" />
+      <element id="library" level="module" name="JUnit4" module-name="java-server" />
     </root>
   </artifact>
 </component>
