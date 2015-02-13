@@ -1,8 +1,5 @@
-Clone the java-server repository.
-
-Clone the Cob Spec acceptance test suite repository. 
- 
-git clone https://github.com/8thlight/cob_spec/tree/38f9c3a9055dd097e8db429e184a662429ae629e
+Clone the java-server repository. 
+(The Cob Spec repository will also be downloaded with it)
 
 The cob_spec and java-server directory should be in the same directory.
 
