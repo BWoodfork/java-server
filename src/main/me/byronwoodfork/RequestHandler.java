@@ -13,13 +13,13 @@ public class RequestHandler {
     
     try {
       inputStream = socket.getInputStream();
-    } catch (Exception e) {
+    } catch (IOException e) {
       e.printStackTrace();
     }
 
     try {
       if (inputStream != null) inputStream.close();
-    } catch (Exception e) {
+    } catch (IOException e) {
       e.printStackTrace();
     }
     
@@ -31,13 +31,13 @@ public class RequestHandler {
     
     try {
       outputStream = socket.getOutputStream();
-    } catch (Exception e) {
+    } catch (IOException e) {
       e.printStackTrace();
     }
     
     try {
       if (outputStream != null) outputStream.close();
-    } catch (Exception e) {
+    } catch (IOException e) {
       e.printStackTrace();
     }
     
