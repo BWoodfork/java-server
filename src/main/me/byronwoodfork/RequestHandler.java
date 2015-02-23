@@ -8,7 +8,7 @@ public class RequestHandler {
     this.socket = socket;
   }
 
-  public InputStream getInputStream() {
+  protected InputStream getInputStream() {
     InputStream inputStream = null;
     
     try {
@@ -26,7 +26,7 @@ public class RequestHandler {
     return inputStream;
   }
 
-  public OutputStream getOutputStream() {
+  protected OutputStream getOutputStream() {
     OutputStream outputStream = null;
     
     try {
@@ -42,21 +42,5 @@ public class RequestHandler {
     }
     
     return outputStream;
-  }
-
-  public String convertRequestToString() throws Exception {
-    InputStreamReader inputStreamReader = new InputStreamReader(getInputStream());
-    BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-    
-    StringBuilder requestBuilder = new StringBuilder();
-    String line;
-    
-    do {
-      line = bufferedReader.readLine();
-      requestBuilder.append(line);
-      if (line.equals("")) break;
-    } while (bufferedReader.ready());
-    
-    return requestBuilder.toString();
   }
 }
