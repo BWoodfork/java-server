@@ -25,7 +25,7 @@ public class RequestParser {
     return request;
   }
   
-  public String convertRequestToString() throws IOException {
+  private String convertRequestToString() throws IOException {
     InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
     BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
 
@@ -41,7 +41,7 @@ public class RequestParser {
     return requestBuilder.toString();
   }
 
-  public String parseHTTPMethod() throws IOException {
+  private String parseHTTPMethod() throws IOException {
     return requestArray[0];
   }
 
@@ -49,7 +49,7 @@ public class RequestParser {
     return requestArray[1];
   }
 
-  public String parseHeaderField() throws IOException {
+  private String parseHeaderField() throws IOException {
     String thirdElement = requestArray[2];
     int lastIndex = thirdElement.lastIndexOf("1");
     String protocol = thirdElement.substring(0, lastIndex + 1);
@@ -58,13 +58,13 @@ public class RequestParser {
     return splitOnProtocol[1];
   }
 
-  public String getByteRange() throws IOException {
+  private String getByteRange() throws IOException {
     String[] fourthElement = requestArray[3].split("Connection:");
     
     return fourthElement[0];
   }
 
-  public boolean isAParameterRequest() throws IOException {
+  private boolean isAParameterRequest() throws IOException {
     String secondElement = requestArray[1];
     String[] splitOnMark = secondElement.split("\\?");
     String parameterString = splitOnMark[0];
@@ -72,7 +72,7 @@ public class RequestParser {
     return parameterString.equals("/parameters");
   }
 
-  public String getDecodedParameterKey() throws IOException {
+  private String getDecodedParameterKey() throws IOException {
     String[] splitOnMark = requestArray[1].split("\\?");
     String parameters = splitOnMark[1];
     String paramsWithSpace = parameters.replaceAll("=", " = ");
