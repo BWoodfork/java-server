@@ -17,43 +17,7 @@ public class FormHandlerTest {
     formHandler = new FormHandler(tempDirectory);
     httpStatusCodes = new HTTPStatusCodes();
   }
-  
-  @Test
-  public void returnsTrueIfRequestIsAPostRequest() throws Exception {
-    request.setHTTPMethod("POST");
-    assertTrue(formHandler.isAPostRequest(request));
-  }
-  
-  @Test
-  public void returnsFalseIfRequestIsNotAPostRequest() throws Exception {
-    request.setHTTPMethod("GET");
-    assertFalse(formHandler.isAPostRequest(request));
-  }
-  
-  @Test
-  public void returnsTrueIfRequestIsAPUTRequest() throws Exception {
-    request.setHTTPMethod("PUT");
-    assertTrue(formHandler.isAPutRequest(request));
-  }
-  
-  @Test
-  public void returnsFalseIfRequestIsNotAPutRequest() throws Exception {
-    request.setHTTPMethod("GET");
-    assertFalse(formHandler.isAPutRequest(request));
-  }
-  
-  @Test
-  public void returnsTrueIfMethodIsADELETERequest() throws Exception {
-    request.setHTTPMethod("DELETE");
-    assertTrue(formHandler.isADeleteRequest(request));
-  }
-  
-  @Test
-  public void returnsFalseIfMethodIsNotADeleteRequest() throws Exception {
-    request.setHTTPMethod("GET");
-    assertFalse(formHandler.isADeleteRequest(request));
-  }
-  
+
   @Test
   public void writesSomeTextToFormFileWhenPostRequestIsMade() throws Exception {
     request.setURI("form");

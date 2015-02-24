@@ -19,19 +19,7 @@ public class FormHandler implements Responder {
     
     return formMap;
   }
-  
-  public boolean isAPostRequest(Request request) {
-    return request.getHTTPMethod().equals("POST");
-  }
 
-  public boolean isAPutRequest(Request request) {
-    return request.getHTTPMethod().equals("PUT");
-  }
-  
-  public boolean isADeleteRequest(Request request) {
-    return request.getHTTPMethod().equals("DELETE");
-  }
-  
   private Path getPath(Request request) {
     return Paths.get(directory + "/" + request.getURI()).toAbsolutePath();
   }
