@@ -26,11 +26,6 @@ public class FileHandler implements Responder {
     return URI;
   }
 
-  private Path getPath(Request request) {
-    String matchedFileString = matchRequestedFile(getDirectoryFileNames(), request);
-    return Paths.get(directory + "/" + matchedFileString).toAbsolutePath();
-  }
-
   @Override
   public Path buildResponse(Request request, HTTPStatusCodes httpStatusCodes) {
     try {
@@ -40,5 +35,10 @@ public class FileHandler implements Responder {
     }
     
     return getPath(request);
+  }
+
+  private Path getPath(Request request) {
+    String matchedFileString = matchRequestedFile(getDirectoryFileNames(), request);
+    return Paths.get(directory + "/" + matchedFileString).toAbsolutePath();
   }
 }

@@ -12,22 +12,6 @@ public class FormHandler implements Responder {
     this.directory = directory;
   }
   
-  private static HashMap<String, byte[]> getFormMap() {
-    formMap.put("POST", "data=cosby".getBytes());
-    formMap.put("PUT", "heathcliff".getBytes());
-    formMap.put("DELETE", "".getBytes());
-    
-    return formMap;
-  }
-
-  private Path getPath(Request request) {
-    return Paths.get(directory + "/" + request.getURI()).toAbsolutePath();
-  }
-  
-  private Path writeToForm(Request request) throws IOException {
-    return Files.write(getPath(request), getFormMap().get(request.getHTTPMethod()));
-  }
-  
   @Override
   public Path buildResponse(Request request, HTTPStatusCodes httpStatusCodes) {
     try {
@@ -38,5 +22,21 @@ public class FormHandler implements Responder {
     }
     
     return getPath(request);
+  }
+
+  private Path writeToForm(Request request) throws IOException {
+    return Files.write(getPath(request), getFormMap().get(request.getHTTPMethod()));
+  }
+  
+  private Path getPath(Request request) {
+    return Paths.get(directory + "/" + request.getURI()).toAbsolutePath();
+  }
+  
+  private static HashMap<String, byte[]> getFormMap() {
+    formMap.put("POST", "data=cosby".getBytes());
+    formMap.put("PUT", "heathcliff".getBytes());
+    formMap.put("DELETE", "".getBytes());
+
+    return formMap;
   }
 }
