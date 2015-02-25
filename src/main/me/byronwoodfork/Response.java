@@ -42,6 +42,6 @@ public class Response {
   }
   
   public byte[] getOptions() {
-    return "Allow: GET".getBytes();
+    return "Allow: GET\r\n".getBytes();
   }
 }

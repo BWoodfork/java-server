@@ -1,4 +1,4 @@
-package Mocks;
+package mocks;
 
 import java.io.*;
 import java.net.Socket;

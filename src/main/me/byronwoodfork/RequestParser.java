@@ -46,7 +46,8 @@ public class RequestParser {
   }
 
   public String parseURI() throws IOException {
-    return requestArray[1];
+    String[] splitOnBackslash = requestArray[1].split("/");
+    return splitOnBackslash[1];
   }
 
   private String parseHeaderField() throws IOException {

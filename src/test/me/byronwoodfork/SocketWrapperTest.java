@@ -1,4 +1,4 @@
-import Mocks.MockSocket;
+import mocks.MockSocket;
 import org.junit.Before;
 import org.junit.Test;
 

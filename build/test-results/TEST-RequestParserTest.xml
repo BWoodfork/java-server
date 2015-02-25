@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="RequestParserTest" tests="14" skipped="0" failures="0" errors="0" timestamp="2015-02-20T19:51:00" hostname="8ths-MacBook-Pro-4.local" time="0.009">
+  <properties/>
+  <testcase name="returnsTheRangeHeaderField" classname="RequestParserTest" time="0.001"/>
+  <testcase name="returnsTheRequestURIForAFile10000Request" classname="RequestParserTest" time="0.0"/>
+  <testcase name="returnsTheEntireRequestStringForAnotherURI" classname="RequestParserTest" time="0.0"/>
+  <testcase name="returnsTheByteRangeOnRangeRequests" classname="RequestParserTest" time="0.0"/>
+  <testcase name="returnsTheEntireStringRequest" classname="RequestParserTest" time="0.0"/>
+  <testcase name="returnsPOSTAsTheHTTPMethodFromTheRequest" classname="RequestParserTest" time="0.0"/>
+  <testcase name="returnsTheRequestsURIForAFile5000Request" classname="RequestParserTest" time="0.0"/>
+  <testcase name="returnsFalseIfRequestIsNotAParameterRequest" classname="RequestParserTest" time="0.0"/>
+  <testcase name="returnsGETAsTheHTTPMethodFromTheRequest" classname="RequestParserTest" time="0.0"/>
+  <testcase name="returnsASplitRequestOnEmptySpaces" classname="RequestParserTest" time="0.0"/>
+  <testcase name="returnsTrueIfRequestIsAParameterRequest" classname="RequestParserTest" time="0.001"/>
+  <testcase name="returnsTheDecodedValueOfTheParameterRequestStrings" classname="RequestParserTest" time="0.002"/>
+  <testcase name="returnsTheDecodedValueOfAnotherParameterRequest" classname="RequestParserTest" time="0.0"/>
+  <testcase name="returnsTheByteRangeWhenANegativeNumber" classname="RequestParserTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
