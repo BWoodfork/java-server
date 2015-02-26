@@ -13,8 +13,8 @@ public class FormHandlerTest {
   @Before
   public void setUp() {
     request = new Request();
-    String tempDirectory = "../java-server/temp-directory";
-    formHandler = new FormHandler(tempDirectory);
+    String testDirectory = TestDirectoryPath.testDirectory;
+    formHandler = new FormHandler(testDirectory);
     httpStatusCodes = new HTTPStatusCodes();
   }
 

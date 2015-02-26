@@ -13,19 +13,19 @@ public class FileHandlerTest {
   private Request request;
   private FileHandler fileHandler;
   private HTTPStatusCodes httpStatusCodes;
-  private String tempDirectory;
+  private String testDirectory;
   
   @Before
   public void setUp() throws Exception {
     request = new Request();
-    tempDirectory = "../java-server/temp-directory";
-    fileHandler = new FileHandler(tempDirectory);
+    testDirectory = TestDirectoryPath.testDirectory;
+    fileHandler = new FileHandler(testDirectory);
     httpStatusCodes = new HTTPStatusCodes();
   }
   
   @Test
   public void returnsACollectionOfFileNamesWhenGivenADirectory() throws Exception {
-    File file = new File(tempDirectory);
+    File file = new File(testDirectory);
     String[] fileList = file.list();
     
     assertThat(Arrays.asList(fileHandler.getDirectoryFileNames()), hasItems(fileList));

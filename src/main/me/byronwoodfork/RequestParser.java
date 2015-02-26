@@ -46,6 +46,8 @@ public class RequestParser {
   }
 
   public String parseURI() throws IOException {
+    if (requestArray[1].equals("/")) return "/";
+
     String[] splitOnBackslash = requestArray[1].split("/");
     return splitOnBackslash[1];
   }

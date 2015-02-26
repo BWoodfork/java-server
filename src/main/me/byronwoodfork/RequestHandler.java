@@ -17,12 +17,6 @@ public class RequestHandler {
       e.printStackTrace();
     }
 
-    try {
-      if (inputStream != null) inputStream.close();
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-    
     return inputStream;
   }
 
@@ -31,12 +25,6 @@ public class RequestHandler {
     
     try {
       outputStream = socket.getOutputStream();
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-    
-    try {
-      if (outputStream != null) outputStream.close();
     } catch (IOException e) {
       e.printStackTrace();
     }

@@ -2,7 +2,7 @@ import java.util.HashMap;
 import java.util.Set;
 
 public class Routes {
-  public static String directory = "../java-server/temp-directory";
+  public static String directory = "../java-server/src/test/me/byronwoodfork/unit-test-directory";
   public static String serverViewsDirectory = "../java-server/default-server-views";
   
   private HashMap<String, HashMap<String, Responder>> routesMap = new HashMap<String, HashMap<String, Responder>>();
@@ -26,10 +26,11 @@ public class Routes {
   private HashMap<String, HashMap<String, Responder>> getRoutesMap() {
     routesMap.put("file1", getFileRouteMap());
     routesMap.put("file2", getFileRouteMap());
-    routesMap.put("image.jpeg", getFileRouteMap());
+    routesMap.put("image.jpg", getFileRouteMap());
     routesMap.put("image.png", getFileRouteMap());
     routesMap.put("image.gif", getFileRouteMap());
     routesMap.put("form", getFormRouteMap());
+    routesMap.put("textfile.txt", getFileRouteMap());
     
     return routesMap;
   }
@@ -39,6 +40,7 @@ public class Routes {
   }
   
   public Responder getHandler(Request request) {
+    if (request.getURI().equals("/")) return new MethodNotAllowedHandler(serverViewsDirectory);
     if (isAURIMatch(request) && isAValidMethod(request)) return getRoutesMap().get(request.getURI()).get(request.getHTTPMethod());
     if (isAURIMatch(request) && !isAValidMethod(request)) return new MethodNotAllowedHandler(serverViewsDirectory);
     return new NotFoundHandler(serverViewsDirectory);
