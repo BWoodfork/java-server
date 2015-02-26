@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="ResponseGeneratorTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2015-02-24T15:49:17" hostname="8ths-MacBook-Pro-4.local" time="0.005">
-  <properties/>
-  <testcase name="RequestReturnsTheFullRequestAfterTheServerStartsUp" classname="ResponseGeneratorTest" time="0.004"/>
-  <testcase name="incrementsTheTheNumberOfRequestsMadeToRunnable" classname="ResponseGeneratorTest" time="0.0"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>

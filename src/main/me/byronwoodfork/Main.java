@@ -11,6 +11,6 @@ public class Main {
     RequestHandler requestHandler = new RequestHandler(socket);
     ExecutorService executorService = Executors.newFixedThreadPool(4);
     ResponseGenerator responseGenerator = new ResponseGenerator(executorService, requestHandler);
-    responseGenerator.run();
+    responseGenerator.start();
   }
 }

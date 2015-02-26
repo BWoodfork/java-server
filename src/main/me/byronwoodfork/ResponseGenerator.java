@@ -1,6 +1,5 @@
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.concurrent.ExecutorService;
 
 public class ResponseGenerator implements Runnable {
@@ -16,6 +15,7 @@ public class ResponseGenerator implements Runnable {
   }
 
   public void start() {
+
   }
 
   public void stop() {
@@ -24,21 +24,7 @@ public class ResponseGenerator implements Runnable {
   
   @Override
   public void run() {
-    executorService.submit(new Runnable() {
-      @Override
-      public void run() {
-        requests ++;
-        InputStream inputStream = requestHandler.getInputStream();
-        RequestParser requestParser = new RequestParser(inputStream);
-
-        try {
-          Request request = requestParser.parse();
-          generateResponse(request);
-        } catch (IOException e) {
-          e.printStackTrace();
-        }
-      }
-    });
+    
   }
 
   protected int getRequests() {
