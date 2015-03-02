@@ -13,15 +13,21 @@ public class FormHandler implements Responder {
   }
   
   @Override
-  public Path buildResponse(Request request, HTTPStatusCodes httpStatusCodes) {
+  public byte[] buildResponse(Request request, HTTPStatusCodes httpStatusCodes) {
     try {
       writeToForm(request);
       httpStatusCodes.setStatus(200);
     } catch (Exception e) {
       e.printStackTrace();
     }
+
+    try {
+      return Files.readAllBytes(getPath(request));
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
     
-    return getPath(request);
+    return "File Could Not Be Read".getBytes();
   }
 
   private Path writeToForm(Request request) throws IOException {
@@ -34,7 +40,7 @@ public class FormHandler implements Responder {
   
   private static HashMap<String, byte[]> getFormMap() {
     formMap.put("POST", "data=cosby".getBytes());
-    formMap.put("PUT", "heathcliff".getBytes());
+    formMap.put("PUT", "data=heathcliff".getBytes());
     formMap.put("DELETE", "".getBytes());
 
     return formMap;

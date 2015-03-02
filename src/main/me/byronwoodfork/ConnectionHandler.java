@@ -17,6 +17,7 @@ public class ConnectionHandler implements Runnable {
     RequestParser requestParser = new RequestParser(inputStream);
     try {
       Request request = requestParser.parse();
+      System.out.println(request.getFullRequest());
       generateResponse(request);
     } catch (IOException e) {
       e.printStackTrace();
@@ -31,13 +32,7 @@ public class ConnectionHandler implements Runnable {
   
   public void generateResponse(Request request) throws IOException {
     DataOutputStream dataOutputStream = new DataOutputStream(requestHandler.getOutputStream());
-    
-    byte[] body = response.getHTTPMessageBody(request);
-    dataOutputStream.write(response.getHTTPStatusMessage());
-    dataOutputStream.write(response.getContentType(request));
-    dataOutputStream.write(response.getOptions());
-    dataOutputStream.write(response.getContentLength(request));
-    dataOutputStream.write(body);
+    dataOutputStream.write(response.getResponse(request));
     dataOutputStream.flush();
   }
 }

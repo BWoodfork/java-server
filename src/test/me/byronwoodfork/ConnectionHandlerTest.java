@@ -18,7 +18,7 @@ public class ConnectionHandlerTest {
   
   @Before
   public void setUp() throws Exception {
-    inputStream = new ByteArrayInputStream("GET /textfile.txt HTTP/1.1Connection: closeHost: localhost:5000".getBytes());
+    inputStream = new ByteArrayInputStream("GET /file1 HTTP/1.1Connection: closeHost: localhost:5000".getBytes());
     byteArrayOutputStream = new ByteArrayOutputStream();
     mockSocket = new MockSocket(inputStream, byteArrayOutputStream);
     requestHandler = new RequestHandler(mockSocket);
@@ -31,11 +31,11 @@ public class ConnectionHandlerTest {
   @Test
   public void returnsFullRequestString() throws Exception {
     Request request = requestParser.parse();
-    assertEquals("GET /textfile.txt HTTP/1.1Connection: closeHost: localhost:5000", request.getFullRequest());
+    assertEquals("GET /file1 HTTP/1.1Connection: closeHost: localhost:5000", request.getFullRequest());
   }
   
-  String textoutput = "HTTP/1.1 200 OK\r\n" + "Content-Type: text/plain\r\n" +
-                      "Allow: GET\r\n" + "30\r\n\r\n" + "This sir, is a text file. Hi! ";
+  String textoutput = "HTTP/1.1 200 OK\r\n" + "Location: http://localhost:5000/\r\n" + "Content-Type: text/plain\r\n" +
+                      "Allow: GET\r\n" + "Content-Length: 14\r\n\r\n" + "file1 contents";
   
   @Test
   public void returnsTheOutputStreamInTextWhenARequestIsMade() throws Exception {

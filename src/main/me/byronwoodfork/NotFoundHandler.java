@@ -1,4 +1,5 @@
-import java.nio.file.Path;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Paths;
 
 public class NotFoundHandler implements Responder {
@@ -9,13 +10,19 @@ public class NotFoundHandler implements Responder {
   }
 
   @Override
-  public Path buildResponse(Request request, HTTPStatusCodes httpStatusCodes) {
+  public byte[] buildResponse(Request request, HTTPStatusCodes httpStatusCodes) {
     try {
       httpStatusCodes.setStatus(404);
     } catch (Exception e) {
       e.printStackTrace();
     }
 
-    return Paths.get(serverViewsDirectory + "/404.html");
+    try {
+      return Files.readAllBytes(Paths.get(serverViewsDirectory + "/404.html"));
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    
+    return "File Could Not Be Read".getBytes();
   }
 }

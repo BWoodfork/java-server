@@ -17,12 +17,12 @@ public class FormHandlerTest {
     formHandler = new FormHandler(testDirectory);
     httpStatusCodes = new HTTPStatusCodes();
   }
-
+ 
   @Test
   public void writesSomeTextToFormFileWhenPostRequestIsMade() throws Exception {
     request.setURI("form");
     request.setHTTPMethod("POST");
-    byte[] fileBytes = Files.readAllBytes(formHandler.buildResponse(request, httpStatusCodes));
+    byte[] fileBytes = formHandler.buildResponse(request, httpStatusCodes);
     
     assertEquals("data=cosby", new String(fileBytes));
     assertEquals("200 OK", httpStatusCodes.getStatus());
@@ -32,9 +32,9 @@ public class FormHandlerTest {
   public void writesHeathCliffWhenPutRequestIsMade() throws Exception {
     request.setURI("form");
     request.setHTTPMethod("PUT");
-    byte[] fileBytes = Files.readAllBytes(formHandler.buildResponse(request, httpStatusCodes));
+    byte[] fileBytes = formHandler.buildResponse(request, httpStatusCodes);
 
-    assertEquals("heathcliff", new String(fileBytes));
+    assertEquals("data=heathcliff", new String(fileBytes));
     assertEquals("200 OK", httpStatusCodes.getStatus());
   }
 
@@ -42,7 +42,7 @@ public class FormHandlerTest {
   public void deletesAllTextFromFileWhenDeleteRequestIsMade() throws Exception {
     request.setURI("form");
     request.setHTTPMethod("DELETE");
-    byte[] fileBytes = Files.readAllBytes(formHandler.buildResponse(request, httpStatusCodes));
+    byte[] fileBytes = formHandler.buildResponse(request, httpStatusCodes);
 
     assertEquals("", new String(fileBytes));
     assertEquals("200 OK", httpStatusCodes.getStatus());

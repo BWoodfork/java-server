@@ -12,7 +12,7 @@ public class NotFoundHandlerTest {
     HTTPStatusCodes httpStatusCodes = new HTTPStatusCodes();
     String serverViewsDirectory = "../java-server/default-server-views";
     NotFoundHandler notFoundHandler = new NotFoundHandler(serverViewsDirectory);
-    byte[] fileBytes = Files.readAllBytes(notFoundHandler.buildResponse(request, httpStatusCodes));
+    byte[] fileBytes = notFoundHandler.buildResponse(request, httpStatusCodes);
     
     assertTrue(new String(fileBytes).contains("404 File Not Found"));
     assertEquals("404 Not Found", httpStatusCodes.getStatus());

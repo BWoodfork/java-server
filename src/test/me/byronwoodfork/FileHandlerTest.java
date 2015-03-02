@@ -2,7 +2,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.File;
-import java.nio.file.Files;
 import java.util.Arrays;
 
 import static org.junit.Assert.assertEquals;
@@ -67,12 +66,13 @@ public class FileHandlerTest {
   @Test
   public void returnsThePathOfTheRequestedURIFile() throws Exception {
     request.setURI("file1");
-    byte[] fileBytes = Files.readAllBytes(fileHandler.buildResponse(request, httpStatusCodes));
+    byte[] fileBytes = fileHandler.buildResponse(request, httpStatusCodes);
     assertEquals("There is some text in here bro", new String(fileBytes));
   }
 
   @Test
   public void setsHTTPStatusTo200OKWhenFileIsSuccessfullyRetrieved() throws Exception {
+    request.setURI("file1");
     fileHandler.buildResponse(request, httpStatusCodes);
     assertEquals("200 OK", httpStatusCodes.getStatus());
   }

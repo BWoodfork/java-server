@@ -1,7 +1,6 @@
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOError;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -27,14 +26,20 @@ public class FileHandler implements Responder {
   }
 
   @Override
-  public Path buildResponse(Request request, HTTPStatusCodes httpStatusCodes) {
+  public byte[] buildResponse(Request request, HTTPStatusCodes httpStatusCodes) {
     try {
       httpStatusCodes.setStatus(200);
     } catch (Exception e) {
       e.printStackTrace();
     }
     
-    return getPath(request);
+    try {
+      return Files.readAllBytes(getPath(request));
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    
+    return "File Could Not Be Read".getBytes();
   }
 
   private Path getPath(Request request) {

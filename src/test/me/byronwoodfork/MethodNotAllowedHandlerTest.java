@@ -12,7 +12,7 @@ public class MethodNotAllowedHandlerTest {
     HTTPStatusCodes httpStatusCodes = new HTTPStatusCodes();
     String serverViewsDirectory = "../java-server/default-server-views";
     MethodNotAllowedHandler methodNotAllowedHandler = new MethodNotAllowedHandler(serverViewsDirectory);
-    byte[] fileBytes = Files.readAllBytes(methodNotAllowedHandler.buildResponse(request, httpStatusCodes));
+    byte[] fileBytes = methodNotAllowedHandler.buildResponse(request, httpStatusCodes);
 
     assertTrue(new String(fileBytes).contains("405 Method Not Allowed"));
     assertEquals("405 Method Not Allowed", httpStatusCodes.getStatus());

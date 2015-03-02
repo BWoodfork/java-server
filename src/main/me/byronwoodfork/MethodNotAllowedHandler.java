@@ -1,4 +1,5 @@
-import java.nio.file.Path;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Paths;
 
 public class MethodNotAllowedHandler implements Responder {
@@ -9,13 +10,19 @@ public class MethodNotAllowedHandler implements Responder {
   }
 
   @Override
-  public Path buildResponse(Request request, HTTPStatusCodes httpStatusCodes) {
+  public byte[] buildResponse(Request request, HTTPStatusCodes httpStatusCodes) {
     try {
       httpStatusCodes.setStatus(405);
     } catch (Exception e) {
       e.printStackTrace();
     }
+
+    try {
+      return Files.readAllBytes(Paths.get(serverViewsDirectory + "/405.html"));
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
     
-    return Paths.get(serverViewsDirectory + "/405.html");
+    return "File Could Not Be Read".getBytes();
   }
 }
