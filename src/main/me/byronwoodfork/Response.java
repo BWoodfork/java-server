@@ -1,12 +1,8 @@
-import javax.activation.FileTypeMap;
-import javax.activation.MimetypesFileTypeMap;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.net.URLConnection;
-import java.nio.file.Files;
-import java.nio.file.Path;
 
 public class Response {
-  private Path path;
   private Routes routes;
   private HTTPStatusCodes httpStatusCodes;
   
@@ -14,27 +10,25 @@ public class Response {
     routes = new Routes();
     this.httpStatusCodes = httpStatusCodes;
   }
-
+  
   public byte[] getHTTPStatusMessage() {
     return httpStatusCodes.getFormattedStatusMessage().getBytes();
   }
 
   public byte[] getHTTPMessageBody(Request request) {
-    path = routes.getHandler(request).buildResponse(request, httpStatusCodes);
+    return routes.getHandler(request).buildResponse(request, httpStatusCodes);
+  }
 
-    try {
-      return Files.readAllBytes(path);
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-    
-    return "These are not the droids you are looking for".getBytes();
+  public byte[] getLocation() {
+    String location = "Location: http://localhost:5000/" + "\r\n";
+
+    return location.getBytes();
   }
   
   public byte[] getContentType(Request request) {
     String type = URLConnection.guessContentTypeFromName(request.getURI());
     if (type == null) {
-      type = "text/html";
+      type = "text/plain";
     }
     
     String formatted = "Content-Type: " + type + "\r\n";
@@ -42,11 +36,28 @@ public class Response {
   }
   
   public byte[] getContentLength(Request request) {
-    String type = Integer.toString(getHTTPMessageBody(request).length) + "\r\n\r\n";
-    return type.getBytes();
+    String httpMessageBodySize = Integer.toString(getHTTPMessageBody(request).length);
+    String formattedSizeHeader = "Content-Length: " + httpMessageBodySize + "\r\n\r\n";
+    return formattedSizeHeader.getBytes();
   }
   
-  public byte[] getOptions() {
-    return "Allow: GET\r\n".getBytes();
+  public byte[] getAllowHeader(Request request) {
+    String allowHeader = "Allow: " + routes.getOptions(request) + "\r\n";
+    
+    return allowHeader.getBytes();
+  }
+  
+  public byte[] getResponse(Request request) throws IOException {
+    ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+    byte[] body = getHTTPMessageBody(request);
+    
+    byteArrayOutputStream.write(getHTTPStatusMessage());
+    byteArrayOutputStream.write(getLocation());
+    byteArrayOutputStream.write(getContentType(request));
+    byteArrayOutputStream.write(getAllowHeader(request));
+    byteArrayOutputStream.write(getContentLength(request));
+    byteArrayOutputStream.write(body);
+    
+    return byteArrayOutputStream.toByteArray();
   }
 }

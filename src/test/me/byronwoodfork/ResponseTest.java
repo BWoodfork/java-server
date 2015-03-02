@@ -48,7 +48,7 @@ public class ResponseTest {
     request.setHTTPMethod("GET");
     request.setURI("file1");
 
-    assertEquals("There is some text in here bro", new String(response.getHTTPMessageBody(request)));
+    assertEquals("file1 contents", new String(response.getHTTPMessageBody(request)));
   }
   
   @Test
@@ -69,11 +69,19 @@ public class ResponseTest {
   }
   
   @Test
+  public void returnsTheServerLocation() throws Exception {
+    request.setHTTPMethod("GET");
+    request.setURI("file1");
+
+    assertEquals("Location: http://localhost:5000/\r\n", new String(response.getLocation()));
+  }
+  
+  @Test
   public void returnsTheContentTypeForThePageThatIsDisplayedAfterRequestIsMade() throws Exception {
     request.setHTTPMethod("GET");
     request.setURI("file1");
 
-    assertEquals("Content-Type: text/html\r\n", new String(response.getContentType(request)));
+    assertEquals("Content-Type: text/plain\r\n", new String(response.getContentType(request)));
   }
   
   @Test
@@ -89,7 +97,7 @@ public class ResponseTest {
     request.setHTTPMethod("GET");
     request.setURI("file1");
 
-    assertEquals("30\r\n\r\n", new String(response.getContentLength(request)));
+    assertEquals("Content-Length: 14\r\n\r\n", new String(response.getContentLength(request)));
   }
 
   @Test
@@ -97,7 +105,7 @@ public class ResponseTest {
     request.setHTTPMethod("GET");
     request.setURI("image.png");
     
-    assertEquals("11324\r\n\r\n", new String(response.getContentLength(request)));
+    assertEquals("Content-Length: 240691\r\n\r\n", new String(response.getContentLength(request)));
   }
   
   @Test
@@ -105,6 +113,28 @@ public class ResponseTest {
     request.setHTTPMethod("GET");
     request.setURI("SomeFileThatDoesNotExist");
     
-    assertEquals("122\r\n\r\n", new String(response.getContentLength(request)));
+    assertEquals("Content-Length: 122\r\n\r\n", new String(response.getContentLength(request)));
+  }
+  
+  @Test
+  public void returnsTheFormattedAllowHeader() throws Exception {
+    request.setURI("file1");
+    
+    assertEquals("Allow: GET\r\n", new String(response.getAllowHeader(request)));
+  }
+  
+  @Test
+  public void returnsTheFormattedAllowHeaderForFormRoute() throws Exception {
+    request.setURI("form");
+    
+    assertEquals("Allow: DELETE,POST,GET,PUT\r\n", new String(response.getAllowHeader(request)));
+  }
+  
+  @Test
+  public void returnsAllowGETForCobspecRoutes() throws Exception {
+    request.setHTTPMethod("GET");
+    request.setURI("log");
+
+    assertEquals("Allow: GET\r\n", new String(response.getAllowHeader(request)));
   }
 }
