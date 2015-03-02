@@ -21,6 +21,7 @@ public class BasicAuthHandlerTest {
     String testDirectory = TestDirectoryPath.testDirectory;
     BasicAuthHandler basicAuthHandler = new BasicAuthHandler(testDirectory);
     Request request = new Request();
+    request.setHTTPMethod("GET");
     request.setURI("logs");
     HTTPStatusCodes httpStatusCodes = new HTTPStatusCodes();
     request.setBasicRequestStatus(true);
