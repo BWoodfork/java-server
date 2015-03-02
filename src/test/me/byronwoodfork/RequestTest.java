@@ -2,6 +2,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 public class RequestTest {
   private Request request;
@@ -39,5 +41,29 @@ public class RequestTest {
   public void returnsTheByteRangeAfterItHasBeenSet() throws Exception {
     request.setByteRange("bytes=0-4");
     assertEquals("bytes=0-4", request.getByteRange());
+  }
+  
+  @Test
+  public void returnsTrueIfRequestIsARootRequest() throws Exception {
+    request.setURI("/");
+    assertTrue(request.isARootRequest());
+  }
+  
+  @Test
+  public void returnsTrueIfRequestHeaderFieldIsAnAuthorizationRequest() throws Exception {
+    request.setBasicRequestStatus(true);
+    assertTrue(request.isABasicAuthRequest());
+  }
+  
+  @Test
+  public void returnsBasicAuthCredentials() throws Exception {
+    request.setBasicAuthCredentials("Some Credentials");
+    assertEquals("Some Credentials", request.getBasicAuthCredentials());
+  }
+  
+  @Test
+  public void returnsEtagFromRequest() throws Exception {
+    request.setEtag("64823rhdsfsaihf");
+    assertEquals("64823rhdsfsaihf", request.getEtag());
   }
 }

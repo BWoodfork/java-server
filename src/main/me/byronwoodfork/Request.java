@@ -4,6 +4,11 @@ public class Request {
   private String headerField;
   private String byteRange;
   private String fullRequest;
+  private String basicAuthCredentials;
+  private boolean basic;
+  private String etag;
+  private String parameterKey;
+  private boolean parameterStatus;
 
   public void setHTTPMethod(String httpMethod) {
     this.httpMethod = httpMethod;
@@ -43,5 +48,33 @@ public class Request {
 
   public String getFullRequest() {
     return fullRequest;
+  }
+
+  public boolean isARootRequest() {
+    return getURI().equals("/");
+  }
+  
+  public void setBasicRequestStatus(boolean basic) {
+    this.basic = basic;
+  }
+  
+  public boolean isABasicAuthRequest() {
+    return basic;
+  }
+  
+  public void setBasicAuthCredentials(String basicAuthCredentials) {
+    this.basicAuthCredentials = basicAuthCredentials;
+  }
+  
+  public String getBasicAuthCredentials() {
+    return basicAuthCredentials;
+  }
+
+  public void setEtag(String etag) {
+    this.etag = etag;
+  }
+
+  public String getEtag() {
+    return etag;
   }
 }
