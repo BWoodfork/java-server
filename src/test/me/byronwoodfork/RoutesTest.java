@@ -61,4 +61,36 @@ public class RoutesTest {
     
     assertThat(routes.getHandler(request), instanceOf(NotFoundHandler.class));
   }
+  
+  @Test
+  public void returnsRootHandlerWhenRootRequestIsMade() throws Exception {
+    request.setHTTPMethod("GET");
+    request.setURI("/");
+    
+    assertThat(routes.getHandler(request), instanceOf(RootHandler.class));
+  }
+  
+  @Test
+  public void returnsTheMethodOptionsForFile1Path() throws Exception {
+    request.setHTTPMethod("OPTIONS");
+    request.setURI("file1");
+
+    assertEquals("GET", routes.getOptions(request));
+  }
+
+  @Test
+  public void returnsTheMethodOptionsForFormPath() throws Exception {
+    request.setHTTPMethod("OPTIONS");
+    request.setURI("form");
+
+    assertEquals("DELETE,POST,GET,PUT", routes.getOptions(request));
+  }
+  
+  @Test
+  public void returnsGETForCobspecRoutes() throws Exception {
+    request.setHTTPMethod("GET");
+    request.setURI("log");
+    
+    assertEquals("GET", routes.getOptions(request));
+  }
 }
