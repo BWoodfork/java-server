@@ -23,57 +23,18 @@ public class FileHandlerTest {
   }
   
   @Test
-  public void returnsACollectionOfFileNamesWhenGivenADirectory() throws Exception {
-    File file = new File(testDirectory);
-    String[] fileList = file.list();
-    
-    assertThat(Arrays.asList(fileHandler.getDirectoryFileNames()), hasItems(fileList));
-  }
-  
-  @Test(expected = NullPointerException.class)
-  public void throwsNullPointerExceptionWhenDirectoryDoesNotExist() throws Exception {
-    String directory = "";
-    File file = new File(directory);
-    String[] fileList = file.list();
-
-    assertThat(Arrays.asList(fileHandler.getDirectoryFileNames()), hasItems(fileList));
-  }
-  
-  @Test
-  public void returnsTheURIThatMatchesAURIFromAGivenCollectionOfFileNames() throws Exception {
-    String[] fileList = {"file1", "file2", "file3"};
-    request.setURI("file1");
-    
-    assertEquals("file1", fileHandler.matchRequestedFile(fileList, request));
-  }
-  
-  @Test
-  public void returnsTheURIForFile2IfItMatchesAURIInACollectionOfFileNames() throws Exception {
-    String[] fileList = {"file1", "file2", "file3"};
-    request.setURI("file2");
-
-    assertEquals("file2", fileHandler.matchRequestedFile(fileList, request));
-  }
-  
-  @Test
-  public void returnsANullPointerExceptionStringIfRequestedURIDoesNotExistInCollection() throws Exception {
-    String [] fileList = {"file1", "file2", "file3"};
-    request.setURI("SomeFileNameThatDoesNotExistInFileListArray");
-
-    assertEquals(request.getURI(), fileHandler.matchRequestedFile(fileList, request));
-  }
-
-  @Test
   public void returnsThePathOfTheRequestedURIFile() throws Exception {
     request.setURI("file1");
     byte[] fileBytes = fileHandler.buildResponse(request, httpStatusCodes);
     assertEquals("There is some text in here bro", new String(fileBytes));
+    assertEquals("200 OK", httpStatusCodes.getStatus());
   }
 
   @Test
-  public void setsHTTPStatusTo200OKWhenFileIsSuccessfullyRetrieved() throws Exception {
-    request.setURI("file1");
+  public void a() throws Exception {
+    request.setURI("SomeURIThatDoesNotExist");
     fileHandler.buildResponse(request, httpStatusCodes);
-    assertEquals("200 OK", httpStatusCodes.getStatus());
+
+    assertEquals("File Could Not Be Read", new String(fileHandler.buildResponse(request, httpStatusCodes)));
   }
 }
