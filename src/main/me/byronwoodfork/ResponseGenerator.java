@@ -1,28 +1,28 @@
+import java.io.IOException;
+import java.net.ServerSocket;
 import java.util.concurrent.ExecutorService;
 
 public class ResponseGenerator {
-  private ExecutorService executorService;
-  private int requests = 0;
-  private RequestHandler requestHandler;
   private Response response;
+  private ExecutorService pool;
+  private int port;
 
-  public ResponseGenerator(ExecutorService executorService, RequestHandler requestHandler) {
-    this.executorService = executorService;
-    this.requestHandler = requestHandler;
-    HTTPStatusCodes httpStatusCodes = new HTTPStatusCodes();
-    response = new Response(httpStatusCodes);
+  public ResponseGenerator(ExecutorService pool, Response response, int port) {
+    this.pool = pool;
+    this.response = response;
+    this.port = port;
   }
+  
+  public void start() throws IOException {
+    ServerSocket serverSocket = new ServerSocket(port);
 
-  public void start() {
-    requests++;
-    executorService.execute(new ConnectionHandler(requestHandler, response));
-  }
-
-  protected int getRequests() {
-    return requests;
-  }
-
-  public String getRequest() {
-    return null;
+    while (true) {
+      try {
+        RequestHandler requestHandler = new RequestHandler(serverSocket.accept());
+        pool.execute(new ConnectionHandler(requestHandler, response));
+      } catch (IOException e) {
+       e.printStackTrace();
+      }
+    }
   }
 }
