@@ -7,6 +7,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class RequestHandlerTest {
   private InputStream inputStream;
@@ -16,25 +17,19 @@ public class RequestHandlerTest {
   public void returnsTheInputStreamOfTheSocket() throws Exception {
     inputStream = new ByteArrayInputStream("GET / HTTP/1.1".getBytes());
     byteArrayOutputStream = new ByteArrayOutputStream();
-    byteArrayOutputStream.write("HTTP/1.1 200 OK".getBytes());
-
     MockSocket mockSocket = new MockSocket(inputStream, byteArrayOutputStream);
     RequestHandler requestHandler = new RequestHandler(mockSocket);
-    SocketWrapper socketWrapper = new SocketWrapper(mockSocket);
-    
-    assertEquals(socketWrapper.getSocketInputStream(), requestHandler.getInputStream());
+
+    assertEquals(inputStream, requestHandler.getInputStream());
   }
   
   @Test
   public void returnsTheOutputStreamOfTheSocket() throws Exception {
     inputStream = new ByteArrayInputStream("GET / HTTP/1.1".getBytes());
     byteArrayOutputStream = new ByteArrayOutputStream();
-    byteArrayOutputStream.write("HTTP/1.1 200 OK".getBytes());
-    
     MockSocket mockSocket = new MockSocket(inputStream, byteArrayOutputStream);
     RequestHandler requestHandler = new RequestHandler(mockSocket);
-    SocketWrapper socketWrapper = new SocketWrapper(mockSocket);
-    
-    assertEquals(socketWrapper.getSocketOutputStream(), requestHandler.getOutputStream());
+
+    assertEquals(byteArrayOutputStream, requestHandler.getOutputStream());
   }
 }

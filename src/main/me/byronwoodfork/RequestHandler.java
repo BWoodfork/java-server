@@ -10,14 +10,13 @@ public class RequestHandler {
 
   protected InputStream getInputStream() {
     InputStream inputStream = null;
-    
-    try {
-      inputStream = socket.getInputStream();
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
+      try {
+        inputStream = socket.getInputStream();
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
 
-    return inputStream;
+      return inputStream;
   }
 
   protected OutputStream getOutputStream() {
@@ -30,5 +29,13 @@ public class RequestHandler {
     }
     
     return outputStream;
+  }
+  
+  protected void closeSocket() {
+    try {
+      socket.close();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 }
