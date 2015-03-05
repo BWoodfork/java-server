@@ -15,21 +15,17 @@ public class ConnectionHandler implements Runnable {
   public void run() {
     InputStream inputStream = requestHandler.getInputStream();
     RequestParser requestParser = new RequestParser(inputStream);
-    try {
-      Request request = requestParser.parse();
-      System.out.println(request.getFullRequest());
-      generateResponse(request);
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
+      try {
+        Request request = requestParser.parse();
+        System.out.println(request.getFullRequest());
+        generateResponse(request);
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
 
-    try {
-      inputStream.close();
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
+    requestHandler.closeSocket();
   }
-  
+
   public void generateResponse(Request request) throws IOException {
     DataOutputStream dataOutputStream = new DataOutputStream(requestHandler.getOutputStream());
     dataOutputStream.write(response.getResponse(request));

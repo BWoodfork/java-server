@@ -24,7 +24,9 @@ public class ConnectionHandlerTest {
     requestHandler = new RequestHandler(mockSocket);
     requestParser = new RequestParser(inputStream);
     httpStatusCodes = new HTTPStatusCodes();
-    response = new Response(httpStatusCodes);
+    String testDirectory = TestDirectoryPath.testDirectory;
+    Routes routes = new Routes(testDirectory);
+    response = new Response(httpStatusCodes, routes);
     connectionHandler = new ConnectionHandler(requestHandler, response);
   }
   
