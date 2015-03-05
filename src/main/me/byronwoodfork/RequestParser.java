@@ -1,8 +1,5 @@
 import javax.xml.bind.DatatypeConverter;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.URLDecoder;
 
 public class RequestParser {
@@ -18,19 +15,20 @@ public class RequestParser {
     String requestString = convertRequestToString();
     requestArray = requestString.split(" ");
 
+    request.setFullRequest(requestString);
     request.setHTTPMethod(parseHTTPMethod());
     request.setURI(parseURI());
     request.setHeaderField(parseHeaderField());
     request.setByteRange(getByteRange());
-    request.setFullRequest(requestString);
     request.setBasicRequestStatus(isABasicAuthRequest());
     request.setBasicAuthCredentials(parseBasicAuthCredentials());
     request.setEtag(parseEtag());
+    request.setParameterValues(getDecodedParameterKey());
 
     return request;
   }
   
-  public String convertRequestToString() throws IOException {
+  private String convertRequestToString() throws IOException {
     InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
     BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
 
@@ -42,7 +40,7 @@ public class RequestParser {
       requestBuilder.append(line);
       if (line.equals("")) break;
     } while (bufferedReader.ready());
-
+    
     return requestBuilder.toString();
   }
 
@@ -55,8 +53,9 @@ public class RequestParser {
   }
 
   private String parseURI() throws IOException {
+    if (isAParameterRequest()) return "parameters";
     if (isARootRequest()) return "/";
-
+    
     String[] splitOnBackslash = requestArray[1].split("/");
     return splitOnBackslash[1];
   }
@@ -73,7 +72,7 @@ public class RequestParser {
   private String getByteRange() throws IOException {
     String[] splitOnConnection = requestArray[3].split("Connection:");
     String[] splitOnBytes = splitOnConnection[0].split("bytes=");
-    
+
     try {
       return splitOnBytes[1];
     } catch (ArrayIndexOutOfBoundsException e){}
@@ -82,20 +81,28 @@ public class RequestParser {
   }
 
   private boolean isAParameterRequest() throws IOException {
-    String secondElement = requestArray[1];
-    String[] splitOnMark = secondElement.split("\\?");
-    String parameterString = splitOnMark[0];
+    try {
+      String secondElement = requestArray[1];
+      String[] splitOnMark = secondElement.split("\\?");
+      String parameterString = splitOnMark[0];
 
-    return parameterString.equals("/parameters");
+      return parameterString.equals("/parameters");
+    } catch (ArrayIndexOutOfBoundsException e) {}
+    
+    return false;
   }
 
   private String getDecodedParameterKey() throws IOException {
     String[] splitOnMark = requestArray[1].split("\\?");
-    String parameters = splitOnMark[1];
-    String paramsWithSpace = parameters.replaceAll("=", " = ");
-    String paramsWithAmpSpace = paramsWithSpace.replaceAll("&", " ");
+
+    try {
+      String parameters = splitOnMark[1];
+      String paramsWithSpace = parameters.replaceAll("=", " = ");
+      String paramsWithAmpSpace = paramsWithSpace.replaceAll("&", " ");
+      return URLDecoder.decode(paramsWithAmpSpace, "UTF-8");
+    } catch (ArrayIndexOutOfBoundsException e) {}
     
-    return URLDecoder.decode(paramsWithAmpSpace, "UTF-8");
+    return "No Parameter Key Exists";
   }
   
   private boolean isABasicAuthRequest() throws IOException {
@@ -104,7 +111,7 @@ public class RequestParser {
 
   private String parseBasicAuthCredentials() throws IOException {
     String[] splitAtEndOfCredentials = requestArray[4].split("Connection:");
-    
+
     byte[] base64String = DatatypeConverter.parseBase64Binary(splitAtEndOfCredentials[0]);
     return new String(base64String);
   }
