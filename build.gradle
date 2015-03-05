@@ -1,4 +1,5 @@
 apply plugin: 'java'
+apply plugin: 'idea'
 
 sourceCompatibility = 1.7
 version = '1.0'
@@ -8,6 +9,7 @@ repositories {
 }
 
 dependencies {
+	compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.3.2'
 	testCompile group: 'junit', name: 'junit', version: '4.11'
 }
 
@@ -20,6 +22,12 @@ sourceSets {
 	test {
 		java {
 			srcDir 'src/test/me/byronwoodfork'
+		}
+	}
+
+	test {
+		testLogging {
+			events "passed", "skipped", "failed", "standardOut", "standardError"
 		}
 	}
 }

@@ -1,5 +1,3 @@
-import com.sun.deploy.util.StringUtils;
-
 import java.io.File;
 import java.util.HashMap;
 import java.util.Set;
@@ -120,7 +118,7 @@ public class Routes {
   
   public String getOptions(Request request) {
     try {
-      return StringUtils.join(getRoutesMap().get(request.getURI()).keySet(), ",");
+      return String.join(",", getRoutesMap().get(request.getURI()).keySet());
     } catch (NullPointerException e) {
       
       return "GET";

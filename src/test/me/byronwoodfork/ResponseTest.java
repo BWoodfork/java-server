@@ -8,11 +8,14 @@ public class ResponseTest {
   private Request request;
   private HTTPStatusCodes httpStatusCodes;
   private Response response;
+  private Routes routes;
   
   @Before
   public void setUp() throws Exception {
     httpStatusCodes = new HTTPStatusCodes();
-    response = new Response(httpStatusCodes);
+    String testDirectory = TestDirectoryPath.testDirectory;
+    routes = new Routes(testDirectory);
+    response = new Response(httpStatusCodes, routes);
     request = new Request();
   }
   
@@ -53,7 +56,7 @@ public class ResponseTest {
   
   @Test
   public void returnsThe404MessageBodyWhenFileNotFound() throws Exception {
-    Response response = new Response(httpStatusCodes);
+    Response response = new Response(httpStatusCodes, routes);
     request.setHTTPMethod("GET");
     request.setURI("SomeURIThatDoesNotExist");
     
@@ -105,7 +108,7 @@ public class ResponseTest {
     request.setHTTPMethod("GET");
     request.setURI("image.png");
     
-    assertEquals("Content-Length: 240691\r\n\r\n", new String(response.getContentLength(request)));
+    assertEquals("Content-Length: 11324\r\n\r\n", new String(response.getContentLength(request)));
   }
   
   @Test

@@ -26,7 +26,7 @@ public class FileHandlerTest {
   public void returnsThePathOfTheRequestedURIFile() throws Exception {
     request.setURI("file1");
     byte[] fileBytes = fileHandler.buildResponse(request, httpStatusCodes);
-    assertEquals("There is some text in here bro", new String(fileBytes));
+    assertEquals("file1 contents", new String(fileBytes));
     assertEquals("200 OK", httpStatusCodes.getStatus());
   }
 

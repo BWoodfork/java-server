@@ -6,8 +6,8 @@ public class Response {
   private Routes routes;
   private HTTPStatusCodes httpStatusCodes;
   
-  public Response(HTTPStatusCodes httpStatusCodes) {
-    routes = new Routes();
+  public Response(HTTPStatusCodes httpStatusCodes, Routes routes) {
+    this.routes = routes;
     this.httpStatusCodes = httpStatusCodes;
   }
   
@@ -50,14 +50,14 @@ public class Response {
   public byte[] getResponse(Request request) throws IOException {
     ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
     byte[] body = getHTTPMessageBody(request);
-    
+
     byteArrayOutputStream.write(getHTTPStatusMessage());
     byteArrayOutputStream.write(getLocation());
     byteArrayOutputStream.write(getContentType(request));
     byteArrayOutputStream.write(getAllowHeader(request));
     byteArrayOutputStream.write(getContentLength(request));
     byteArrayOutputStream.write(body);
-    
+
     return byteArrayOutputStream.toByteArray();
   }
 }

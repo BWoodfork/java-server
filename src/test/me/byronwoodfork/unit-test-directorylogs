@@ -1,2 +1,0 @@
-GET /file1 HTTP/1.1Connection: closeHost: localhost:5000
-GET /file1 HTTP/1.1Range: bytes=0-4Connection: closeHost: localhost:5000
