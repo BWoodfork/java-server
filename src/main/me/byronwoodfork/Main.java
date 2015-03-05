@@ -1,18 +1,15 @@
 import java.io.IOException;
-import java.net.ServerSocket;
-import java.net.Socket;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class Main {
   public static void main(String[] args) throws IOException {
-    ServerSocket serverSocket = new ServerSocket(5000);
-    while (true) {
-      Socket socket = serverSocket.accept();
-      RequestHandler requestHandler = new RequestHandler(socket);
-      ExecutorService executorService = Executors.newFixedThreadPool(4);
-      ResponseGenerator responseGenerator = new ResponseGenerator(executorService, requestHandler);
-      responseGenerator.start();
-    }
+    String directory = "../cob_spec/public";
+    ExecutorService pool = Executors.newCachedThreadPool();
+    HTTPStatusCodes httpStatusCodes = new HTTPStatusCodes();
+    Routes routes = new Routes(directory);
+    Response response = new Response(httpStatusCodes, routes);
+    ResponseGenerator responseGenerator = new ResponseGenerator(pool, response, 5000);
+    responseGenerator.start();
   }
 }

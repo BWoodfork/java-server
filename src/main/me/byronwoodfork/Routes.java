@@ -1,13 +1,17 @@
 import com.sun.deploy.util.StringUtils;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Set;
 
 public class Routes {
-//  public static String directory = "../java-server/src/test/me/byronwoodfork/unit-test-directory";
-  public static String directory = "../cob_spec/public";
+  private String directory;
   public static String serverViewsDirectory = "../java-server/default-server-views";
   
+  public Routes(String directory) {
+    this.directory = directory;
+  }
+
   private HashMap<String, HashMap<String, Responder>> routesMap = new HashMap<String, HashMap<String, Responder>>();
   private HashMap<String, Responder> formRouteMap = new HashMap<String, Responder>();
   private HashMap<String, Responder> fileRouteMap = new HashMap<String, Responder>();
@@ -17,7 +21,8 @@ public class Routes {
   private HashMap<String, Responder> rootMap = new HashMap<String, Responder>();
   private HashMap<String, Responder> patchContentMap = new HashMap<String, Responder>();
   private HashMap<String, Responder> partialContentMap = new HashMap<String, Responder>();
-  
+  private HashMap<String, Responder> parameterMap = new HashMap<String, Responder>();
+
   private HashMap<String, Responder> getFileRouteMap() {
     fileRouteMap.put("GET", new FileHandler(directory));
     return fileRouteMap;
@@ -73,6 +78,12 @@ public class Routes {
     return partialContentMap;
   }
   
+  private HashMap<String, Responder> getParameterMap() {
+    parameterMap.put("GET", new ParameterHandler());
+    
+    return parameterMap;
+  }
+  
   private HashMap<String, HashMap<String, Responder>> getRoutesMap() {
     routesMap.put("/", getRootMap());
     routesMap.put("file1", getFileRouteMap());
@@ -87,15 +98,13 @@ public class Routes {
     routesMap.put("redirect", getRedirectMap());
     routesMap.put("patch-content.txt", getPatchContentMap());
     routesMap.put("partial_content.txt", getPartialContentmap());
+    routesMap.put("parameters", getParameterMap());
 
     return routesMap;
   }
-
-  public boolean isAValidMethod(Request request) {
-    return isAURIMatch(request) && getRoutesMap().get(request.getURI()).containsKey(request.getHTTPMethod());
-  }
   
   public Responder getHandler(Request request) {
+    if (!isAURIMatch(request) && isADirectoryFileMatch(getDirectoryFileNames(), request)) return new FileHandler(directory);
     if (isAURIMatch(request) && isAValidMethod(request)) return getRoutesMap().get(request.getURI()).get(request.getHTTPMethod());
     if (isAURIMatch(request) && !isAValidMethod(request)) return new MethodNotAllowedHandler(serverViewsDirectory);
     return new NotFoundHandler(serverViewsDirectory);
@@ -103,6 +112,19 @@ public class Routes {
   
   private Set<String> getRouteKeySet() {
     return getRoutesMap().keySet();
+  }
+
+  public boolean isAValidMethod(Request request) {
+    return isAURIMatch(request) && getRoutesMap().get(request.getURI()).containsKey(request.getHTTPMethod());
+  }
+  
+  public String getOptions(Request request) {
+    try {
+      return StringUtils.join(getRoutesMap().get(request.getURI()).keySet(), ",");
+    } catch (NullPointerException e) {
+      
+      return "GET";
+    }
   }
   
   private boolean isAURIMatch(Request request) {
@@ -114,13 +136,18 @@ public class Routes {
 
     return false;
   }
+  
+  public String[] getDirectoryFileNames() {
+    File file = new File(directory);
+    return file.list();
+  }
 
-  public String getOptions(Request request) {
-    try {
-      return StringUtils.join(getRoutesMap().get(request.getURI()).keySet(), ",");
-    } catch (NullPointerException e) {
-      
-      return "GET";
+  public boolean isADirectoryFileMatch(String[] fileList, Request request) {
+    String URI = request.getURI();
+    for (String file : fileList) {
+      if (file.equals(URI)) return true;
     }
+    
+    return false;
   }
 }

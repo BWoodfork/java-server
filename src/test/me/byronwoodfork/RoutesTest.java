@@ -1,17 +1,23 @@
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.File;
+import java.util.Arrays;
+
 import static org.hamcrest.core.IsInstanceOf.instanceOf;
 import static org.junit.Assert.*;
+import static org.junit.matchers.JUnitMatchers.hasItems;
 
 public class RoutesTest {
   Request request;
   Routes routes;
+  String testDirectory;
 
   @Before
   public void setUp() throws Exception {
     request = new Request();
-    routes = new Routes();
+    testDirectory = TestDirectoryPath.testDirectory;
+    routes = new Routes(testDirectory);
   }
 
   @Test
@@ -92,5 +98,46 @@ public class RoutesTest {
     request.setURI("log");
     
     assertEquals("GET", routes.getOptions(request));
+  }
+
+  @Test
+  public void returnsACollectionOfFileNamesWhenGivenADirectory() throws Exception {
+    File file = new File(testDirectory);
+    String[] fileList = file.list();
+
+    assertThat(Arrays.asList(routes.getDirectoryFileNames()), hasItems(fileList));
+  }
+
+  @Test(expected = NullPointerException.class)
+  public void throwsNullPointerExceptionWhenDirectoryDoesNotExist() throws Exception {
+    String directory = "";
+    File file = new File(directory);
+    String[] fileList = file.list();
+
+    assertThat(Arrays.asList(routes.getDirectoryFileNames()), hasItems(fileList));
+  }
+
+  @Test
+  public void returnsTheURIThatMatchesAURIFromAGivenCollectionOfFileNames() throws Exception {
+    String[] fileList = {"file1", "file2", "file3"};
+    request.setURI("file1");
+
+    assertEquals(true, routes.isADirectoryFileMatch(fileList, request));
+  }
+
+  @Test
+  public void returnsTheURIForFile2IfItMatchesAURIInACollectionOfFileNames() throws Exception {
+    String[] fileList = {"file1", "file2", "file3"};
+    request.setURI("file2");
+
+    assertEquals(true, routes.isADirectoryFileMatch(fileList, request));
+  }
+
+  @Test
+  public void returnsANullPointerExceptionStringIfRequestedURIDoesNotExistInCollection() throws Exception {
+    String [] fileList = {"file1", "file2", "file3"};
+    request.setURI("SomeFileNameThatDoesNotExistInFileListArray");
+
+    assertEquals(false, routes.isADirectoryFileMatch(fileList, request));
   }
 }
