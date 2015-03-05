@@ -7,8 +7,7 @@ public class Request {
   private String basicAuthCredentials;
   private boolean basic;
   private String etag;
-  private String parameterKey;
-  private boolean parameterStatus;
+  private String parameterValues;
 
   public void setHTTPMethod(String httpMethod) {
     this.httpMethod = httpMethod;
@@ -76,5 +75,13 @@ public class Request {
 
   public String getEtag() {
     return etag;
+  }
+
+  public void setParameterValues(String parameterValues) {
+    this.parameterValues = parameterValues;
+  }
+  
+  public String getParameterValues() {
+    return parameterValues;
   }
 }
