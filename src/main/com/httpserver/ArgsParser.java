@@ -18,6 +18,10 @@ public class ArgsParser {
   }
 
   public String getDirectory() {
+    if (directory == null) {
+      return "../java-server/src/test/cob_spec";
+    }
+    
     return directory;
   }
 }

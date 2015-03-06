@@ -54,6 +54,5 @@ public class ConnectionHandlerTest {
   public void returnsTheOutputStreamInTextWhenARequestIsMade() throws Exception {
     connectionHandler.run();
     assertEquals(textoutput, requestHandler.getOutputStream().toString());
-    assertEquals("HTTP/1.1 200 OK\r\n", new String(response.getHTTPStatusMessage()));
   }
 }

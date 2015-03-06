@@ -8,10 +8,12 @@ import java.util.concurrent.Executors;
 
 public class Main {
   public static void main(String[] args) throws IOException {
-    String directory = "../cob_spec/public";
+    String directory = args[0];
+    int port = Integer.parseInt(args[1]);
+    System.out.println("Server Is Listening on Port: " + port);
     ExecutorService pool = Executors.newFixedThreadPool(5);
-    int port = 5000;
-    Server server = new Server(pool, port, directory);
+    ArgsParser argsParser = new ArgsParser(port, directory);
+    Server server = new Server(pool, argsParser.getPort(), argsParser.getDirectory());
     server.start();
   }
 }

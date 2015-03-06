@@ -30,4 +30,13 @@ public class ArgsParserTest {
     
     assertEquals("/some/directory/name", argsParser.getDirectory());
   }
+  
+  @Test
+  public void returnsDefaultServerDirectoryIfNull() throws Exception {
+    int port = 2000;
+    String directory = null;
+    ArgsParser argsParser = new ArgsParser(port, directory);
+    
+    assertEquals("../java-server/src/test/cob_spec", argsParser.getDirectory());
+  }
 }

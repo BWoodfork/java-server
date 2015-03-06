@@ -1,0 +1,12 @@
+git clone this repository
+
+From the Commandline, run:
+java -jar build/libs/java-server-1.0.jar src/test/cob_spec/public [port number]
+
+The port number is 5000 by default.
+Run 'Gradle Build' if you want to build the jar.
+Run 'Gradle test' to run the unit tests.
+
+To run the Cobspec acceptance test suite, cd into the src/test/cob_spec directory.
+Run ' [93] → java -jar fitnesse.jar -p 9090'
+In the browser, go to localhost:9090 -> HTTPTestSUITE -> Suite
