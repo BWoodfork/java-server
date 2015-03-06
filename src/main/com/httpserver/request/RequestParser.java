@@ -19,7 +19,16 @@ public class RequestParser {
     Request request = new Request();
     String requestString = convertRequestToString();
     requestArray = requestString.split(" ");
-
+//    RequestBuilder requestBuilder = new RequestBuilder()
+//        .setHTTPMethod(parseHTTPMethod())
+//        .setURI(parseURI())
+//        .setHeaderField(parseHeaderField())
+//        .setByteRange(getByteRange())
+//        .setBasicRequestStatus(isABasicAuthRequest())
+//        .setBasicAuthCredentials(parseBasicAuthCredentials())
+//        .setEtag(parseEtag())
+//        .setParameterValues(getDecodedParameterKey());
+//    requestBuilder.build();
     request.setFullRequest(requestString);
     request.setHTTPMethod(parseHTTPMethod());
     request.setURI(parseURI());
@@ -75,14 +84,14 @@ public class RequestParser {
   }
 
   private String getByteRange() throws IOException {
-    String[] splitOnConnection = requestArray[3].split("Connection:");
-    String[] splitOnBytes = splitOnConnection[0].split("bytes=");
-
     try {
+      String[] splitOnConnection = requestArray[3].split("Connection:");
+      String[] splitOnBytes = splitOnConnection[0].split("bytes=");
       return splitOnBytes[1];
-    } catch (ArrayIndexOutOfBoundsException e){}
-    
-    return "No Range Given";
+    } catch (ArrayIndexOutOfBoundsException e){
+
+      return "No Range Given";
+    }
   }
 
   private boolean isAParameterRequest() throws IOException {
@@ -92,9 +101,10 @@ public class RequestParser {
       String parameterString = splitOnMark[0];
 
       return parameterString.equals("/parameters");
-    } catch (ArrayIndexOutOfBoundsException e) {}
-    
-    return false;
+    } catch (ArrayIndexOutOfBoundsException e) {
+
+      return false;
+    }
   }
 
   private String getDecodedParameterKey() throws IOException {
@@ -105,9 +115,10 @@ public class RequestParser {
       String paramsWithSpace = parameters.replaceAll("=", " = ");
       String paramsWithAmpSpace = paramsWithSpace.replaceAll("&", " ");
       return URLDecoder.decode(paramsWithAmpSpace, "UTF-8");
-    } catch (ArrayIndexOutOfBoundsException e) {}
-    
-    return "No Parameter Key Exists";
+    } catch (ArrayIndexOutOfBoundsException e) {
+      
+      return "No Parameter Key Exists";
+    }
   }
   
   private boolean isABasicAuthRequest() throws IOException {

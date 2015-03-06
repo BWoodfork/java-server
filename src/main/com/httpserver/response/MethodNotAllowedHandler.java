@@ -25,8 +25,8 @@ public class MethodNotAllowedHandler implements Responder {
       return Files.readAllBytes(Paths.get(serverViewsDirectory + "/405.html"));
     } catch (IOException e) {
       e.printStackTrace();
+
+      return "File Could Not Be Read".getBytes();
     }
-    
-    return "File Could Not Be Read".getBytes();
   }
 }

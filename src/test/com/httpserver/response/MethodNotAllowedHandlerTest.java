@@ -1,6 +1,7 @@
 package com.httpserver.response;
 
 import com.httpserver.request.Request;
+import com.httpserver.testresources.TestDirectoryPath;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -11,7 +12,7 @@ public class MethodNotAllowedHandlerTest {
   public void returns405MethodNotAllowedWhenMethodNotAllowed() throws Exception {
     Request request = new Request();
     HTTPStatusCodes httpStatusCodes = new HTTPStatusCodes();
-    String serverViewsDirectory = "../java-server/default-server-views";
+    String serverViewsDirectory = TestDirectoryPath.serverViewsDirectory;
     MethodNotAllowedHandler methodNotAllowedHandler = new MethodNotAllowedHandler(serverViewsDirectory);
     byte[] fileBytes = methodNotAllowedHandler.buildResponse(request, httpStatusCodes);
 

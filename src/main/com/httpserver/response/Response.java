@@ -36,7 +36,7 @@ public class Response {
   public byte[] getContentType(Request request) {
     String type = URLConnection.guessContentTypeFromName(request.getURI());
     if (type == null) {
-      type = "text/plain";
+      type = "text/html";
     }
     
     String formatted = "Content-Type: " + type + "\r\n";

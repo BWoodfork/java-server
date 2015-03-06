@@ -91,7 +91,7 @@ public class ResponseTest {
     request.setHTTPMethod("GET");
     request.setURI("file1");
 
-    assertEquals("Content-Type: text/plain\r\n", new String(response.getContentType(request)));
+    assertEquals("Content-Type: text/html\r\n", new String(response.getContentType(request)));
   }
   
   @Test
@@ -101,7 +101,7 @@ public class ResponseTest {
     
     assertEquals("Content-Type: image/jpeg\r\n", new String(response.getContentType(request)));
   }
-  
+
   @Test
   public void returnsTheByteLengthForFile1() throws Exception {
     request.setHTTPMethod("GET");
@@ -155,7 +155,7 @@ public class ResponseTest {
     
     String formattedResponse = "HTTP/1.1 200 OK\r\n" +
         "Location: http://localhost:5000/\r\n" +
-        "Content-Type: text/plain\r\n" +
+        "Content-Type: text/html\r\n" +
         "Allow: GET\r\n" +
         "Content-Length: 14\r\n\r\n" +
         "file1 contents";
@@ -170,7 +170,7 @@ public class ResponseTest {
 
     String formattedResponse = "HTTP/1.1 200 OK\r\n" +
         "Location: http://localhost:5000/\r\n" +
-        "Content-Type: text/plain\r\n" +
+        "Content-Type: text/html\r\n" +
         "Allow: GET\r\n" +
         "Content-Length: 41\r\n\r\n" +
         "There is also some text in this file2 bro";

@@ -38,7 +38,7 @@ public class ConnectionHandlerTest {
     Routes routes = new Routes(testDirectory);
     int port = 5000;
     response = new Response(httpStatusCodes, routes, port);
-    connectionHandler = new ConnectionHandler(requestHandler, response);
+    connectionHandler = new ConnectionHandler(requestHandler, port, testDirectory);
   }
   
   @Test
@@ -47,7 +47,7 @@ public class ConnectionHandlerTest {
     assertEquals("GET /file1 HTTP/1.1Connection: closeHost: localhost:5000", request.getFullRequest());
   }
   
-  String textoutput = "HTTP/1.1 200 OK\r\n" + "Location: http://localhost:5000/\r\n" + "Content-Type: text/plain\r\n" +
+  String textoutput = "HTTP/1.1 200 OK\r\n" + "Location: http://localhost:5000/\r\n" + "Content-Type: text/html\r\n" +
                       "Allow: GET\r\n" + "Content-Length: 14\r\n\r\n" + "file1 contents";
   
   @Test

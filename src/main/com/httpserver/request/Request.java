@@ -54,7 +54,7 @@ public class Request {
   public boolean isARootRequest() {
     return getURI().equals("/");
   }
-  
+
   public void setBasicRequestStatus(boolean basic) {
     this.basic = basic;
   }
@@ -82,7 +82,7 @@ public class Request {
   public void setParameterValues(String parameterValues) {
     this.parameterValues = parameterValues;
   }
-  
+
   public String getParameterValues() {
     return parameterValues;
   }

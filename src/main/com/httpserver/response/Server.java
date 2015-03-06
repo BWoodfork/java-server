@@ -6,15 +6,15 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.util.concurrent.ExecutorService;
 
-public class ResponseGenerator {
-  private Response response;
+public class Server {
   private ExecutorService pool;
   private int port;
+  private String directory;
 
-  public ResponseGenerator(ExecutorService pool, Response response, int port) {
+  public Server(ExecutorService pool, int port, String directory) {
     this.pool = pool;
-    this.response = response;
     this.port = port;
+    this.directory = directory;
   }
   
   public void start() throws IOException {
@@ -23,9 +23,9 @@ public class ResponseGenerator {
     while (true) {
       try {
         RequestHandler requestHandler = new RequestHandler(serverSocket.accept());
-        pool.execute(new ConnectionHandler(requestHandler, response));
+        pool.execute(new ConnectionHandler(requestHandler, port, directory));
       } catch (IOException e) {
-       e.printStackTrace();
+        e.printStackTrace();
       }
     }
   }
