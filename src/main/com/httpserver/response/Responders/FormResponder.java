@@ -1,4 +1,7 @@
-package com.httpserver.response;
+package com.httpserver.response.Responders;
+
+import com.httpserver.response.HTTPStatusCodes;
+import com.httpserver.response.Responder;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -6,23 +9,22 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.HashMap;
 
-public class FormHandler implements Responder {
+public class FormResponder implements Responder {
   private String directory;
   private String uri;
   private String httpMethod;
   private static HashMap<String, byte[]> formMap = new HashMap<String, byte[]>();
   
-  public FormHandler(String directory, String httpMethod, String uri) {
+  public FormResponder(String directory, String httpMethod, String uri) {
     this.directory = directory;
     this.httpMethod = httpMethod;
     this.uri = uri;
   }
   
   @Override
-  public byte[] buildResponse(HTTPStatusCodes httpStatusCodes) {
+  public byte[] getHTTPMessageBody() {
     try {
       writeToForm();
-      httpStatusCodes.setStatus(200);
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -34,6 +36,11 @@ public class FormHandler implements Responder {
     }
     
     return "File Could Not Be Read".getBytes();
+  }
+
+  @Override
+  public String getHTTPStatusCode(HTTPStatusCodes httpStatusCodes) {
+    return httpStatusCodes.getStatus(200);
   }
 
   private Path writeToForm() throws IOException {

@@ -1,10 +1,10 @@
 package com.httpserver;
 
 import com.httpserver.request.Request;
-import com.httpserver.response.FileHandler;
-import com.httpserver.response.MethodNotAllowedHandler;
-import com.httpserver.response.NotFoundHandler;
-import com.httpserver.response.RootHandler;
+import com.httpserver.response.Responders.FileResponder;
+import com.httpserver.response.Responders.MethodNotAllowedResponder;
+import com.httpserver.response.Responders.NotFoundResponder;
+import com.httpserver.response.Responders.RootResponder;
 import com.httpserver.testresources.TestDirectoryPath;
 import org.junit.Before;
 import org.junit.Test;
@@ -58,7 +58,7 @@ public class RoutesTest {
     request.setHTTPMethod("GET");
     request.setURI("file1");
     
-    assertThat(routes.getHandler(request), instanceOf(FileHandler.class));
+    assertThat(routes.getHandler(request), instanceOf(FileResponder.class));
   }
 
   @Test
@@ -66,7 +66,7 @@ public class RoutesTest {
     request.setHTTPMethod("POST");
     request.setURI("file1");
     
-    assertThat(routes.getHandler(request), instanceOf(MethodNotAllowedHandler.class));
+    assertThat(routes.getHandler(request), instanceOf(MethodNotAllowedResponder.class));
   }
   
   @Test
@@ -74,7 +74,7 @@ public class RoutesTest {
     request.setHTTPMethod("GET");
     request.setURI("SomeURIThatDoesNotExist");
     
-    assertThat(routes.getHandler(request), instanceOf(NotFoundHandler.class));
+    assertThat(routes.getHandler(request), instanceOf(NotFoundResponder.class));
   }
   
   @Test
@@ -82,7 +82,7 @@ public class RoutesTest {
     request.setHTTPMethod("GET");
     request.setURI("/");
     
-    assertThat(routes.getHandler(request), instanceOf(RootHandler.class));
+    assertThat(routes.getHandler(request), instanceOf(RootResponder.class));
   }
   
   @Test

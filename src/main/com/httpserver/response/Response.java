@@ -18,12 +18,13 @@ public class Response {
     this.port = port;
   }
   
-  public byte[] getHTTPStatusMessage() {
-    return httpStatusCodes.getFormattedStatusMessage().getBytes();
+  public byte[] getHTTPStatusMessage(Request request) {
+    String formattedStatus = "HTTP/1.1 " + routes.getHandler(request).getHTTPStatusCode(httpStatusCodes) + "\r\n";
+    return formattedStatus.getBytes();
   }
 
   public byte[] getHTTPMessageBody(Request request) {
-    return routes.getHandler(request).buildResponse(httpStatusCodes);
+    return routes.getHandler(request).getHTTPMessageBody();
   }
 
   public byte[] getLocation() {
@@ -59,7 +60,7 @@ public class Response {
     ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
     byte[] body = getHTTPMessageBody(request);
 
-    byteArrayOutputStream.write(getHTTPStatusMessage());
+    byteArrayOutputStream.write(getHTTPStatusMessage(request));
     byteArrayOutputStream.write(getLocation());
     byteArrayOutputStream.write(getContentType(request));
     byteArrayOutputStream.write(getAllowHeader(request));

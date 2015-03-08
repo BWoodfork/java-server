@@ -1,13 +1,13 @@
-package com.httpserver.response;
+package com.httpserver.response.Responders;
 
+import com.httpserver.response.HTTPStatusCodes;
 import com.httpserver.testresources.TestDirectoryPath;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-public class FileHandlerTest {
+public class FileResponderTest {
   private HTTPStatusCodes httpStatusCodes;
   private String testDirectory;
   
@@ -20,18 +20,19 @@ public class FileHandlerTest {
   @Test
   public void returnsThePathOfTheRequestedURIFile() throws Exception {
     String uri = "file1";
-    FileHandler fileHandler = new FileHandler(testDirectory, uri);
-    byte[] fileBytes = fileHandler.buildResponse(httpStatusCodes);
+    FileResponder fileResponder = new FileResponder(testDirectory, uri);
+    byte[] fileBytes = fileResponder.getHTTPMessageBody();
     assertEquals("file1 contents", new String(fileBytes));
-    Assert.assertEquals("200 OK", httpStatusCodes.getStatus());
+    
+    assertEquals("200 OK", fileResponder.getHTTPStatusCode(httpStatusCodes));
   }
 
   @Test
   public void returnsFileCouldNotBeReadWhenURIInvalid() throws Exception {
     String uri = "SomeURIThatDoesNotExist";
-    FileHandler fileHandler = new FileHandler(testDirectory, uri);
-    fileHandler.buildResponse(httpStatusCodes);
+    FileResponder fileResponder = new FileResponder(testDirectory, uri);
+    fileResponder.getHTTPMessageBody();
 
-    assertEquals("File Could Not Be Read", new String(fileHandler.buildResponse(httpStatusCodes)));
+    assertEquals("File Could Not Be Read", new String(fileResponder.getHTTPMessageBody()));
   }
 }

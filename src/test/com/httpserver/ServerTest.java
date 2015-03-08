@@ -1,5 +1,6 @@
-package com.httpserver.response;
+package com.httpserver;
 
+import com.httpserver.Server;
 import com.httpserver.mocks.ExecutorServiceMock;
 import com.httpserver.testresources.TestDirectoryPath;
 import org.junit.After;

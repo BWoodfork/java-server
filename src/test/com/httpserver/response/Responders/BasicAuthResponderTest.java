@@ -1,22 +1,24 @@
-package com.httpserver.response;
+package com.httpserver.response.Responders;
 
+import com.httpserver.response.HTTPStatusCodes;
 import com.httpserver.testresources.TestDirectoryPath;
 
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-public class BasicAuthHandlerTest {
+public class BasicAuthResponderTest {
   @Test
   public void returnsAuthenticationRequiredIfRequestDoesNotHaveCredentials() throws Exception {
     String testDirectory = TestDirectoryPath.testDirectory;
     String uri = "logs";
     String basicAuthCredentials = "SomeCredentialsThatAreInvalid";
-    BasicAuthHandler basicAuthHandler = new BasicAuthHandler(testDirectory, uri, basicAuthCredentials);
+    BasicAuthResponder basicAuthResponder = new BasicAuthResponder(testDirectory, uri, basicAuthCredentials);
     HTTPStatusCodes httpStatusCodes = new HTTPStatusCodes();
 
-    assertEquals("Authentication required", new String(basicAuthHandler.buildResponse(httpStatusCodes)));
-    assertEquals("401 Unauthorized", httpStatusCodes.getStatus());
+    assertEquals("Authentication required", new String(basicAuthResponder.getHTTPMessageBody()));
+    
+    assertEquals("401 Unauthorized", basicAuthResponder.getHTTPStatusCode(httpStatusCodes));
   }
   
   @Test
@@ -24,10 +26,10 @@ public class BasicAuthHandlerTest {
     String testDirectory = TestDirectoryPath.testDirectory;
     String uri = "logs";
     String basicAuthCredentials = "admin:hunter2";
-    BasicAuthHandler basicAuthHandler = new BasicAuthHandler(testDirectory, uri, basicAuthCredentials);
+    BasicAuthResponder basicAuthResponder = new BasicAuthResponder(testDirectory, uri, basicAuthCredentials);
     HTTPStatusCodes httpStatusCodes = new HTTPStatusCodes();
-    basicAuthHandler.buildResponse(httpStatusCodes);
+    basicAuthResponder.getHTTPMessageBody();
     
-    assertEquals("200 OK", httpStatusCodes.getStatus());
+    assertEquals("200 OK", basicAuthResponder.getHTTPStatusCode(httpStatusCodes));
   }
 }

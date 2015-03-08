@@ -1,13 +1,13 @@
-package com.httpserver.response;
+package com.httpserver.response.Responders;
 
+import com.httpserver.response.HTTPStatusCodes;
 import com.httpserver.testresources.TestDirectoryPath;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-public class FormHandlerTest {
+public class FormResponderTest {
   private HTTPStatusCodes httpStatusCodes;
   private String testDirectory;
 
@@ -21,32 +21,35 @@ public class FormHandlerTest {
   public void writesSomeTextToFormFileWhenPostRequestIsMade() throws Exception {
     String uri = "form";
     String httpMethod = "POST";
-    FormHandler formHandler = new FormHandler(testDirectory, httpMethod, uri);
-    byte[] fileBytes = formHandler.buildResponse(httpStatusCodes);
+    FormResponder formResponder = new FormResponder(testDirectory, httpMethod, uri);
+    byte[] fileBytes = formResponder.getHTTPMessageBody();
     
     assertEquals("data=cosby", new String(fileBytes));
-    Assert.assertEquals("200 OK", httpStatusCodes.getStatus());
+    
+    assertEquals("200 OK", formResponder.getHTTPStatusCode(httpStatusCodes));
   }
   
   @Test
   public void writesHeathCliffWhenPutRequestIsMade() throws Exception {
     String uri = "form";
     String httpMethod = "PUT";
-    FormHandler formHandler = new FormHandler(testDirectory, httpMethod, uri);
-    byte[] fileBytes = formHandler.buildResponse(httpStatusCodes);
+    FormResponder formResponder = new FormResponder(testDirectory, httpMethod, uri);
+    byte[] fileBytes = formResponder.getHTTPMessageBody();
 
     assertEquals("data=heathcliff", new String(fileBytes));
-    Assert.assertEquals("200 OK", httpStatusCodes.getStatus());
+    
+    assertEquals("200 OK", formResponder.getHTTPStatusCode(httpStatusCodes));
   }
 
   @Test
   public void deletesAllTextFromFileWhenDeleteRequestIsMade() throws Exception {
     String uri = "form";
     String httpMethod = "DELETE";
-    FormHandler formHandler = new FormHandler(testDirectory, httpMethod, uri);
-    byte[] fileBytes = formHandler.buildResponse(httpStatusCodes);
+    FormResponder formResponder = new FormResponder(testDirectory, httpMethod, uri);
+    byte[] fileBytes = formResponder.getHTTPMessageBody();
 
     assertEquals("", new String(fileBytes));
-    Assert.assertEquals("200 OK", httpStatusCodes.getStatus());
+    
+    assertEquals("200 OK", formResponder.getHTTPStatusCode(httpStatusCodes));
   }
 }

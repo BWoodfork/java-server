@@ -31,7 +31,7 @@ public class ResponseTest {
     request.setURI("file1");
     response.getHTTPMessageBody(request);
     
-    assertEquals("HTTP/1.1 200 OK\r\n", new String(response.getHTTPStatusMessage()));
+    assertEquals("HTTP/1.1 200 OK\r\n", new String(response.getHTTPStatusMessage(request)));
   }
 
   @Test
@@ -40,7 +40,7 @@ public class ResponseTest {
     request.setURI("SomeFileThatDoesNotExist");
     response.getHTTPMessageBody(request);
 
-    assertEquals("HTTP/1.1 404 Not Found\r\n", new String(response.getHTTPStatusMessage()));
+    assertEquals("HTTP/1.1 404 Not Found\r\n", new String(response.getHTTPStatusMessage(request)));
   }
 
   @Test
@@ -49,7 +49,7 @@ public class ResponseTest {
     request.setURI("file1");
     response.getHTTPMessageBody(request);
     
-    assertEquals("HTTP/1.1 405 Method Not Allowed\r\n", new String(response.getHTTPStatusMessage()));
+    assertEquals("HTTP/1.1 405 Method Not Allowed\r\n", new String(response.getHTTPStatusMessage(request)));
   }
 
   @Test

@@ -1,26 +1,29 @@
-package com.httpserver.response;
+package com.httpserver.response.Responders;
+
+import com.httpserver.response.HTTPStatusCodes;
+import com.httpserver.response.Responder;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.HashMap;
 
-public class PatchContentHandler implements Responder {
+public class PatchContentResponder implements Responder {
   private String directory;
   private String uri;
   private String etag;
   private static HashMap<String, byte[]> patchMap = new HashMap<String, byte[]>();
   
-  public PatchContentHandler(String directory, String uri, String etag) {
+  public PatchContentResponder(String directory, String uri, String etag) {
     this.directory = directory;
     this.uri = uri;
     this.etag = etag;
   }
 
   @Override
-  public byte[] buildResponse(HTTPStatusCodes httpStatusCodes) {
+  public byte[] getHTTPMessageBody() {
     try {
-      writeToPatchContent(httpStatusCodes);
+      writeToPatchContent();
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -28,13 +31,16 @@ public class PatchContentHandler implements Responder {
     return "Request Invalid".getBytes();
   }
   
-  private Path writeToPatchContent(HTTPStatusCodes httpStatusCodes) throws Exception {
+  @Override
+  public String getHTTPStatusCode(HTTPStatusCodes httpStatusCodes) {
+    return getPatchMap().containsKey(etag) ? httpStatusCodes.getStatus(204) : httpStatusCodes.getStatus(200);
+  }
+  
+  private Path writeToPatchContent() throws Exception {
     if (getPatchMap().containsKey(etag)) {
-      httpStatusCodes.setStatus(204);
       return Files.write(getPath(), getPatchMap().get(etag));
     }
 
-    httpStatusCodes.setStatus(200);
     return Files.write(getPath(), "default content".getBytes());
   }
 

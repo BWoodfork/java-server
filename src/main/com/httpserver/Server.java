@@ -1,6 +1,7 @@
-package com.httpserver.response;
+package com.httpserver;
 
 import com.httpserver.request.RequestHandler;
+import com.httpserver.response.ConnectionHandler;
 
 import java.io.IOException;
 import java.net.ServerSocket;

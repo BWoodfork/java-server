@@ -1,7 +1,5 @@
 package com.httpserver;
 
-import com.httpserver.response.Server;
-
 import java.io.IOException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;

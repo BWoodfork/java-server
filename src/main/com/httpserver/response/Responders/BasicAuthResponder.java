@@ -1,43 +1,34 @@
-package com.httpserver.response;
+package com.httpserver.response.Responders;
+
+import com.httpserver.response.HTTPStatusCodes;
+import com.httpserver.response.Responder;
 
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
-public class BasicAuthHandler implements Responder {
+public class BasicAuthResponder implements Responder {
   private String directory;
   private String basicAuthCredentials;
   private String uri;
 
-  public BasicAuthHandler(String directory, String uri, String basicAuthCredentials) {
+  public BasicAuthResponder(String directory, String uri, String basicAuthCredentials) {
     this.directory = directory;
     this.basicAuthCredentials = basicAuthCredentials;
     this.uri = uri;
   }
   
   @Override
-  public byte[] buildResponse(HTTPStatusCodes httpStatusCodes) {
+  public byte[] getHTTPMessageBody() {
     if (isCredentialMatch()) {
-      try {
-        httpStatusCodes.setStatus(200);
-      } catch (Exception e) {
-        e.printStackTrace();
-      }
-
       try {
         return Files.readAllBytes(Paths.get(directory + uri));
       } catch (IOException e) {
         e.printStackTrace();
       }
     }
-
-    try {
-      httpStatusCodes.setStatus(401);
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-
+    
     try {
       logRequests();
     } catch (FileNotFoundException e) {
@@ -45,6 +36,11 @@ public class BasicAuthHandler implements Responder {
     }
 
     return "Authentication required".getBytes();
+  }
+  
+  @Override
+  public String getHTTPStatusCode(HTTPStatusCodes httpStatusCodes) {
+    return isCredentialMatch() ? httpStatusCodes.getStatus(200) : httpStatusCodes.getStatus(401);
   }
   
   private boolean isCredentialMatch() {

@@ -1,10 +1,10 @@
 package com.httpserver.response;
 
+import java.security.KeyException;
 import java.util.HashMap;
 import java.util.Set;
 
 public class HTTPStatusCodes {
-  private int status;
   protected static HashMap<Integer, String> statusCodesMap = new HashMap<Integer, String>();
 
   public static HashMap<Integer, String> getStatusCodesMap() {
@@ -30,30 +30,25 @@ public class HTTPStatusCodes {
     return statusCodesMap;
   }
 
-  public void setStatus(Integer status) throws Exception {
-    isAValidKey(status);
-    this.status = status;
-  }
-
-  public String getStatus() {
+  public String getStatus(int status) {
+    try {
+      isAValidKey(status);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
     return getStatusCodesMap().get(status);
   }
-
-  public String getFormattedStatusMessage() {
-    String newLine = "\r\n";
-    return "HTTP/1.1 " + getStatus() + newLine;
-  }
-
-  private Set<Integer> getKeySet() {
-    return getStatusCodesMap().keySet();
-  }
-
-  boolean isAValidKey(Integer key) throws Exception {
+  
+  public boolean isAValidKey(Integer key) throws Exception {
     for (Integer code : getKeySet()) {
       if (key.equals(code))
         return true;
     }
-    
-    throw new Exception("Status Code Invalid");
+
+    throw new KeyException("Key is Invalid");
+  }
+
+  private Set<Integer> getKeySet() {
+    return getStatusCodesMap().keySet();
   }
 }
