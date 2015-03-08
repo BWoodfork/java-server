@@ -23,7 +23,7 @@ public class Response {
   }
 
   public byte[] getHTTPMessageBody(Request request) {
-    return routes.getHandler(request).buildResponse(request, httpStatusCodes);
+    return routes.getHandler(request).buildResponse(httpStatusCodes);
   }
 
   public byte[] getLocation() {

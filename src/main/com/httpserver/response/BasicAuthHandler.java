@@ -1,7 +1,5 @@
 package com.httpserver.response;
 
-import com.httpserver.request.Request;
-
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -9,14 +7,18 @@ import java.util.ArrayList;
 
 public class BasicAuthHandler implements Responder {
   private String directory;
+  private String basicAuthCredentials;
+  private String uri;
 
-  public BasicAuthHandler(String directory) {
+  public BasicAuthHandler(String directory, String uri, String basicAuthCredentials) {
     this.directory = directory;
+    this.basicAuthCredentials = basicAuthCredentials;
+    this.uri = uri;
   }
   
   @Override
-  public byte[] buildResponse(Request request, HTTPStatusCodes httpStatusCodes) {
-    if (request.isABasicAuthRequest() && isCredentialMatch(request)) {
+  public byte[] buildResponse(HTTPStatusCodes httpStatusCodes) {
+    if (isCredentialMatch()) {
       try {
         httpStatusCodes.setStatus(200);
       } catch (Exception e) {
@@ -24,7 +26,7 @@ public class BasicAuthHandler implements Responder {
       }
 
       try {
-        return Files.readAllBytes(Paths.get(directory + request.getURI()));
+        return Files.readAllBytes(Paths.get(directory + uri));
       } catch (IOException e) {
         e.printStackTrace();
       }
@@ -37,7 +39,7 @@ public class BasicAuthHandler implements Responder {
     }
 
     try {
-      logRequests(request);
+      logRequests();
     } catch (FileNotFoundException e) {
       e.printStackTrace();
     }
@@ -45,9 +47,9 @@ public class BasicAuthHandler implements Responder {
     return "Authentication required".getBytes();
   }
   
-  private boolean isCredentialMatch(Request request) {
+  private boolean isCredentialMatch() {
     for (String credential : credentialsList()) {
-      if (request.getBasicAuthCredentials().equals(credential)) {
+      if (basicAuthCredentials.equals(credential)) {
         return true;
       }
     }
@@ -63,8 +65,8 @@ public class BasicAuthHandler implements Responder {
     return credentials;
   }
   
-  private void logRequests(Request request) throws FileNotFoundException {
-    File file = new File(directory + request.getURI());
+  private void logRequests() throws FileNotFoundException {
+    File file = new File(directory + uri);
     FileOutputStream fileOutputStream = new FileOutputStream(file);
     PrintStream printStream = new PrintStream(fileOutputStream);
     System.setOut(printStream);

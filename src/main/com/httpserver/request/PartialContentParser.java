@@ -6,9 +6,14 @@ import java.util.regex.Pattern;
 
 public class PartialContentParser {
   private static final Pattern bytePattern = Pattern.compile("^([0-9])?-([0-9])?$");
+  private String byteRange;
+  
+  public PartialContentParser(String byteRange) {
+    this.byteRange = byteRange;
+  }
 
-  public byte[] getPartialContent(Request request, byte[] data) throws Exception {
-    Matcher byteMatcher = bytePattern.matcher(request.getByteRange());
+  public byte[] getPartialContent(byte[] data) throws Exception {
+    Matcher byteMatcher = bytePattern.matcher(byteRange);
     byteMatcher.matches();
 
     int minRange = getMinRange(byteMatcher.group(1), byteMatcher.group(2), data.length);

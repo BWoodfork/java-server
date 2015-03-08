@@ -1,7 +1,5 @@
 package com.httpserver.response;
 
-import com.httpserver.request.Request;
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -9,13 +7,15 @@ import java.nio.file.Paths;
 
 public class FileHandler implements Responder {
   private String directory;
+  private String uri;
   
-  public FileHandler(String directory) {
+  public FileHandler(String directory, String uri) {
     this.directory = directory;
+    this.uri = uri;
   }
 
   @Override
-  public byte[] buildResponse(Request request, HTTPStatusCodes httpStatusCodes) {
+  public byte[] buildResponse(HTTPStatusCodes httpStatusCodes) {
     try {
       httpStatusCodes.setStatus(200);
     } catch (Exception e) {
@@ -23,14 +23,14 @@ public class FileHandler implements Responder {
     }
     
     try {
-      return Files.readAllBytes(getPath(request));
+      return Files.readAllBytes(getPath());
     } catch (IOException e) {
       
       return "File Could Not Be Read".getBytes();
     }
   }
 
-  private Path getPath(Request request) {
-    return Paths.get(directory + "/" + request.getURI()).toAbsolutePath();
+  private Path getPath() {
+    return Paths.get(directory + "/" + uri).toAbsolutePath();
   }
 }

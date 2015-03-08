@@ -1,7 +1,5 @@
 package com.httpserver.response;
 
-import com.httpserver.request.Request;
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -14,7 +12,7 @@ public class NotFoundHandler implements Responder {
   }
 
   @Override
-  public byte[] buildResponse(Request request, HTTPStatusCodes httpStatusCodes) {
+  public byte[] buildResponse(HTTPStatusCodes httpStatusCodes) {
     try {
       httpStatusCodes.setStatus(404);
     } catch (Exception e) {

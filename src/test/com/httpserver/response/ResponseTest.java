@@ -152,7 +152,7 @@ public class ResponseTest {
   public void returnsAFormattedResponseWhenGETRequestIsMadeToFile1() throws Exception {
     request.setHTTPMethod("GET");
     request.setURI("file1");
-    
+
     String formattedResponse = "HTTP/1.1 200 OK\r\n" +
         "Location: http://localhost:5000/\r\n" +
         "Content-Type: text/html\r\n" +

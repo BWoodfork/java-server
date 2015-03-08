@@ -38,7 +38,7 @@ public class HTTPStatusCodesTest {
     httpStatusCodes.setStatus(200);
     assertEquals("200 OK", httpStatusCodes.getStatus());
   }
-  
+
   @Test
   public void returnsHTTPStatusMessage300MultipleChoicesAfterStatusHasBeenSet() throws Exception {
     httpStatusCodes.setStatus(300);

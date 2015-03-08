@@ -1,6 +1,5 @@
 package com.httpserver.response;
 
-import com.httpserver.request.Request;
 import com.httpserver.testresources.TestDirectoryPath;
 
 import org.junit.Test;
@@ -14,45 +13,39 @@ public class PatchContentHandlerTest {
   @Test
   public void writesPatchContentToPatchContentFileWhenEtagMatches() throws Exception {
     String testDirectoryPath = TestDirectoryPath.testDirectory;
-    PatchContentHandler patchContentHandler = new PatchContentHandler(testDirectoryPath);
-    Request request = new Request();
+    String uri = "patch-content.txt";
+    String etag = "60bb224c68b1ed765a0f84d910de58d0beea91c4";
+    PatchContentHandler patchContentHandler = new PatchContentHandler(testDirectoryPath, uri, etag);
     HTTPStatusCodes httpStatusCodes = new HTTPStatusCodes();
-    request.setHTTPMethod("PATCH");
-    request.setURI("patch-content.txt");
-    request.setEtag("60bb224c68b1ed765a0f84d910de58d0beea91c4");
-    patchContentHandler.buildResponse(request, httpStatusCodes);
+    patchContentHandler.buildResponse(httpStatusCodes);
     
-    assertEquals("patched content", new String(Files.readAllBytes(Paths.get(testDirectoryPath + "/" + request.getURI()).toAbsolutePath())));
+    assertEquals("patched content", new String(Files.readAllBytes(Paths.get(testDirectoryPath + "/" + uri).toAbsolutePath())));
     assertEquals("204 No Content", httpStatusCodes.getStatus());
   }
   
   @Test
   public void writesDefaultContentToPatchContentFileWhenEtagMatches() throws Exception {
     String testDirectoryPath = TestDirectoryPath.testDirectory;
-    PatchContentHandler patchContentHandler = new PatchContentHandler(testDirectoryPath);
-    Request request = new Request();
+    String uri = "patch-content.txt";
+    String etag = "69bc18dc1edc9e1316348b2eaaca9df83898249fC";
+    PatchContentHandler patchContentHandler = new PatchContentHandler(testDirectoryPath, uri, etag);
     HTTPStatusCodes httpStatusCodes = new HTTPStatusCodes();
-    request.setHTTPMethod("PATCH");
-    request.setURI("patch-content.txt");
-    request.setEtag("69bc18dc1edc9e1316348b2eaaca9df83898249fC");
-    patchContentHandler.buildResponse(request, httpStatusCodes);
+    patchContentHandler.buildResponse(httpStatusCodes);
 
-    assertEquals("default content", new String(Files.readAllBytes(Paths.get(testDirectoryPath + "/" + request.getURI()).toAbsolutePath())));
+    assertEquals("default content", new String(Files.readAllBytes(Paths.get(testDirectoryPath + "/" + uri).toAbsolutePath())));
     assertEquals("204 No Content", httpStatusCodes.getStatus());
   }
   
   @Test
   public void returnsDefaultContentWhenThereIsNoEtag() throws Exception {
     String testDirectoryPath = TestDirectoryPath.testDirectory;
-    PatchContentHandler patchContentHandler = new PatchContentHandler(testDirectoryPath);
-    Request request = new Request();
+    String uri = "patch-content.txt";
+    String etag = "SomeTagThatDoesNotExist";
+    PatchContentHandler patchContentHandler = new PatchContentHandler(testDirectoryPath, uri, etag);
     HTTPStatusCodes httpStatusCodes = new HTTPStatusCodes();
-    request.setHTTPMethod("PATCH");
-    request.setURI("patch-content.txt");
-    request.setEtag("SomethingElse");
-    patchContentHandler.buildResponse(request, httpStatusCodes);
+    patchContentHandler.buildResponse(httpStatusCodes);
     
-    assertEquals("default content", new String(Files.readAllBytes(Paths.get(testDirectoryPath + "/" + request.getURI()).toAbsolutePath())));
+    assertEquals("default content", new String(Files.readAllBytes(Paths.get(testDirectoryPath + "/" + uri).toAbsolutePath())));
     assertEquals("200 OK", httpStatusCodes.getStatus());
   }
 }

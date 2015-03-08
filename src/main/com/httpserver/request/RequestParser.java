@@ -19,16 +19,7 @@ public class RequestParser {
     Request request = new Request();
     String requestString = convertRequestToString();
     requestArray = requestString.split(" ");
-//    RequestBuilder requestBuilder = new RequestBuilder()
-//        .setHTTPMethod(parseHTTPMethod())
-//        .setURI(parseURI())
-//        .setHeaderField(parseHeaderField())
-//        .setByteRange(getByteRange())
-//        .setBasicRequestStatus(isABasicAuthRequest())
-//        .setBasicAuthCredentials(parseBasicAuthCredentials())
-//        .setEtag(parseEtag())
-//        .setParameterValues(getDecodedParameterKey());
-//    requestBuilder.build();
+    
     request.setFullRequest(requestString);
     request.setHTTPMethod(parseHTTPMethod());
     request.setURI(parseURI());
@@ -48,13 +39,16 @@ public class RequestParser {
 
     StringBuilder requestBuilder = new StringBuilder();
     String line;
+    try {
+      do {
+        line = bufferedReader.readLine();
+        requestBuilder.append(line);
+        if (line.equals("")) break;
+      } while (bufferedReader.ready());
+    } catch (Exception e) {
+      System.out.println("Request could not be read");
+    }
 
-    do {
-      line = bufferedReader.readLine();
-      requestBuilder.append(line);
-      if (line.equals("")) break;
-    } while (bufferedReader.ready());
-    
     return requestBuilder.toString();
   }
 
@@ -69,7 +63,7 @@ public class RequestParser {
   private String parseURI() throws IOException {
     if (isAParameterRequest()) return "parameters";
     if (isARootRequest()) return "/";
-    
+
     String[] splitOnBackslash = requestArray[1].split("/");
     return splitOnBackslash[1];
   }
@@ -116,7 +110,7 @@ public class RequestParser {
       String paramsWithAmpSpace = paramsWithSpace.replaceAll("&", " ");
       return URLDecoder.decode(paramsWithAmpSpace, "UTF-8");
     } catch (ArrayIndexOutOfBoundsException e) {
-      
+
       return "No Parameter Key Exists";
     }
   }

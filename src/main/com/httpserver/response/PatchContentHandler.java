@@ -1,7 +1,5 @@
 package com.httpserver.response;
 
-import com.httpserver.request.Request;
-
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -9,35 +7,39 @@ import java.util.HashMap;
 
 public class PatchContentHandler implements Responder {
   private String directory;
+  private String uri;
+  private String etag;
   private static HashMap<String, byte[]> patchMap = new HashMap<String, byte[]>();
   
-  public PatchContentHandler(String directory) {
+  public PatchContentHandler(String directory, String uri, String etag) {
     this.directory = directory;
+    this.uri = uri;
+    this.etag = etag;
   }
 
   @Override
-  public byte[] buildResponse(Request request, HTTPStatusCodes httpStatusCodes) {
+  public byte[] buildResponse(HTTPStatusCodes httpStatusCodes) {
     try {
-      writeToPatchContent(request, httpStatusCodes);
+      writeToPatchContent(httpStatusCodes);
     } catch (Exception e) {
       e.printStackTrace();
     }
 
-    return "main.me.byronwoodfork.request.request Invalid".getBytes();
+    return "Request Invalid".getBytes();
   }
   
-  private Path writeToPatchContent(Request request, HTTPStatusCodes httpStatusCodes) throws Exception {
-    if (getPatchMap().containsKey(request.getEtag())) {
+  private Path writeToPatchContent(HTTPStatusCodes httpStatusCodes) throws Exception {
+    if (getPatchMap().containsKey(etag)) {
       httpStatusCodes.setStatus(204);
-      return Files.write(getPath(request), getPatchMap().get(request.getEtag()));
+      return Files.write(getPath(), getPatchMap().get(etag));
     }
 
     httpStatusCodes.setStatus(200);
-    return Files.write(getPath(request), "default content".getBytes());
+    return Files.write(getPath(), "default content".getBytes());
   }
 
-  private Path getPath(Request request) {
-    return Paths.get(directory + "/" + request.getURI()).toAbsolutePath();
+  private Path getPath() {
+    return Paths.get(directory + "/" + uri).toAbsolutePath();
   }
   
   private HashMap<String, byte[]> getPatchMap() {

@@ -6,7 +6,7 @@ import java.util.Set;
 public class HTTPStatusCodes {
   private int status;
   protected static HashMap<Integer, String> statusCodesMap = new HashMap<Integer, String>();
-  
+
   public static HashMap<Integer, String> getStatusCodesMap() {
     statusCodesMap.put(200, "200 OK");
     statusCodesMap.put(204, "204 No Content");

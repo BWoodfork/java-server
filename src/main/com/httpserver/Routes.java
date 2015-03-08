@@ -26,8 +26,8 @@ public class Routes {
   private HashMap<String, Responder> partialContentMap = new HashMap<String, Responder>();
   private HashMap<String, Responder> parameterMap = new HashMap<String, Responder>();
 
-  private HashMap<String, Responder> getFileRouteMap() {
-    fileRouteMap.put("GET", new FileHandler(directory));
+  private HashMap<String, Responder> getFileRouteMap(Request request) {
+    fileRouteMap.put("GET", new FileHandler(directory, request.getURI()));
     return fileRouteMap;
   }
   
@@ -37,17 +37,17 @@ public class Routes {
     return rootMap;
   }
   
-  private HashMap<String, Responder> getBasicAuthRouteMap() {
-    basicAuthRouteMap.put("GET", new BasicAuthHandler(directory));
+  private HashMap<String, Responder> getBasicAuthRouteMap(Request request) {
+    basicAuthRouteMap.put("GET", new BasicAuthHandler(directory, request.getURI(), request.getBasicAuthCredentials()));
 
     return basicAuthRouteMap;
   }
   
-  private HashMap<String, Responder> getFormRouteMap() {
-    formRouteMap.put("GET", new FileHandler(directory));
-    formRouteMap.put("POST", new FormHandler(directory));
-    formRouteMap.put("DELETE", new FormHandler(directory));
-    formRouteMap.put("PUT", new FormHandler(directory));
+  private HashMap<String, Responder> getFormRouteMap(Request request) {
+    formRouteMap.put("GET", new FileHandler(directory, request.getURI()));
+    formRouteMap.put("POST", new FormHandler(directory, request.getHTTPMethod(), request.getURI()));
+    formRouteMap.put("DELETE", new FormHandler(directory, request.getHTTPMethod(), request.getURI()));
+    formRouteMap.put("PUT", new FormHandler(directory, request.getHTTPMethod(), request.getURI()));
     
     return formRouteMap;
   }
@@ -68,62 +68,62 @@ public class Routes {
     return redirectMap;
   }
   
-  private HashMap<String, Responder> getPatchContentMap() {
-    patchContentMap.put("PATCH", new PatchContentHandler(directory));
-    patchContentMap.put("GET", new FileHandler(directory));
+  private HashMap<String, Responder> getPatchContentMap(Request request) {
+    patchContentMap.put("PATCH", new PatchContentHandler(directory, request.getURI(), request.getEtag()));
+    patchContentMap.put("GET", new FileHandler(directory, request.getURI()));
     
     return patchContentMap;
   }
   
-  private HashMap<String, Responder> getPartialContentmap() {
-    partialContentMap.put("GET", new PartialContentHandler(directory));
+  private HashMap<String, Responder> getPartialContentmap(Request request) {
+    partialContentMap.put("GET", new PartialContentHandler(directory, request.getURI() ,request.getByteRange()));
     
     return partialContentMap;
   }
   
-  private HashMap<String, Responder> getParameterMap() {
-    parameterMap.put("GET", new ParameterHandler());
+  private HashMap<String, Responder> getParameterMap(Request request) {
+    parameterMap.put("GET", new ParameterHandler(request.getParameterValues()));
     
     return parameterMap;
   }
   
-  private HashMap<String, HashMap<String, Responder>> getRoutesMap() {
+  private HashMap<String, HashMap<String, Responder>> getRoutesMap(Request request) {
     routesMap.put("/", getRootMap());
-    routesMap.put("file1", getFileRouteMap());
-    routesMap.put("file2", getFileRouteMap());
-    routesMap.put("image.jpeg", getFileRouteMap());
-    routesMap.put("image.png", getFileRouteMap());
-    routesMap.put("image.gif", getFileRouteMap());
-    routesMap.put("form", getFormRouteMap());
-    routesMap.put("text-file.txt", getFileRouteMap());
-    routesMap.put("logs", getBasicAuthRouteMap());
+    routesMap.put("file1", getFileRouteMap(request));
+    routesMap.put("file2", getFileRouteMap(request));
+    routesMap.put("image.jpeg", getFileRouteMap(request));
+    routesMap.put("image.png", getFileRouteMap(request));
+    routesMap.put("image.gif", getFileRouteMap(request));
+    routesMap.put("form", getFormRouteMap(request));
+    routesMap.put("text-file.txt", getFileRouteMap(request));
+    routesMap.put("logs", getBasicAuthRouteMap(request));
     routesMap.put("method_options", getOptionsMap());
     routesMap.put("redirect", getRedirectMap());
-    routesMap.put("patch-content.txt", getPatchContentMap());
-    routesMap.put("partial_content.txt", getPartialContentmap());
-    routesMap.put("parameters", getParameterMap());
+    routesMap.put("patch-content.txt", getPatchContentMap(request));
+    routesMap.put("partial_content.txt", getPartialContentmap(request));
+    routesMap.put("parameters", getParameterMap(request));
 
     return routesMap;
   }
   
   public Responder getHandler(Request request) {
-    if (!isAURIMatch(request) && isADirectoryFileMatch(getDirectoryFileNames(), request)) return new FileHandler(directory);
-    if (isAURIMatch(request) && isAValidMethod(request)) return getRoutesMap().get(request.getURI()).get(request.getHTTPMethod());
+    if (!isAURIMatch(request) && isADirectoryFileMatch(getDirectoryFileNames(), request)) return new FileHandler(directory, request.getURI());
+    if (isAURIMatch(request) && isAValidMethod(request)) return getRoutesMap(request).get(request.getURI()).get(request.getHTTPMethod());
     if (isAURIMatch(request) && !isAValidMethod(request)) return new MethodNotAllowedHandler(serverViewsDirectory);
     return new NotFoundHandler(serverViewsDirectory);
   }
   
-  private Set<String> getRouteKeySet() {
-    return getRoutesMap().keySet();
+  private Set<String> getRouteKeySet(Request request) {
+    return getRoutesMap(request).keySet();
   }
 
   public boolean isAValidMethod(Request request) {
-    return isAURIMatch(request) && getRoutesMap().get(request.getURI()).containsKey(request.getHTTPMethod());
+    return isAURIMatch(request) && getRoutesMap(request).get(request.getURI()).containsKey(request.getHTTPMethod());
   }
   
   public String getOptions(Request request) {
     try {
-      return String.join(",", getRoutesMap().get(request.getURI()).keySet());
+      return String.join(",", getRoutesMap(request).get(request.getURI()).keySet());
     } catch (NullPointerException e) {
       
       return "GET";
@@ -131,7 +131,7 @@ public class Routes {
   }
   
   private boolean isAURIMatch(Request request) {
-    for (String uri : getRouteKeySet()) {
+    for (String uri : getRouteKeySet(request)) {
       if (request.getURI().equals(uri)) {
         return true;
       }

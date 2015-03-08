@@ -12,7 +12,8 @@ public class PartialContentParserTest {
   
   @Before
   public void setUp() throws Exception {
-    partialContentParser = new PartialContentParser();
+    String byteRange = "-6";
+    partialContentParser = new PartialContentParser(byteRange);
     data =  "This is a file that contains text to read part of in order to fulfill a 206.".getBytes();
   }
   
@@ -43,21 +44,14 @@ public class PartialContentParserTest {
 
   @Test
   public void returnsPartialContentsBasedOnByteRangeRequest() throws Exception {
-    Request request = new Request();
-    request.setHTTPMethod("GET");
-    request.setURI("partial-content.txt");
-    request.setByteRange("-6");
-
-    assertEquals(" 206." , new String(partialContentParser.getPartialContent(request, data)));
+    assertEquals(" 206." , new String(partialContentParser.getPartialContent(data)));
   }
 
   @Test
   public void returnsPartialContentForByteRangeZeroToSixRequest() throws Exception {
-    Request request = new Request();
-    request.setHTTPMethod("GET");
-    request.setURI("partial-content.txt");
-    request.setByteRange("0-6");
+    String byteRange = "0-6";
+    PartialContentParser partialContentParser = new PartialContentParser(byteRange);
 
-    assertEquals("This is" , new String(partialContentParser.getPartialContent(request, data)));
+    assertEquals("This is" , new String(partialContentParser.getPartialContent(data)));
   }
 }

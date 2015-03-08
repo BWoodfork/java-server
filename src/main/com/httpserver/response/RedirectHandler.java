@@ -1,10 +1,8 @@
 package com.httpserver.response;
 
-import com.httpserver.request.Request;
-
 public class RedirectHandler implements Responder {
   @Override
-  public byte[] buildResponse(Request request, HTTPStatusCodes httpStatusCodes) {
+  public byte[] buildResponse(HTTPStatusCodes httpStatusCodes) {
     try {
       httpStatusCodes.setStatus(301);
     } catch (Exception e) {
