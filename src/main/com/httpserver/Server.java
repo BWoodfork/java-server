@@ -10,15 +10,17 @@ public class Server {
   private ExecutorService pool;
   private int port;
   private String directory;
+  public int requestCount;
+  private ServerSocket serverSocket;
 
-  public Server(ExecutorService pool, int port, String directory) {
+  public Server(ServerSocket serverSocket, ExecutorService pool, int port, String directory) {
+    this.serverSocket = serverSocket;
     this.pool = pool;
     this.port = port;
     this.directory = directory;
   }
   
   public void start() throws IOException {
-    ServerSocket serverSocket = new ServerSocket(port);
     System.out.println("Server Is Listening on port: " + port);
 
     while (true) {
