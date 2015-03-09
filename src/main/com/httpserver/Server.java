@@ -1,7 +1,6 @@
 package com.httpserver;
 
 import com.httpserver.request.RequestHandler;
-import com.httpserver.response.ConnectionHandler;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -20,6 +19,7 @@ public class Server {
   
   public void start() throws IOException {
     ServerSocket serverSocket = new ServerSocket(port);
+    System.out.println("Server Is Listening on port: " + port);
 
     while (true) {
       try {

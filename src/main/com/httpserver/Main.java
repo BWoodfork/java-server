@@ -6,12 +6,11 @@ import java.util.concurrent.Executors;
 
 public class Main {
   public static void main(String[] args) throws IOException {
-//    String directory = args[0];
-//    int port = Integer.parseInt(args[1]);
-//    System.out.println("Server Is Listening on Port: " + port);
-    ExecutorService pool = Executors.newFixedThreadPool(5);
-//    ArgsParser argsParser = new ArgsParser(port, directory);
-    Server server = new Server(pool, 5000, "../cob_spec/public");
+    ArgsParser argsParser = new ArgsParser(args);
+    int port = argsParser.getPort();
+    String directory = argsParser.getDirectory();
+    ExecutorService pool = Executors.newCachedThreadPool();
+    Server server = new Server(pool, port, directory);
     server.start();
   }
 }

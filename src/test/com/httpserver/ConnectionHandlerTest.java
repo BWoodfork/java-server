@@ -1,7 +1,5 @@
 package com.httpserver;
 
-import com.httpserver.ConnectionHandler;
-import com.httpserver.Routes;
 import com.httpserver.mocks.MockSocket;
 import com.httpserver.request.Request;
 import com.httpserver.request.RequestHandler;

@@ -10,8 +10,7 @@ import java.util.Set;
 
 public class Routes {
   private String directory;
-  public static String serverViewsDirectory = "../java-server/default-server-views";
-  
+
   public Routes(String directory) {
     this.directory = directory;
   }
@@ -33,7 +32,7 @@ public class Routes {
   }
   
   private HashMap<String, Responder> getRootMap() {
-    rootMap.put("GET", new RootResponder(serverViewsDirectory));
+    rootMap.put("GET", new RootResponder(Constants.SERVER_VIEWS_DIRECTORY));
     
     return rootMap;
   }
@@ -110,8 +109,8 @@ public class Routes {
   public Responder getHandler(Request request) {
     if (!isAURIMatch(request) && isADirectoryFileMatch(getDirectoryFileNames(), request)) return new FileResponder(directory, request.getURI());
     if (isAURIMatch(request) && isAValidMethod(request)) return getRoutesMap(request).get(request.getURI()).get(request.getHTTPMethod());
-    if (isAURIMatch(request) && !isAValidMethod(request)) return new MethodNotAllowedResponder(serverViewsDirectory);
-    return new NotFoundResponder(serverViewsDirectory);
+    if (isAURIMatch(request) && !isAValidMethod(request)) return new MethodNotAllowedResponder(Constants.SERVER_VIEWS_DIRECTORY);
+    return new NotFoundResponder(Constants.SERVER_VIEWS_DIRECTORY);
   }
   
   private Set<String> getRouteKeySet(Request request) {

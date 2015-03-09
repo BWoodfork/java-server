@@ -1,6 +1,5 @@
 package com.httpserver;
 
-import com.httpserver.Routes;
 import com.httpserver.request.Request;
 import com.httpserver.request.RequestHandler;
 import com.httpserver.request.RequestParser;
@@ -29,7 +28,7 @@ public class ConnectionHandler implements Runnable {
     HTTPStatusCodes httpStatusCodes = new HTTPStatusCodes();
     Routes routes = new Routes(directory);
     Response response = new Response(httpStatusCodes, routes, port);
-    
+
       try {
         Request request = requestParser.parse();
         System.out.println(request.getFullRequest());
