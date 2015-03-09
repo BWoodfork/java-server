@@ -16,12 +16,6 @@ public class RootResponder implements Responder {
 
   @Override
   public byte[] getHTTPMessageBody() {
-//    try {
-//      httpStatusCodes.setStatus(200);
-//    } catch (Exception e) {
-//      e.printStackTrace();
-//    }
-
     try {
       return Files.readAllBytes(Paths.get(serverViewsDirectory + "/index.html"));
     } catch (IOException e) {

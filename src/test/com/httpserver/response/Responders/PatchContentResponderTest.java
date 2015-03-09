@@ -15,7 +15,7 @@ public class PatchContentResponderTest {
   public void writesPatchContentToPatchContentFileWhenEtagMatches() throws Exception {
     String testDirectoryPath = TestDirectoryPath.testDirectory;
     String uri = "patch-content.txt";
-    String etag = "60bb224c68b1ed765a0f84d910de58d0beea91c4";
+    String etag = "dc50a0d27dda2eee9f65644cd7e4c9cf11de8bec";
     PatchContentResponder patchContentResponder = new PatchContentResponder(testDirectoryPath, uri, etag);
     HTTPStatusCodes httpStatusCodes = new HTTPStatusCodes();
     patchContentResponder.getHTTPMessageBody();
@@ -29,7 +29,7 @@ public class PatchContentResponderTest {
   public void writesDefaultContentToPatchContentFileWhenEtagMatches() throws Exception {
     String testDirectoryPath = TestDirectoryPath.testDirectory;
     String uri = "patch-content.txt";
-    String etag = "69bc18dc1edc9e1316348b2eaaca9df83898249fC";
+    String etag = "5c36acad75b78b82be6d9cbbd6143ab7e0cc04b0";
     PatchContentResponder patchContentResponder = new PatchContentResponder(testDirectoryPath, uri, etag);
     HTTPStatusCodes httpStatusCodes = new HTTPStatusCodes();
     patchContentResponder.getHTTPMessageBody();
