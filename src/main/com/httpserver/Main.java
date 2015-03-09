@@ -9,7 +9,7 @@ public class Main {
     ArgsParser argsParser = new ArgsParser(args);
     int port = argsParser.getPort();
     String directory = argsParser.getDirectory();
-    ExecutorService pool = Executors.newCachedThreadPool();
+    ExecutorService pool = Executors.newFixedThreadPool(5);
     Server server = new Server(pool, port, directory);
     server.start();
   }

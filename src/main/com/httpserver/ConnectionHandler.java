@@ -5,6 +5,7 @@ import com.httpserver.request.RequestHandler;
 import com.httpserver.request.RequestParser;
 import com.httpserver.response.HTTPStatusCodes;
 import com.httpserver.response.Response;
+import com.httpserver.response.ResponsePresenter;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -28,12 +29,13 @@ public class ConnectionHandler implements Runnable {
     HTTPStatusCodes httpStatusCodes = new HTTPStatusCodes();
     Routes routes = new Routes(directory);
     Response response = new Response(httpStatusCodes, routes, port);
+    ResponsePresenter responsePresenter = new ResponsePresenter(response);
 
       try {
         Request request = requestParser.parse();
         System.out.println(request.getFullRequest());
         DataOutputStream dataOutputStream = new DataOutputStream(requestHandler.getOutputStream());
-        dataOutputStream.write(response.formatResponse(request));
+        dataOutputStream.write(responsePresenter.present(request));
         dataOutputStream.flush();
       } catch (IOException e) {
         e.printStackTrace();
