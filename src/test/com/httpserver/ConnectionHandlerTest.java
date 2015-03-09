@@ -1,10 +1,13 @@
-package com.httpserver.response;
+package com.httpserver;
 
+import com.httpserver.ConnectionHandler;
 import com.httpserver.Routes;
 import com.httpserver.mocks.MockSocket;
 import com.httpserver.request.Request;
 import com.httpserver.request.RequestHandler;
 import com.httpserver.request.RequestParser;
+import com.httpserver.response.HTTPStatusCodes;
+import com.httpserver.response.Response;
 import com.httpserver.testresources.TestDirectoryPath;
 import org.junit.Before;
 import org.junit.Test;

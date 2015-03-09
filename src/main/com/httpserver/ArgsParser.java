@@ -1,27 +1,37 @@
 package com.httpserver;
 
 public class ArgsParser {
-  private int port;
-  private String directory;
+  String[] args;
+
+  public ArgsParser(String[] args) {
+    this.args = args;
+  }
   
-  public ArgsParser(int port, String directory) {
-    this.port = port;
-    this.directory = directory;
+  public int getPort() {
+    return (isAValidPortNumber()) ? Integer.parseInt(args[1]) : Constants.DEFAULT_PORT;
   }
 
-  public int getPort() {
-    if (port < 0) {
-      return 5000;
+  public boolean isAValidPortNumber() {
+    try {
+      return args[1] != null && Integer.parseInt(args[1]) > 0;
+    } catch (ArrayIndexOutOfBoundsException e) {
+      return false;
     }
-    
-    return port;
   }
 
   public String getDirectory() {
-    if (directory == null) {
-      return "../java-server/src/test/cob_spec";
+    if (isAValidDirectory()) {
+      return args[0];
     }
     
-    return directory;
+    return Constants.DEFAULT_SERVER_DIRECTORY;
+  }
+
+  public boolean isAValidDirectory() {
+    try {
+      return args[0] != null;
+    } catch (ArrayIndexOutOfBoundsException e) {
+      return false;
+    }
   }
 }
