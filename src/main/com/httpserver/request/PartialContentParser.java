@@ -26,7 +26,7 @@ public class PartialContentParser {
     if (minMatch != null) {
       return Integer.parseInt(minMatch);
     } else {
-      return dataContentLength - (Integer.parseInt(maxMatch) - 1);
+      return dataContentLength - (Integer.parseInt(maxMatch));
     }
   }
 

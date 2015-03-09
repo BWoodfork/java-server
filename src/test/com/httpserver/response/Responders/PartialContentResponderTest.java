@@ -22,7 +22,7 @@ public class PartialContentResponderTest {
   @Test
   public void returnsPartialContentsBasedOnByteRangeRequest() throws Exception {
     HTTPStatusCodes httpStatusCodes = new HTTPStatusCodes();
-    assertEquals(" 206." , new String(partialContentResponder.getHTTPMessageBody()));
+    assertEquals(" 206.\n" , new String(partialContentResponder.getHTTPMessageBody()));
     assertEquals("206 Partial Content", partialContentResponder.getHTTPStatusCode(httpStatusCodes));
   }
   
