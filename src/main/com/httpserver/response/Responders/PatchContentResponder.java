@@ -49,8 +49,8 @@ public class PatchContentResponder implements Responder {
   }
   
   private HashMap<String, byte[]> getPatchMap() {
-    patchMap.put("60bb224c68b1ed765a0f84d910de58d0beea91c4", "patched content".getBytes());
-    patchMap.put("69bc18dc1edc9e1316348b2eaaca9df83898249fC", "default content".getBytes());
+    patchMap.put("dc50a0d27dda2eee9f65644cd7e4c9cf11de8bec", "patched content".getBytes());
+    patchMap.put("5c36acad75b78b82be6d9cbbd6143ab7e0cc04b0", "default content".getBytes());
     
     return patchMap;
   }

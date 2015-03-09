@@ -19,12 +19,12 @@ public class PartialContentParserTest {
   
   @Test
   public void returnsTheMinRangeOfNegativeSixByteRange() throws Exception {
-    Assert.assertEquals(71, partialContentParser.getMinRange(null, "6", data.length));
+    Assert.assertEquals(70, partialContentParser.getMinRange(null, "6", data.length));
   }
   
   @Test
   public void returnsTheMinRangeOfNegative5ByteRange() throws Exception {
-    Assert.assertEquals(72, partialContentParser.getMinRange(null, "5", data.length));
+    Assert.assertEquals(71, partialContentParser.getMinRange(null, "5", data.length));
   }
 
   @Test
@@ -44,7 +44,7 @@ public class PartialContentParserTest {
 
   @Test
   public void returnsPartialContentsBasedOnByteRangeRequest() throws Exception {
-    assertEquals(" 206." , new String(partialContentParser.getPartialContent(data)));
+    assertEquals("a 206." , new String(partialContentParser.getPartialContent(data)));
   }
 
   @Test
