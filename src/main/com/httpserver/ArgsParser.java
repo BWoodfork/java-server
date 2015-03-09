@@ -20,11 +20,7 @@ public class ArgsParser {
   }
 
   public String getDirectory() {
-    if (isAValidDirectory()) {
-      return args[0];
-    }
-    
-    return Constants.DEFAULT_SERVER_DIRECTORY;
+    return (isAValidDirectory()) ? args[0] : Constants.DEFAULT_SERVER_DIRECTORY;
   }
 
   public boolean isAValidDirectory() {
