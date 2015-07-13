@@ -1,4 +1,4 @@
-###HTTP Server - Conforms to Cobspec Acceptance Test Suite
+HTTP Server - Conforms to Cobspec Acceptance Test Suite
 
 By default, this server serves files from the Cobspec/public directory, 
 with the intension of passing the Cobspec HTTP Server Tests. Cobspec is an 
