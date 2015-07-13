@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 HTTP Server - Conforms to Cobspec Acceptance Test Suite
-=======
-##HTTP Server - Conforms to Cobspec Acceptance Test Suite
->>>>>>> 2fc20f2... Eh
 
 By default, this server serves files from the Cobspec/public directory, 
 with the intension of passing the Cobspec HTTP Server Tests. Cobspec is an 
